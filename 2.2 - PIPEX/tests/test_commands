@@ -1,0 +1,65 @@
+# TEST1 : Count the lines
+
+./pipex tests/infile "ls -l" "wc -l" tests/outfile
+< tests/infile ls -l | wc -l > tests/shell_outfile
+
+# TEST2 : Grep a word and count number of words in output
+
+./pipex tests/infile "grep a1" "wc -w" tests/outfile
+< tests/infile grep a1 | wc -w > tests/shell_outfile
+
+# TEST3 : Look for a word and sort
+
+./pipex tests/infile "grep a" "sort" tests/outfile
+< tests/infile grep a | sort > tests/shell_outfile
+
+# TEST4 : Cat and count words
+
+./pipex tests/infile "cat" "wc -w" tests/outfile
+< tests/infile cat | wc -w > tests/shell_outfile
+
+# TEST5 : Double search
+
+./pipex tests/infile "grep a" "grep beta" tests/outfile
+< tests/infile grep a | grep beta > tests/shell_outfile
+
+# TEST6 : Large file
+
+./pipex tests/largefile "ls -l" "wc -l" tests/outfile
+< tests/largefile ls -l | wc -l > tests/shell_outfile
+
+# TEST7 : Grep in a large file
+
+./pipex tests/largefile_with_words "grep a1" "wc -w" tests/outfile
+< tests/largefile_with_words grep "a1" | wc -w > tests/shell_outfile
+
+# TEST8 : Search and sort in large file
+
+./pipex tests/largefile_with_words "grep a" "sort" tests/outfile
+< tests/largefile_with_words grep "a" | sort > tests/shell_outfile
+
+# TEST9 : Unknown file - should return an error
+
+./pipex tests/nonexistent_file "ls -l" "wc -l" tests/outfilefile
+< tests/nonexistent_file ls -l | wc -l > tests/shell_outfile
+
+# TEST10 : Read-only file - should return an error
+
+chmod 000 tests/readonlyfile
+./pipex tests/largefile_with_words "cat" "wc -w" tests/readonlyfile
+< tests/largefile_with_words cat | wc -w > tests/readonlyfile
+
+# TEST11 : Invalids commands - should return an error
+
+./pipex tests/infile "nonexistent_cmd" "wc -l" tests/outfile
+< tests/infile nonexistent_cmd | wc -l > tests/shell_outfile
+
+# TEST12 : Valid command followed by invalid command - should return an error
+
+./pipex tests/infile "cat" "nonexistent_cmd" tests/outfile
+< tests/infile cat | nonexistent_cmd > tests/shell_outfile
+
+# TEST13 : False syntax - should return an error
+
+./pipex tests/infile "ls -unknownflag" "wc -l" tests/outfile
+< tests/infile "ls -unknownflag" | wc -l > tests/shell_outfile
