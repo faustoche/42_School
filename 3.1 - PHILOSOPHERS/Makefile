@@ -3,7 +3,6 @@
 # ************************************************************************ #
 
 NAME 		= philo
-NAME_BONUS 	= philo_bonus
 
 
 # ************************************************************************ #
@@ -12,39 +11,24 @@ NAME_BONUS 	= philo_bonus
 
 INCLUDES_DIR	= includes
 SRCS_DIR		= src
-SRCSB_DIR		= src_bonus
 OBJS_DIR		= obj
-OBJSB_DIR		= obj_bonus
-
-FTPRINTF_DIR	= ft_printf
 
 # ************************************************************************ #
 #                			 SRCS && OBJECTS FILES                         #
 # ************************************************************************ #
 
 PHILO = 		$(addprefix $(SRCS_DIR)/, main.c\
-				error_display.c)
+				routine.c\
+				eating.c\
+				init_threads.c\
+				init_datas.c\
+				utils.c)
 
-PHILO_BONUS =  $(addprefix $(SRCSB_DIR)/, enemies_bonus.c)
+##PHILO_BONUS =  $(addprefix $(SRCSB_DIR)/, enemies_bonus.c)
 
-FTPRINTF =		$(addprefix $(FTPRINTF_DIR)/, ft_printf.c\
-				ft_putc.c\
-				ft_putdi.c\
-				ft_putp.c\
-				ft_puts.c\
-				ft_putun.c\
-				ft_putx.c)
-
-GNL =			$(addprefix $(GNL_DIR)/, get_next_line_utils1.c\
-				get_next_line_utils2.c\
-				get_next_line.c)
-
-
-SRCS			= ${PHILO} ${FTPRINTF}
-FTPRINTF_OBJS 	= ${FTPRINTF:$(FTPRINTF_DIR)/%.c=$(OBJS_DIR)/%.o}
+SRCS			= ${PHILO}
 PHILO_OBJS		= ${PHILO:${SRCS_DIR}/%.c=$(OBJS_DIR)/%.o}
-OBJS			= $(PHILO_OBJS) $(FTPRINTF_OBJS)
-OBJSB			= ${PHILO_BONUS:${SRCSB_DIR}/%.c=$(OBJSB_DIR)/%.o}
+OBJS			= $(PHILO_OBJS)
 
 # ************************************************************************ #
 #                    			 COMPILATION                               #
@@ -60,35 +44,17 @@ RM = rm -rf
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(OBJSB)
+$(NAME): $(OBJS)
 	@echo "\033[0;33m\n🧠💭 COMPILING PHILO... 💭🧠\n"
-	$(CC) $(OBJS) $(OBJSB) $(CFLAGS) -o $(NAME)
-	@echo "\033[1;32m👩🏻‍🏫👨🏻‍🏫 ./$(NAME) created 👨🏻‍🏫👩🏻‍🏫\n"
-
-$(NAME_BONUS): $(OBJSB) $(OBJS)
-	@echo "\033[0;33m\n🧠💭 COMPILING BONUSES... 💭🧠\n"
-	$(CC) $(OBJSB) $(OBJS) -o $(NAME_BONUS) $(CFLAGS)
-	@echo "\033[1;32m👩🏻‍🏫👨🏻‍🏫💡 ./$(NAME_BONUS) created 💡👨🏻‍🏫👩🏻‍🏫\n"
-
-bonus: $(NAME_BONUS)
+	$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
+	@echo "\033[1;32m💡 ./$(NAME) created 💡\n"
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJSB_DIR)/%.o: $(SRCSB_DIR)/%.c | $(OBJSB_DIR)
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@
-
-$(OBJS_DIR)/%.o: $(FTPRINTF_DIR)/%.c
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
-
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
-
-$(OBJSB_DIR):
-	@mkdir -p $(OBJSB_DIR)
 
 # ************************************************************************ #
 #                  		     CLEANUP SESSION                               #
@@ -96,11 +62,10 @@ $(OBJSB_DIR):
 
 clean:
 	@rm -rf $(OBJS_DIR)
-	@rm -rf $(OBJSB_DIR)
 	@echo "\033[1;32m🧽 DONE 🧽"
 
 fclean: clean
-	@rm -f $(NAME) $(NAME_BONUS)
+	@rm -f $(NAME)
 	@echo "\033[1;32m🧽 DONE 🧽"
 
 re: fclean all

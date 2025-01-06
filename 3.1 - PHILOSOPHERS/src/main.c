@@ -3,54 +3,91 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faustoche <faustoche@student.42.fr>        +#+  +:+       +#+        */
+/*   By: fcrocq <fcrocq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/27 09:51:22 by fcrocq            #+#    #+#             */
-/*   Updated: 2024/11/27 18:11:15 by faustoche        ###   ########.fr       */
+/*   Created: 2024/12/27 11:22:15 by fcrocq            #+#    #+#             */
+/*   Updated: 2025/01/06 15:04:09 by fcrocq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-/*
-** One or more philosophers sit at a round table. There's a large bowl of food in the middle.
-** They alternatively eat, think, sleep. While they are eating, they are not thinking nor sleeping.
-** There are as many forks as philosophers
-** A philosopher takes their right and their left forks to eat, one in each hand
-** When a philosopher has finished eating, they put their forks back on the table and start sleeping
-** Once awake they start thinking again. Everything stops when a philosophers dies of starvation
-** Every philosophers needs to eat and should never starve
-** They don't speak to each other and don't know when another is about to die
-** 4 arguments obligatoires : nb of philom, time to die, time to eat, time to sleep
-** 1 argument facultatif : nombre de fois où un philo doit manger
-*/
-
-/*
-** Main
-** Initialisation des données : thread, mutex, temps, paramètres
-** Vérification de la ligne de commande : 
-	- number of philosophers
-	- time to die
-	- time to eat
-	- time to sleep
-	- number of times each philosopher must eat (option)
-** 
-*/
-
-int main(int ac, char *av)
+int	main(int ac, char **av)
 {
-	// Le minimum d'argument est de 4 (+ 1) et le maximum est de 5 (+ 1)
-	// Si pas le bon nombre d'argument, exit
-	// Variable nb de philo = av[1]
-	// Appel de la fonction de création des philo
-	// 
+	t_data	data;
+
+	if (ac < 5 || ac > 6)
+	{
+		printf("Wrong number of arguments");
+		return (-1);
+	}
+	if (init_data(ac, av, &data) != 0)
+		return (-1);
+	start_simulation(&data);
+	if (data.philo->meals_eaten == 0)
+		printf("All philosophers ate %d times\n", data.must_eat);
+	cleanup_data(&data);
+	return (0);
 }
 
 /*
-** Init
-** Allocation et initialisation des données de chaque philosophe (t_philo)
-** Pointeurs vers les fourchettes (mutex)
-** Chronomètre pour mesurer time to die
-** Compteur de repas
+** Init everything
+** Main thread wait for all the others
 */
 
+void	start_simulation(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	init_mutex(data, data->nb_philo, 0);
+	init_forks(data);
+	init_thread(data);
+	monitoring(data, 0);
+	while (i < data->nb_philo)
+	{
+		pthread_join(data->philo[i].thread, NULL);
+		i++;
+	}
+	init_mutex(data, data->nb_philo, 1);
+}
+
+void	cleanup_data(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->nb_philo)
+	{
+		pthread_join(data->philo[i].thread, NULL);
+		i++;
+	}
+	pthread_mutex_destroy(&data->message);
+	pthread_mutex_destroy(&data->died_mutex);
+	pthread_mutex_destroy(&data->mutex_last_meal);
+	i = 0;
+	while (i < data->nb_philo)
+	{
+		pthread_mutex_destroy(&data->lock[i]);
+		i++;
+	}
+	if (data->philo)
+		free(data->philo);
+	if (data->lock)
+		free(data->lock);
+}
+
+int	single_philo(t_philo *philo)
+{
+	if (philo->data->nb_philo == 1)
+	{
+		print_message(FORK, philo);
+		ft_usleep(philo->data->die_time);
+		print_message(DIE, philo);
+		pthread_mutex_lock(&philo->data->died_mutex);
+		philo->data->died = 1;
+		pthread_mutex_unlock(&philo->data->died_mutex);
+		return (1);
+	}
+	return (0);
+}
