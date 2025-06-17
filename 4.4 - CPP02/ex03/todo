@@ -1,0 +1,21 @@
+
+Étape 3 : Comprendre l'algorithme BSP
+
+ Rechercher comment calculer de quel côté d'une ligne se trouve un point
+ Comprendre la notion de produit vectoriel (cross product) en 2D
+ Comprendre pourquoi il faut vérifier les 3 côtés du triangle
+
+Étape 4 : Implémenter la fonction BSP
+
+ Créer la fonction bsp avec la signature demandée
+ Implémenter l'algorithme qui teste chaque côté du triangle
+ Gérer les cas limites (point sur un côté ou un sommet)
+
+Étape 5 : Tester
+
+ Créer un main avec plusieurs cas de test
+ Tester avec un point clairement à l'intérieur
+ Tester avec un point clairement à l'extérieur
+ Tester avec un point sur un sommet (doit retourner false)
+ Tester avec un point sur un côté (doit retourner false)
+ Tester avec des triangles de formes différente

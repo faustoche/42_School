@@ -6,7 +6,7 @@
 /*   By: faustoche <faustoche@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:46:28 by faustoche         #+#    #+#             */
-/*   Updated: 2025/06/14 01:47:59 by faustoche        ###   ########.fr       */
+/*   Updated: 2025/06/17 22:32:38 by faustoche        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,14 @@ private:
 	const Fixed y;
 
 public:
-	Point();
-	~Point();
+	Point(); // par default
+	Point(float x, float y);
+	Point(const Point &other); // recopie
+	Point &operator=(const Point &other); // affectation
+	~Point(); // destruction
+
+	Fixed getX() const;
+	Fixed getY() const;
 };
 
 Point::Point() {}
