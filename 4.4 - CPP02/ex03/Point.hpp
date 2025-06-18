@@ -6,7 +6,7 @@
 /*   By: faustoche <faustoche@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:46:28 by faustoche         #+#    #+#             */
-/*   Updated: 2025/06/17 22:32:38 by faustoche        ###   ########.fr       */
+/*   Updated: 2025/06/18 22:01:01 by faustoche        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ public:
 
 	Fixed getX() const;
 	Fixed getY() const;
+	
 };
-
-Point::Point() {}
-Point::~Point() {}
 
 #endif

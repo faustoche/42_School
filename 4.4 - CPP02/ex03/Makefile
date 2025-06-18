@@ -8,7 +8,7 @@ NAME 		= bsp
 #                			 SRCS && OBJECTS FILES                         #
 # ************************************************************************ #
 
-BSP = 		main.cpp 
+BSP = 		main.cpp bsp.cpp Fixed.cpp Point.cpp
 SRCS = ${BSP}
 OBJS = ${SRCS:.cpp=.o}
 
