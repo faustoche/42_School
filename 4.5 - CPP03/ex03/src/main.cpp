@@ -1,7 +1,7 @@
-#include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
-#include "FragTrap.hpp"
-#include "DiamondTrap.hpp"
+#include "../includes/ClapTrap.hpp"
+#include "../includes/ScavTrap.hpp"
+#include "../includes/FragTrap.hpp"
+#include "../includes/DiamondTrap.hpp"
 
 void	DiamondTrap::status()
 {
@@ -57,7 +57,7 @@ int	main()
 		std::cout << MAGENTA << "\n*----- TEST 6 : WHO ARE THEY? -----*" << RESET << std::endl << std::endl;
 		DiamondTrap team[] = {
 			DiamondTrap("Riri"),
-			DiamondTrap("FIfi"),
+			DiamondTrap("Fifi"),
 			DiamondTrap("Loulou")
 		};
 		std::cout << MAGENTA << "------------------------------" << RESET << std::endl;

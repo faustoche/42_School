@@ -1,5 +1,4 @@
-#include "FragTrap.hpp"
-
+#include "../includes/FragTrap.hpp"
 
 /*-------------- CONSTRUCTORS --------------*/
 

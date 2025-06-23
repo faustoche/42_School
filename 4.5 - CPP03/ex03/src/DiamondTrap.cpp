@@ -1,5 +1,4 @@
-#include "DiamondTrap.hpp"
-
+#include "../includes/DiamondTrap.hpp"
 
 /*-------------- CONSTRUCTORS --------------*/
 

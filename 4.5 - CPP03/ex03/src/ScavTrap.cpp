@@ -1,4 +1,4 @@
-#include "ScavTrap.hpp"
+#include "../includes/ScavTrap.hpp"
 
 /*-------------- CONSTRUCTORS --------------*/
 
