@@ -6,9 +6,10 @@
 
 /*-------------- CLASSES --------------*/
 
-class FragTrap : public ClapTrap {
+class FragTrap : virtual public ClapTrap {
 public:
 	FragTrap(std::string name);
+	FragTrap();
 	~FragTrap();
 	FragTrap(const FragTrap &other);
 	FragTrap &operator=(const FragTrap &other);

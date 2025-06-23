@@ -14,9 +14,10 @@
 
 /*-------------- CLASSES --------------*/
 
-class ScavTrap : public ClapTrap {
+class ScavTrap : virtual public ClapTrap {
 public:
 	ScavTrap(std::string name);
+	ScavTrap();
 	~ScavTrap();
 	ScavTrap(const ScavTrap &other);
 	ScavTrap &operator=(const ScavTrap &other);

@@ -7,6 +7,14 @@ ClapTrap::ClapTrap(std::string name)
 	std::cout << "ClapTrap " << this->name << " created by constructor." << std::endl;
 }
 
+ClapTrap::ClapTrap(){
+	this->name = "Unnamed";
+	this->hit_point = 10;
+	this->energy_point = 10;
+	this->attack_damage = 0;
+	std::cout << "ClapTrap default constructor called" << std::endl;
+}
+
 ClapTrap::~ClapTrap() {
 	std::cout << "ClapTrap " << this->name << " destroyed by destructor." << std::endl;
 }

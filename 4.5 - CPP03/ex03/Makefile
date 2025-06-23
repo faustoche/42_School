@@ -8,7 +8,7 @@ NAME 		= ClapTrap
 #                			 SRCS && OBJECTS FILES                         #
 # ************************************************************************ #
 
-CLAPTRAP = 		main.cpp ClapTrap.cpp FragTrap.cpp
+CLAPTRAP = 		main.cpp ClapTrap.cpp FragTrap.cpp DiamondTrap.cpp
 SRCS = ${CLAPTRAP}
 OBJS = ${SRCS:.cpp=.o}
 

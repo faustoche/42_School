@@ -2,7 +2,7 @@
 
 /*-------------- CONSTRUCTORS --------------*/
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
+ScavTrap::ScavTrap(std::string name){
 	this->hit_point = 100;
 	this->energy_point = 50;
 	this->attack_damage = 20;
