@@ -8,20 +8,27 @@
 
 /*-------------- CLASS --------------*/
 
+/*
+** int value : entier brut qui stocke la valeur multipliée
+** int fractionalBits : nombre de bits (1 << 8 = 256)
+** getRawBits : retourne la valeur brute de value sans conversion
+** setRawBits : modifie value avec une valeur brute
+*/
+
 class Fixed
 {
 private:
-	int	value; // entier brut qui stocke la valeur multipliée
-	static const int	fractionalBits = 8; // nombre de bits (1 << 8 = 256)
+	int	value;
+	static const int	fractionalBits = 8;
 
 public:
-	Fixed(); // Constructeur par défaut - permet d'initialisé value à 0
-	Fixed(const Fixed &other); // Constructeur de recopie (copie un autre objet fixed)
+	Fixed(); // Constructeur par défaut
+	Fixed(const Fixed &other); // Constructeur de recopie
 	Fixed &operator=(const Fixed &other); // Opérateur d'affectation =
-	~Fixed(); // S'exécute quand l'objet est détruit (copie les données de x dans y)
+	~Fixed(); // Destructeur
 
-	int		getRawBits(void) const; // retourne la valeur brute de value sans conversion
-	void	setRawBits(int const raw); // modifie value avec une valeur brute
+	int		getRawBits(void) const;
+	void	setRawBits(int const raw);
 };
 
 #endif

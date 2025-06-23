@@ -13,23 +13,22 @@ Fixed::Fixed(const Fixed &other) {
 
 Fixed &Fixed::operator=(const Fixed &other) {
 	std::cout << "Copy assignment operator called" << std::endl;
-	if (this != &other)
+	if (this != &other){
 		value = other.value;
-		return (*this);
+	}
+	return (*this);
 }
 
 Fixed::~Fixed() {
 	std::cout << "Destructor called" << std::endl;
 }
 
-// On multiplie par 256 (2^8)
-
 Fixed::Fixed (int const n) {
 	std::cout << "Int constructor called" << std::endl;
 	this->value = n << fractionalBits;
 }
 
-// On multiplie par 256 (2^8) puis on arrondis avec roundf pour etre + preics
+/* On multiplie par 256 (2^8) puis on arrondi avec roundf pour être plus précis */
 
 Fixed::Fixed (float const n) {
 	std::cout << "Float constructor called" << std::endl;

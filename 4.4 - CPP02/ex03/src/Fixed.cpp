@@ -1,5 +1,7 @@
 #include "../includes/Fixed.hpp"
 
+/*-------------- CONSTRUCTORS --------------*/
+
 Fixed::Fixed() : value(0) {
 	//std::cout << "Default constructor called" << std::endl;
 }
@@ -11,19 +13,16 @@ Fixed::Fixed(const Fixed &other) {
 
 Fixed &Fixed::operator=(const Fixed &other) {
 	//std::cout << "Copy assignment operator called" << std::endl;
-	if (this != &other)
+	if (this != &other){
 		value = other.value;
-		return (*this);
+	}
+	return (*this);
 }
-
-// On multiplie par 256 (2^8)
 
 Fixed::Fixed (int const n) {
 	//std::cout << "Int constructor called" << std::endl;
 	this->value = n << fractionalBits;
 }
-
-// On multiplie par 256 (2^8) puis on arrondis avec roundf pour etre + preics
 
 Fixed::Fixed (float const n) {
 	//std::cout << "Float constructor called" << std::endl;
@@ -33,6 +32,8 @@ Fixed::Fixed (float const n) {
 Fixed::~Fixed() {
 	//std::cout << "Destructor called" << std::endl;
 }
+
+/*-------------- FUNCTIONS --------------*/
 
 int	Fixed::getRawBits(void) const {
 	//std::cout << "getRawBits member function called" << std::endl;
@@ -57,8 +58,8 @@ std::ostream &operator<<(std::ostream &out, const Fixed &f) {
 	return (out);
 }
 
+/*-------------- FUNCTIONS - COMPARISONS --------------*/
 
-// comparaison
 bool Fixed::operator>(const Fixed &other) const {
 	return (this->value > other.value);
 }
@@ -83,7 +84,7 @@ bool Fixed::operator!=(const Fixed &other) const {
 	return (this->value != other.value);
 }
 
-/* CALCULS */
+/*-------------- FUNCTIONS - CALCULUS --------------*/
 
 Fixed Fixed::operator+(const Fixed &other) {
 	Fixed result;
@@ -97,10 +98,7 @@ Fixed Fixed::operator-(const Fixed &other) {
 	return (result);
 }
 
-/*
-** Value et other sont prétraité et divisé par 256
-** Il faut diviser ou multiplié par 256 pour arriver au résultat correct
-*/
+/* Value et other sont déjà divisé par 256. On redivise ou remultiplie pour arriver au résultat voulu */
 
 Fixed Fixed::operator*(const Fixed &other) {
 	Fixed result;
@@ -114,7 +112,7 @@ Fixed Fixed::operator/(const Fixed &other) {
 	return (result);
 }
 
-//incrementaiton decrementation
+/*-------------- FUNCTIONS - INCREMENT AND DECREMENT --------------*/
 
 Fixed &Fixed::operator++() {
 	++value;
@@ -138,7 +136,7 @@ Fixed Fixed::operator--(int) {
 	return (tmp);
 }
 
-// fonction de comparaison
+/*-------------- FUNCTIONS TO COMPARE --------------*/
 
 Fixed &Fixed::min(Fixed &a, Fixed &b) {
 	if (a < b)

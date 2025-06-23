@@ -5,19 +5,29 @@
 NAME 		= harl
 
 # ************************************************************************ #
+#                			     DIRECTORIES                               #
+# ************************************************************************ #
+
+INCLUDES		= includes
+SRCS_DIR		= src
+OBJS_DIR		= obj
+
+# ************************************************************************ #
 #                			 SRCS && OBJECTS FILES                         #
 # ************************************************************************ #
 
-HARL = 		main.cpp automating.cpp
-SRCS = ${HARL}
-OBJS = ${SRCS:.cpp=.o}
+HARL 			= $(addprefix $(SRCS_DIR)/, main.cpp\
+					Automating.cpp)
+SRCS 			= ${HARL}
+CPP_OBJS		= ${HARL:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
+OBJS			= $(CPP_OBJS)
 
 # ************************************************************************ #
 #                    			 COMPILATION                               #
 # ************************************************************************ #
 
 CC          = c++
-CFLAGS      = -Wall -Werror -Wextra -std=c++98 
+CFLAGS      = -Wall -Werror -Wextra -std=c++98 -I$(INCLUDES)
 RM = rm -rf
 
 # ************************************************************************ #
@@ -26,21 +36,24 @@ RM = rm -rf
 
 all:    $(NAME)
 
-$(NAME):  $(OBJS)
+$(NAME):  $(OBJS_DIR) $(OBJS)
 	@echo "\033[1;33m🤖  COMPILING HARL 2.0 🤖\n"
 	@$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
 	@echo "\033[1;32m🤖 ./$(NAME) created 🤖\n"
 
-%.o: %.cpp
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp
+	@mkdir -p $(OBJS_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(OBJS_DIR):
+	@mkdir -p $(OBJS_DIR)
 
 # ************************************************************************ #
 #                  		     CLEANUP SESSION                               #
 # ************************************************************************ #
 
 clean:
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS_DIR)
 	@echo "\033[1;32m🫧  DONE 🫧"
 
 fclean: clean
@@ -49,5 +62,3 @@ fclean: clean
 
 re: fclean all
 	@echo "\033[1;32m🫧  RE DONE 🫧"
-
-.PHONY: all clean fclean re

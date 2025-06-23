@@ -5,19 +5,31 @@
 NAME 		= zombie
 
 # ************************************************************************ #
+#                			     DIRECTORIES                               #
+# ************************************************************************ #
+
+INCLUDES		= includes
+SRCS_DIR		= src
+OBJS_DIR		= obj
+
+# ************************************************************************ #
 #                			 SRCS && OBJECTS FILES                         #
 # ************************************************************************ #
 
-ZOMBIE = 		newZombie.cpp randomChump.cpp Zombie.cpp main.cpp
-SRCS = ${ZOMBIE}
-OBJS = ${SRCS:.cpp=.o}
+ZOMBIE	 		= $(addprefix $(SRCS_DIR)/, main.cpp\
+					NewZombie.cpp\
+					RandomChump.cpp\
+					Zombie.cpp)
+SRCS 			= ${ZOMBIE}
+CPP_OBJS		= ${ZOMBIE:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
+OBJS			= $(CPP_OBJS)
 
 # ************************************************************************ #
 #                    			 COMPILATION                               #
 # ************************************************************************ #
 
 CC          = c++
-CFLAGS      = -Wall -Werror -Wextra -std=c++98
+CFLAGS      = -Wall -Werror -Wextra -std=c++98 -I$(INCLUDES)
 RM = rm -rf
 
 # ************************************************************************ #
@@ -26,21 +38,24 @@ RM = rm -rf
 
 all:    $(NAME)
 
-$(NAME):  $(OBJS)
-	@echo "\033[1;33m🧟  COMPILING ZO...MMM....BI....E..S... 🧟\n"
+$(NAME):  $(OBJS_DIR) $(OBJS)
+	@echo "\033[1;33m📓  COMPILING ZOMBIE 📓\n"
 	@$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
-	@echo "\033[1;32m🧟 ./$(NAME) created 🧟\n"
+	@echo "\033[1;32m📓 ./$(NAME) created 📓\n"
 
-%.o: %.cpp
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp
+	@mkdir -p $(OBJS_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(OBJS_DIR):
+	@mkdir -p $(OBJS_DIR)
 
 # ************************************************************************ #
 #                  		     CLEANUP SESSION                               #
 # ************************************************************************ #
 
 clean:
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS_DIR)
 	@echo "\033[1;32m🫧  DONE 🫧"
 
 fclean: clean
@@ -49,5 +64,3 @@ fclean: clean
 
 re: fclean all
 	@echo "\033[1;32m🫧  RE DONE 🫧"
-
-.PHONY: all clean fclean re

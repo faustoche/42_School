@@ -20,7 +20,7 @@ DIAMONDTRAP 	= $(addprefix $(SRCS_DIR)/, main.cpp\
 					FragTrap.cpp\
 					ScavTrap.cpp\
 					DiamondTrap.cpp)
-SRCS = ${DIAMONDTRAP}
+SRCS 			= ${DIAMONDTRAP}
 CPP_OBJS		= ${DIAMONDTRAP:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
 OBJS			= $(CPP_OBJS)
 

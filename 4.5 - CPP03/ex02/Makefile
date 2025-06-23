@@ -2,22 +2,33 @@
 #                			        MAIN                                   #
 # ************************************************************************ #
 
-NAME 		= ClapTrap
+NAME 		= FragTrap
 
+# ************************************************************************ #
+#                			     DIRECTORIES                               #
+# ************************************************************************ #
+
+INCLUDES		= includes
+SRCS_DIR		= src
+OBJS_DIR		= obj
 # ************************************************************************ #
 #                			 SRCS && OBJECTS FILES                         #
 # ************************************************************************ #
 
-CLAPTRAP = 		main.cpp ClapTrap.cpp FragTrap.cpp
-SRCS = ${CLAPTRAP}
-OBJS = ${SRCS:.cpp=.o}
+FRAGTRAP 		= $(addprefix $(SRCS_DIR)/, main.cpp\
+					ClapTrap.cpp\
+					ScavTrap.cpp\
+					FragTrap.cpp)
+SRCS 			= ${FRAGTRAP}
+CPP_OBJS		= ${FRAGTRAP:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
+OBJS			= $(CPP_OBJS)
 
 # ************************************************************************ #
 #                    			 COMPILATION                               #
 # ************************************************************************ #
 
 CC          = c++
-CFLAGS      = -Wall -Werror -Wextra -std=c++98 
+CFLAGS      = -Wall -Werror -Wextra -std=c++98 -I$(INCLUDES)
 RM = rm -rf
 
 # ************************************************************************ #
@@ -26,21 +37,24 @@ RM = rm -rf
 
 all:    $(NAME)
 
-$(NAME):  $(OBJS)
-	@echo "\033[1;33m💣  COMPILING CLAPTRAC 💣\n"
+$(NAME):  $(OBJS_DIR) $(OBJS)
+	@echo "\033[1;33m💣  COMPILING SCAVTRAP 💣\n"
 	@$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
 	@echo "\033[1;32m💣 ./$(NAME) created 💣\n"
 
-%.o: %.cpp
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp
+	@mkdir -p $(OBJS_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(OBJS_DIR):
+	@mkdir -p $(OBJS_DIR)
 
 # ************************************************************************ #
 #                  		     CLEANUP SESSION                               #
 # ************************************************************************ #
 
 clean:
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS_DIR)
 	@echo "\033[1;32m🫧  DONE 🫧"
 
 fclean: clean

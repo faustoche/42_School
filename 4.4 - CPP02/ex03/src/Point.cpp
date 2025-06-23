@@ -1,5 +1,7 @@
 #include "../includes/Point.hpp"
 
+/*-------------- CONSTRUCTORS --------------*/
+
 Point::Point() : x(0), y(0) {
 }
 
@@ -16,6 +18,8 @@ Point &Point::operator=(const Point &other) {
 
 Point::~Point() {
 }
+
+/*-------------- FUNCTIONS --------------*/
 
 Fixed Point::getX() const {
 	return (x);

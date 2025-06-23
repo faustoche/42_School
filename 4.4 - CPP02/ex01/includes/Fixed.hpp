@@ -9,39 +9,40 @@
 
 /*-------------- CLASS --------------*/
 
+/*
+** int value : entier brut qui stocke la valeur multipliée
+** int fractionalBits : nombre de bits (1 << 8 = 256)
+** getRawBits : retourne la valeur brute de value sans conversion
+** setRawBits : modifie value avec une valeur brute
+** toFloat: convertit la valeur en virgule fixe en nombre à virgule flottante
+** toInt : convertit la valeur virgule fixe en nombre entier
+*/
+
 class Fixed
 {
 private:
-	int	value; // entier brut qui stocke la valeur multipliée
-	static const int	fractionalBits = 8; // nombre de bits (1 << 8 = 256)
+	int	value;
+	static const int	fractionalBits = 8;
 
 public:
-	Fixed(); // Constructeur par défaut - permet d'initialisé value à 0
-	Fixed(const Fixed &other); // Constructeur de recopie (copie un autre objet fixed)
-	Fixed &operator=(const Fixed &other); // Opérateur d'affectation =
+	Fixed();
+	Fixed(const Fixed &other);
+	Fixed &operator=(const Fixed &other);
 	Fixed (int const convert);
 	Fixed (float const convert);
-	~Fixed(); // S'exécute quand l'objet est détruit (copie les données de x dans y)
+	~Fixed();
 
-	int		getRawBits(void) const; // retourne la valeur brute de value sans conversion
-	void	setRawBits(int const raw); // modifie value avec une valeur brute
-	float	toFloat(void) const; // convertit la valeur en virgule fixe en nombre a virgule flottante
-	int		toInt(void) const; // convertit la valeur virgule fixe en nombre entier
+	int		getRawBits(void) const;
+	void	setRawBits(int const raw);
+	float	toFloat(void) const;
+	int		toInt(void) const;
 };
 
-
-// std::cout n'est pas un type mais un objet
-// std::cout  = variable globale
-// std::ostream: type général de tous les flux de sortie 
-// std::ostream : retour de la fonction, référence vers un flux de sortie (std::cout)
-// permet d'enchainer plusieurs << << << (cout << a << b << c);
-
-// operator<< : nom de la fonction surchargée
-// redefinir des operateurs comme des fonctions : + - << ==
-
-// std::ostream &out, const Fixed &f
-// std::ostream & : le flux dans lequel on ecrit (cout)
-
+/*
+** std::ostream : type général de tous les flux de sortie. Fait référence à un flux de sortie (std::cout)
+** operator<< : nom de la fonction surchargé. On peut redéfinir des opérateurs comme des fonctions
+** std::ostream & : le flux dans lequel on ecrit (cout)
+*/
 
 std::ostream &operator<<(std::ostream &out, const Fixed &f);
 

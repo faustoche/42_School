@@ -7,23 +7,21 @@
 #include <string>
 #include <cmath>
 
-// Les fonctions qui ne modifient pas l'objet doivent être marquées const
-
 /*-------------- CLASS --------------*/
 
 class Fixed
 {
 private:
-	int	value; // entier brut qui stocke la valeur multipliée
-	static const int	fractionalBits = 8; // nombre de bits (1 << 8 = 256)
+	int	value;
+	static const int	fractionalBits = 8;
 
 public:
-	Fixed(); // Constructeur par défaut - permet d'initialisé value à 0
-	Fixed(const Fixed &other); // Constructeur de recopie (copie un autre objet fixed)
+	Fixed();
+	Fixed(const Fixed &other);
 	Fixed (int const convert);
 	Fixed (float const convert);
-	~Fixed(); // S'exécute quand l'objet est détruit (copie les données de x dans y)
-	Fixed &operator=(const Fixed &other); // Opérateur d'affectation =
+	~Fixed();
+	Fixed &operator=(const Fixed &other);
 
 	// comparaison
 	bool operator>(const Fixed &other) const;
@@ -39,36 +37,22 @@ public:
 	Fixed operator*(const Fixed &other);
 	Fixed operator/(const Fixed &other);
 
-	// incrementation/decrementation
+	// incrémentation/décrémentation
 	Fixed &operator++();
 	Fixed &operator--();
 	Fixed operator++(int);
 	Fixed operator--(int);
 
-	int		getRawBits(void) const; // retourne la valeur brute de value sans conversion
-	void	setRawBits(int const raw); // modifie value avec une valeur brute
-	float	toFloat(void) const; // convertit la valeur en virgule fixe en nombre a virgule flottante
-	int		toInt(void) const; // convertit la valeur virgule fixe en nombre entier
+	int		getRawBits(void) const;
+	void	setRawBits(int const raw);
+	float	toFloat(void) const;
+	int		toInt(void) const;
 
 	static Fixed &min(Fixed &a, Fixed &b);
 	static const Fixed &min(const Fixed &a, const Fixed &b);
 	static Fixed &max(Fixed &a, Fixed &b);
 	static const Fixed &max(const Fixed &a, const Fixed &b);
 };
-
-
-// std::cout n'est pas un type mais un objet
-// std::cout  = variable globale
-// std::ostream: type général de tous les flux de sortie 
-// std::ostream : retour de la fonction, référence vers un flux de sortie (std::cout)
-// permet d'enchainer plusieurs << << << (cout << a << b << c);
-
-// operator<< : nom de la fonction surchargée
-// redefinir des operateurs comme des fonctions : + - << ==
-
-// std::ostream &out, const Fixed &f
-// std::ostream & : le flux dans lequel on ecrit (cout)
-
 
 std::ostream &operator<<(std::ostream &out, const Fixed &f);
 
