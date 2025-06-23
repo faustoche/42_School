@@ -1,9 +1,13 @@
 #ifndef FIXED_HPP
 #define FIXED_HPP
 
+/*-------------- INCLUDES --------------*/
+
 #include <iostream>
 #include <string>
 #include <cmath>
+
+/*-------------- CLASS --------------*/
 
 class Fixed
 {

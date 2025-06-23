@@ -1,4 +1,6 @@
-#include "Fixed.hpp"
+#include "../includes/Fixed.hpp"
+
+/*-------------- CONSTRUCTORS --------------*/
 
 Fixed::Fixed() : value(0) {
 	std::cout << "Default constructor called" << std::endl;
@@ -16,6 +18,10 @@ Fixed &Fixed::operator=(const Fixed &other) {
 		return (*this);
 }
 
+Fixed::~Fixed() {
+	std::cout << "Destructor called" << std::endl;
+}
+
 // On multiplie par 256 (2^8)
 
 Fixed::Fixed (int const n) {
@@ -30,9 +36,7 @@ Fixed::Fixed (float const n) {
 	this->value = roundf(n * (1 << fractionalBits));
 }
 
-Fixed::~Fixed() {
-	std::cout << "Destructor called" << std::endl;
-}
+/*-------------- FUNCTIONS --------------*/
 
 int	Fixed::getRawBits(void) const {
 	std::cout << "getRawBits member function called" << std::endl;

@@ -1,11 +1,15 @@
 #ifndef FIXED_HPP
 #define FIXED_HPP
 
+/*-------------- INCLUDES --------------*/
+
 #include <iostream>
 #include <string>
 #include <cmath>
 
 // Les fonctions qui ne modifient pas l'objet doivent être marquées const
+
+/*-------------- CLASS --------------*/
 
 class Fixed
 {

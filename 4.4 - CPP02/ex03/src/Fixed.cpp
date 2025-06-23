@@ -1,4 +1,4 @@
-#include "Fixed.hpp"
+#include "../includes/Fixed.hpp"
 
 Fixed::Fixed() : value(0) {
 	//std::cout << "Default constructor called" << std::endl;
@@ -83,7 +83,7 @@ bool Fixed::operator!=(const Fixed &other) const {
 	return (this->value != other.value);
 }
 
-//calculs
+/* CALCULS */
 
 Fixed Fixed::operator+(const Fixed &other) {
 	Fixed result;
@@ -97,8 +97,10 @@ Fixed Fixed::operator-(const Fixed &other) {
 	return (result);
 }
 
-// Value et other sont prétraité en divisé par 256 
-// donc il faut diviser ou multiplié par 256 pour arriver au résultat correct
+/*
+** Value et other sont prétraité et divisé par 256
+** Il faut diviser ou multiplié par 256 pour arriver au résultat correct
+*/
 
 Fixed Fixed::operator*(const Fixed &other) {
 	Fixed result;

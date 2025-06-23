@@ -1,4 +1,4 @@
-#include "Point.hpp"
+#include "../includes/Point.hpp"
 
 #define RESET   "\033[0m"
 #define WHITE   "\033[97m"
