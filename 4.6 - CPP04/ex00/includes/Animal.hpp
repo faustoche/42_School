@@ -36,6 +36,9 @@ public:
 	Animal(const Animal &other); // Constructeur de recopie
 	Animal &operator=(const Animal &other); // Constructeur d'opération
 	~Animal(); // Destructeur
+
+	std::string &getType();
+	void	makeSound();
 };
 
 class Dog : public Animal
@@ -48,8 +51,6 @@ public:
 	Dog(const Dog &other);
 	Dog &operator=(const Dog &other);
 	~Dog();
-
-	void	makeSound();
 };
 
 class Cat : public Animal
@@ -62,8 +63,6 @@ public:
 	Cat(const Cat &other);
 	Cat &operator=(const Cat &other);
 	~Cat();
-
-	void	makeSound();
 };
 
 

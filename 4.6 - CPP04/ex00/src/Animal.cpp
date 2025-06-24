@@ -23,3 +23,16 @@ Animal &Animal::operator=(const Animal &other){
 Animal::~Animal(){
 	std::cout << "[ANIMAL] Destructor called." << std::endl;
 }
+
+/*-------------- FUNCTIONS --------------*/
+
+std::string &Animal::getType(){
+	return (this->type);
+}
+
+void	makeSound(){
+	if ()
+		std::cout << "Miaou" << std::endl;
+	else
+		std::cout << "Ouaf" << std::endl;
+}

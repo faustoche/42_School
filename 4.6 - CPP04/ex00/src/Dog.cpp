@@ -1,7 +1,5 @@
 #include "Animal.hpp"
 
-// Est-ce que je peux utiliser le constructeur pour définir le type d'animal?
-
 /*-------------- CONSTRUCTORS --------------*/
 
 Dog::Dog(){
@@ -22,10 +20,4 @@ Dog &Dog::operator=(const Dog &other){
 
 Dog::~Dog(){
 	std::cout << "[DOG] Destructor called." << std::endl;
-}
-
-/*-------------- FUNCTIONS --------------*/
-
-void	makeSound(){
-	std::cout << ;
 }
