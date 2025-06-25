@@ -1,5 +1,5 @@
 #ifndef		ANIMAL_HPP
-# define	ANIMAP_HPP
+# define	ANIMAL_HPP
 
 /*-------------- INCLUDES --------------*/
 
@@ -31,39 +31,34 @@ protected:
 	std::string type;
 
 public:
-	Animal(); // Constructeur par défault
-	Animal(const std::string type);
-	Animal(const Animal &other); // Constructeur de recopie
-	Animal &operator=(const Animal &other); // Constructeur d'opération
-	~Animal(); // Destructeur
+	Animal(const std::string &type = "Animal");
+	Animal(const Animal &other);
+	Animal &operator=(const Animal &other);
+	~Animal();
 
-	std::string &getType();
-	void	makeSound();
+	virtual void	makeSound() const;
 };
 
 class Dog : public Animal
 {
-private:
-	
-
 public:
 	Dog();
 	Dog(const Dog &other);
 	Dog &operator=(const Dog &other);
 	~Dog();
+
+	void	makeSound() const;
 };
 
 class Cat : public Animal
 {
-private:
-	
-
 public:
 	Cat();
 	Cat(const Cat &other);
 	Cat &operator=(const Cat &other);
 	~Cat();
-};
 
+	void	makeSound() const ;
+};
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Automating.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faustoche <faustoche@student.42.fr>        +#+  +:+       +#+        */
+/*   By: fcrocq <fcrocq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:52:17 by faustoche         #+#    #+#             */
-/*   Updated: 2025/06/23 21:37:26 by faustoche        ###   ########.fr       */
+/*   Updated: 2025/06/24 11:28:28 by fcrocq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,17 @@
 #include <string>
 #include <iostream>
 
-/*-------------- class --------------*/
+/*-------------- DEFINES --------------*/
+
+#define RED		"\033[1;31m"
+#define YELLOW	"\033[1;33m"
+#define GREEN	"\033[1;32m"
+#define BLUE	"\033[1;34m"
+#define MAGENTA	"\033[1;35m"
+#define ORANGE	"\033[1;38;5;208m"
+#define RESET	"\033[0m"
+
+/*-------------- CLASS --------------*/
 
 class Automating
 {

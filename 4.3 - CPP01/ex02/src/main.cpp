@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faustoche <faustoche@student.42.fr>        +#+  +:+       +#+        */
+/*   By: fcrocq <fcrocq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:39:07 by faustoche         #+#    #+#             */
-/*   Updated: 2025/06/23 21:28:21 by faustoche        ###   ########.fr       */
+/*   Updated: 2025/06/24 10:55:14 by fcrocq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	main() {
 	std::string *stringPTR = &brain;
 	std::string &stringREF = brain;
 
-	std::cout << "Memory adress of brain : " << &brain << std::endl;
-	std::cout << "Memory adress with PTR : " << stringPTR << std::endl;
-	std::cout << "Memory adress with REF : " << &stringREF << std::endl;
-	std::cout << "Value of brain : " << brain << std::endl;
-	std::cout << "Value pointed by PTR : " << *stringPTR << std::endl;
-	std::cout << "Value pointed by REF : " << stringREF << std::endl;
+	std::cout << GREEN << "Memory adress of brain : " << RESET << &brain << std::endl;
+	std::cout << GREEN << "Memory adress with PTR : " << RESET << stringPTR << std::endl;
+	std::cout << GREEN << "Memory adress with REF : " << RESET << &stringREF << std::endl;
+	std::cout << MAGENTA << "Value of brain         : " << RESET << brain << std::endl;
+	std::cout << MAGENTA << "Value pointed by PTR   : " << RESET << *stringPTR << std::endl;
+	std::cout << MAGENTA << "Value pointed by REF   : " << RESET << stringREF << std::endl;
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faustoche <faustoche@student.42.fr>        +#+  +:+       +#+        */
+/*   By: fcrocq <fcrocq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:48:09 by faustoche         #+#    #+#             */
-/*   Updated: 2025/06/23 21:31:21 by faustoche        ###   ########.fr       */
+/*   Updated: 2025/06/24 11:16:33 by fcrocq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int ac, char **av) {
 		return (0);
 	}
 	else {
-		std::cout << "Error : need one argument" << std::endl;
+		std::cout << "Error\nNeed one argument" << std::endl;
 		return (1);
 	}
 }

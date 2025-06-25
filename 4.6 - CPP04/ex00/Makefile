@@ -2,7 +2,7 @@
 #                			        MAIN                                   #
 # ************************************************************************ #
 
-NAME 		= moarbrainz
+NAME 		= Animal
 
 # ************************************************************************ #
 #                			     DIRECTORIES                               #
@@ -11,16 +11,16 @@ NAME 		= moarbrainz
 INCLUDES		= includes
 SRCS_DIR		= src
 OBJS_DIR		= obj
-
 # ************************************************************************ #
 #                			 SRCS && OBJECTS FILES                         #
 # ************************************************************************ #
 
-MOARBRAINZ 		= $(addprefix $(SRCS_DIR)/, main.cpp\
-					Zombie.cpp\
-					ZombieHorde.cpp)
-SRCS 			= ${MOARBRAINZ}
-CPP_OBJS		= ${MOARBRAINZ:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
+ANIMAL 			= $(addprefix $(SRCS_DIR)/, main.cpp\
+					Animal.cpp\
+					Cat.cpp\
+					Dog.cpp)
+SRCS 			= ${ANIMAL}
+CPP_OBJS		= ${ANIMAL:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
 OBJS			= $(CPP_OBJS)
 
 # ************************************************************************ #
@@ -28,7 +28,7 @@ OBJS			= $(CPP_OBJS)
 # ************************************************************************ #
 
 CC          = c++
-CFLAGS      = -Wall -Werror -Wextra -std=c++98 -I$(INCLUDES)
+CFLAGS      = -Wall -Werror -Wextra -std=c++98 -g3 -I$(INCLUDES)
 RM = rm -rf
 
 # ************************************************************************ #
@@ -38,9 +38,9 @@ RM = rm -rf
 all:    $(NAME)
 
 $(NAME):  $(OBJS_DIR) $(OBJS)
-	@echo "\033[1;33m🧟  COMPILING MO...AR....BRAA....I..NZZZZZZ... 🧟\n"
+	@echo "\033[1;33m🐅  COMPILING ANIMAL 🐅\n"
 	@$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
-	@echo "\033[1;32m🧟 ./$(NAME) created 🧟\n"
+	@echo "\033[1;32m🐅 ./$(NAME) created 🐅\n"
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp
 	@mkdir -p $(OBJS_DIR)
@@ -63,3 +63,5 @@ fclean: clean
 
 re: fclean all
 	@echo "\033[1;32m🫧  RE DONE 🫧"
+
+.PHONY: all clean fclean re

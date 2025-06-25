@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faustoche <faustoche@student.42.fr>        +#+  +:+       +#+        */
+/*   By: fcrocq <fcrocq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 09:20:12 by faustoche         #+#    #+#             */
-/*   Updated: 2025/06/23 21:35:31 by faustoche        ###   ########.fr       */
+/*   Updated: 2025/06/24 10:58:46 by fcrocq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <sstream>
+
+/*-------------- DEFINES --------------*/
+
+#define RED		"\033[1;31m"
+#define YELLOW	"\033[1;33m"
+#define GREEN	"\033[1;32m"
+#define BLUE	"\033[1;34m"
+#define MAGENTA	"\033[1;35m"
+#define RESET	"\033[0m"
 
 /*-------------- CLASS --------------*/
 

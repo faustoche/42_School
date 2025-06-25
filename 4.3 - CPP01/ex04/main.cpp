@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faustoche <faustoche@student.42.fr>        +#+  +:+       +#+        */
+/*   By: fcrocq <fcrocq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 14:48:46 by faustoche         #+#    #+#             */
-/*   Updated: 2025/06/11 10:34:38 by faustoche        ###   ########.fr       */
+/*   Updated: 2025/06/24 11:15:52 by fcrocq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ int main(int ac, char **av) {
 		std::string	s2 = av[3];
 
 		if (s1.empty()) {
-			std::cout << "Error: s1 is empty\n";
+			std::cout << "Error\ns1 is empty\n";
 			return (1);
 		}
-		std::ifstream infile(filename);
+		std::ifstream infile(filename.c_str());
 		if (!infile) {
-			std::cout << "Error: cannot open input file\n";
+			std::cout << "Error\nCannot open input file\n";
 			return (1);
 		}
 		std::string content;
@@ -52,9 +52,9 @@ int main(int ac, char **av) {
 		}
 		infile.close();
 		std::string replaced = replaceContent(content, s1, s2);
-		std::ofstream outfile(filename + ".replace");
+		std::ofstream outfile((filename + ".replace").c_str());
 		if (!outfile) {
-			std::cout << "Error: cannot open output file\n";
+			std::cout << "Error\nCannot open output file\n";
 			return (1);
 		}
 		outfile << replaced;
@@ -62,7 +62,7 @@ int main(int ac, char **av) {
 		return (0);
 	}
 	else {
-		std::cout << "Error: wrong number of args" << std::endl;
+		std::cout << "Error\nWrong number of args" << std::endl;
 		return (1);
 	}
 }

@@ -2,10 +2,7 @@
 
 /*-------------- CONSTRUCTORS --------------*/
 
-Animal::Animal(){
-}
-
-Animal::Animal() : type("Animal"){
+Animal::Animal(const std::string &type) : type(type){
 	std::cout << "[ANIMAL] Constructor called." << std::endl;
 }
 
@@ -26,13 +23,6 @@ Animal::~Animal(){
 
 /*-------------- FUNCTIONS --------------*/
 
-std::string &Animal::getType(){
-	return (this->type);
-}
-
-void	makeSound(){
-	if ()
-		std::cout << "Miaou" << std::endl;
-	else
-		std::cout << "Ouaf" << std::endl;
+void	Animal::makeSound() const{
+	std::cout << "Am I supposed to know this animal ?" << std::endl;
 }
