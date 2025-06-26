@@ -1,5 +1,5 @@
-#include "Animal.hpp"
-#include "Cat.hpp"
+#include "../includes/Animal.hpp"
+#include "../includes/Cat.hpp"
 
 /*-------------- CONSTRUCTORS --------------*/
 
@@ -25,5 +25,5 @@ Cat::~Cat(){
 /*-------------- FUNCTIONS --------------*/
 
 void	Cat::makeSound() const {
-	std::cout << "I am a world leader. I am Moulinette. Meow" << std::endl;
+	std::cout << "I am a world leader. Meow" << std::endl;
 }

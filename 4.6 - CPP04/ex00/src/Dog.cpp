@@ -1,5 +1,5 @@
-#include "Animal.hpp"
-#include "Dog.hpp"
+#include "../includes/Animal.hpp"
+#include "../includes/Dog.hpp"
 
 /*-------------- CONSTRUCTORS --------------*/
 
