@@ -27,3 +27,7 @@ Cat::~Cat(){
 void	Cat::makeSound() const {
 	std::cout << "I am a world leader. Meow" << std::endl;
 }
+
+Brain	*Cat::haveBrain(){
+	return (this->brain);
+}

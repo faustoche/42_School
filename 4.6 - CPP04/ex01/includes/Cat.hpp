@@ -4,11 +4,14 @@
 /*-------------- INCLUDES --------------*/
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 /*-------------- CLASSES --------------*/
 
 class Cat : public Animal
 {
+private:
+	Brain	*brain;
 public:
 	Cat();
 	Cat(const Cat &other);
@@ -16,6 +19,7 @@ public:
 	virtual ~Cat();
 
 	virtual void	makeSound() const ;
+	Brain	*haveBrain();
 };
 
 #endif

@@ -17,7 +17,11 @@ public:
 	Brain();
 	Brain (const Brain &other);
 	Brain &operator=(const Brain &other);
-	virtual ~Brain();
+	~Brain();
+
+	std::string	*getIdeas();
+	void	setIdeas(std::string *newIdeas);
+	void	setOneIdea(std::string idea, int i);
 };
 
 #endif

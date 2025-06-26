@@ -20,7 +20,8 @@ ANIMAL 			= $(addprefix $(SRCS_DIR)/, main.cpp\
 					Cat.cpp\
 					Dog.cpp\
 					WrongAnimal.cpp\
-					WrongCat.cpp)
+					WrongCat.cpp\
+					Brain.cpp)
 SRCS 			= ${ANIMAL}
 CPP_OBJS		= ${ANIMAL:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
 OBJS			= $(CPP_OBJS)
