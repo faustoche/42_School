@@ -1,5 +1,5 @@
-#ifndef		CAT_HPP
-# define	CAT_HPP
+#ifndef		WRONGCAT_HPP
+# define	WRONGCAT_HPP
 
 /*-------------- CLASSES --------------*/
 

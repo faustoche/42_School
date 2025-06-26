@@ -1,5 +1,5 @@
-#include "Animal.hpp"
-#include "Cat.hpp"
+#include "../includes/Animal.hpp"
+#include "../includes/Cat.hpp"
 
 /*-------------- CONSTRUCTORS --------------*/
 
