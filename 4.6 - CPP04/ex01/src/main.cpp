@@ -7,12 +7,16 @@
 
 int	main()
 {
+	Animal	*pets[100];
 	for (int i = 0; i < 100; i++){
-		new Dog[50];
-		new Cat[50];
-		std::cout << "New Animal " << i << " created." << std::endl;
+		if (i < 50)
+			pets[i] = new Cat();
+		else
+			pets[i] = new Dog();
 	}
-	for (int i = 0; i < 50)
+	std::cout << PINK << "-----------------------------" << RESET << std::endl;
+	for (int i = 0; i < 100; i++)
+		delete pets[i];
 	return (0);
 }
 

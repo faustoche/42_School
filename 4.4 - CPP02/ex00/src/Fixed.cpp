@@ -25,10 +25,14 @@ Fixed::~Fixed() {
 
 /*-------------- FUNCTIONS --------------*/
 
+/* Retourne la valeur sans rien, juste la valeur brut. Exemple : 256 */
+
 int	Fixed::getRawBits(void) const {
 	std::cout << "getRawBits member function called" << std::endl;
 	return (value);
 }
+
+/* Retourne la valeur modifiée. Exemple : 1 (256 << 8) */
 
 void	Fixed::setRawBits(int const raw) {
 	std::cout << "setRawBits member function called" << std::endl;

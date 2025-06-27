@@ -114,6 +114,11 @@ Fixed Fixed::operator/(const Fixed &other) {
 
 /*-------------- FUNCTIONS - INCREMENT AND DECREMENT --------------*/
 
+/* 
+** Pré incrémentation : incrémente la valeur actuelle de a
+** Retourne ensuite la nouvelle valeur 
+*/
+
 Fixed &Fixed::operator++() {
 	++value;
 	return (*this);
@@ -123,6 +128,11 @@ Fixed &Fixed::operator--() {
 	--value;
 	return (*this);
 }
+
+/* 
+** Post incrémentation : retourne d'abord la valeur actuelle de a
+** Incrémente ensuite
+*/
 
 Fixed Fixed::operator++(int) {
 	Fixed tmp(*this);

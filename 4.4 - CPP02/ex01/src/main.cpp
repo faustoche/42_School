@@ -1,5 +1,12 @@
 #include "../includes/Fixed.hpp"
 
+/*
+** 1. Constrcuteur par défault
+** 2. Constructeur int (soit 10)
+** 3. 
+**
+*/
+
 int main( void ) {
 	Fixed a;
 	Fixed const b( 10 );

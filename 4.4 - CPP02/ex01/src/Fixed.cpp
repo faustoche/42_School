@@ -23,6 +23,11 @@ Fixed::~Fixed() {
 	std::cout << "Destructor called" << std::endl;
 }
 
+/* 
+** Décale l'entier vers la gauche de 8 bits
+** Fixed(10) -> value = 10 << 8 = 2560 -> soit 10
+*/
+
 Fixed::Fixed (int const n) {
 	std::cout << "Int constructor called" << std::endl;
 	this->value = n << fractionalBits;
@@ -47,9 +52,19 @@ void	Fixed::setRawBits(int const raw) {
 	value = raw;
 }
 
+/* 
+** Converti value en float
+** Si value = 10860 -> 10860 / 256 = 42,42
+*/
+
 float	Fixed::toFloat(void) const {
 	return ((float)value / (1 << fractionalBits));
 }
+
+/*
+** Converti en int et ignore la partie de la fraction
+** Si value = 10860 -> 10860 >> 8 = 42
+*/
 
 int	Fixed::toInt(void) const {
 	return (value >> fractionalBits);

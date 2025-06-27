@@ -18,6 +18,13 @@
 ** toInt : convertit la valeur virgule fixe en nombre entier
 */
 
+/*
+** Classe pour un nombre à virgule fixe. Il stocke un entier (value)
+** 8 bits car c'est ce qui est le plus précis 
+** Exemple : si value = 256, alors = 1 car 256/2 exposant 8 = 1
+**
+*/
+
 class Fixed
 {
 private:

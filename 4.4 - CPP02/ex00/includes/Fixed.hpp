@@ -12,7 +12,13 @@
 ** int value : entier brut qui stocke la valeur multipliée
 ** int fractionalBits : nombre de bits (1 << 8 = 256)
 ** getRawBits : retourne la valeur brute de value sans conversion
-** setRawBits : modifie value avec une valeur brute
+** setRawBits : modifie value 
+
+/*
+** Classe pour un nombre à virgule fixe. Il stocke un entier (value)
+** 8 bits car c'est ce qui est le plus précis 
+** Exemple : si value = 256, alors = 1 car 256/2 exposant 8 = 1
+**
 */
 
 class Fixed
