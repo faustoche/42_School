@@ -47,7 +47,7 @@ $(NAME):  $(OBJS_DIR) $(OBJS)
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp
 	@mkdir -p $(OBJS_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
@@ -58,6 +58,7 @@ $(OBJS_DIR):
 
 clean:
 	@$(RM) $(OBJS_DIR)
+	@$(RM) $(OBJS:.o=.d)
 	@echo "\033[1;32m🫧  DONE 🫧"
 
 fclean: clean
@@ -68,3 +69,9 @@ re: fclean all
 	@echo "\033[1;32m🫧  RE DONE 🫧"
 
 .PHONY: all clean fclean re
+
+# ************************************************************************ #
+#                   	       DEPENDENCIES                                #
+# ************************************************************************ #
+
+-include $(OBJS:.o=.d)
