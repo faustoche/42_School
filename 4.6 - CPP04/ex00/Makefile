@@ -2,7 +2,7 @@
 #                			        MAIN                                   #
 # ************************************************************************ #
 
-NAME 		= Animal
+NAME 		= Animal00
 
 # ************************************************************************ #
 #                			     DIRECTORIES                               #
@@ -15,14 +15,14 @@ OBJS_DIR		= obj
 #                			 SRCS && OBJECTS FILES                         #
 # ************************************************************************ #
 
-ANIMAL 			= $(addprefix $(SRCS_DIR)/, main.cpp\
+ANIMAL00 			= $(addprefix $(SRCS_DIR)/, main.cpp\
 					Animal.cpp\
 					Cat.cpp\
 					Dog.cpp\
 					WrongAnimal.cpp\
 					WrongCat.cpp)
-SRCS 			= ${ANIMAL}
-CPP_OBJS		= ${ANIMAL:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
+SRCS 			= ${ANIMAL00}
+CPP_OBJS		= ${ANIMAL00:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
 OBJS			= $(CPP_OBJS)
 
 # ************************************************************************ #
@@ -40,9 +40,9 @@ RM = rm -rf
 all:    $(NAME)
 
 $(NAME):  $(OBJS_DIR) $(OBJS)
-	@echo "\033[1;33m🐅  COMPILING ANIMAL 🐅\n"
+	@echo "\033[1;33m🐱  COMPILING ANIMAL00 🐱\n"
 	@$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
-	@echo "\033[1;32m🐅 ./$(NAME) created 🐅\n"
+	@echo "\033[1;32m🐱 ./$(NAME) created 🐱\n"
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp
 	@mkdir -p $(OBJS_DIR)
