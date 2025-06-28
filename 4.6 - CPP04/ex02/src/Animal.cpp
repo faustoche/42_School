@@ -2,37 +2,31 @@
 
 /*-------------- CONSTRUCTORS --------------*/
 
-Animal::Animal(void) : type("Animal"){
-	std::cout << "[ANIMAL] Default constructor called." << std::endl;
+AAnimal::AAnimal() : type("Animal"){
+	std::cout << GREEN << "[ANIMAL] " << RESET << " Constructor called." << std::endl;
 }
 
-Animal::Animal(const std::string type) : type(type){
-	std::cout << "[ANIMAL] Constructor called." << std::endl;
+AAnimal::AAnimal(std::string type) : type(type){
 }
 
-Animal::Animal(const Animal &other){
-	*this = other;
+/* Pourquoi est-ce que ce copie constructeur est vide ? */
+
+AAnimal::AAnimal(const AAnimal &other) : type(other.type){
 }
 
-Animal &Animal::operator=(const Animal &other){
+AAnimal &AAnimal::operator=(const AAnimal &other){
 	if (this != &other){
 		this->type = other.type;
 	}
 	return (*this);
 }
 
-Animal::~Animal(){
-	std::cout << "[ANIMAL] Destructor called." << std::endl;
+AAnimal::~AAnimal(){
+	std::cout << GREEN << "[ANIMAL] " << RESET << " Destructor called." << std::endl;
 }
 
 /*-------------- GETTERS --------------*/
 
-std::string	Animal::getType(void) const {
+std::string	AAnimal::getType(void) const {
 	return (this->type);
-}
-
-/*-------------- FUNCTIONS --------------*/
-
-void	Animal::makeSound() const{
-	std::cout << "Am I supposed to know this animal ?" << std::endl;
 }

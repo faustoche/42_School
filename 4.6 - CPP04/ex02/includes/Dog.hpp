@@ -8,9 +8,7 @@
 
 /*-------------- CLASSES --------------*/
 
-
-
-class Dog : public Animal
+class Dog : public AAnimal
 {
 private:
 	Brain	*brain;

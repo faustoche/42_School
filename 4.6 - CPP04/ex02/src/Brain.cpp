@@ -4,7 +4,7 @@
 /*-------------- CONSTRUCTORS --------------*/
 
 Brain::Brain(){
-	std::cout << "[Brain] Constructor called." << std::endl;
+	std::cout << PINK << "[BRAIN] " << RESET <<  " Constructor called." << std::endl;
 }
 
 Brain::Brain(const Brain &other){
@@ -20,7 +20,7 @@ Brain &Brain::operator=(const Brain &other){
 }
 
 Brain::~Brain(){
-	std::cout << "[Brain] Destructor called." << std::endl;
+	std::cout << PINK << "[BRAIN] " << RESET <<  " Destructor called." << std::endl;
 }
 
 /*-------------- FUNCTIONS --------------*/

@@ -5,19 +5,19 @@
 
 // Chaque CAT doit avoir un nouveau brain à la création
 
-Cat::Cat() : Animal("Cat"){
+Cat::Cat() : AAnimal("Cat"){
 	this->brain = new Brain();
-	std::cout << RED << "[CAT] " << RESET << "Constructor called." << std::endl;
+	std::cout << TURQUOISE << "[CAT] " << RESET << "Constructor called." << std::endl;
 }
 
-Cat::Cat(const Cat &other) : Animal(other){
+Cat::Cat(const Cat &other) : AAnimal(other){
 	this->brain = new Brain(*other.brain);
-	std::cout << RED << "[CAT] " << RESET << "Copy constructor called." << std::endl;
+	std::cout << TURQUOISE << "[CAT] " << RESET << "Copy constructor called." << std::endl;
 }
 
 Cat &Cat::operator=(const Cat &other){
 	if (this != &other){
-		Animal::operator=(other);
+		AAnimal::operator=(other);
 		if (this->brain)
 			delete this->brain;
 		this->brain = new Brain(*other.brain);
@@ -27,7 +27,7 @@ Cat &Cat::operator=(const Cat &other){
 
 Cat::~Cat(){
 	delete brain;
-	std::cout << RED << "[CAT] " << RESET << "Destructor called." << std::endl;
+	std::cout << TURQUOISE << "[CAT] " << RESET << "Destructor called." << std::endl;
 }
 
 /*-------------- FUNCTIONS --------------*/

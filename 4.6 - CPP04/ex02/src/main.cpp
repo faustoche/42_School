@@ -1,22 +1,24 @@
 #include "../includes/Animal.hpp"
 #include "../includes/Dog.hpp"
 #include "../includes/Cat.hpp"
-#include "../includes/WrongCat.hpp"
-#include "../includes/WrongAnimal.hpp"
 #include "../includes/Brain.hpp"
 
 int	main()
 {
-	Animal	*pets[100];
-	for (int i = 0; i < 100; i++){
-		if (i < 50)
-			pets[i] = new Cat();
-		else
-			pets[i] = new Dog();
-	}
-	std::cout << PINK << "-----------------------------" << RESET << std::endl;
-	for (int i = 0; i < 100; i++)
-		delete pets[i];
+	//AAnimal	a;
+	Cat	moulinette;
+	Dog	chieng;
+	AAnimal *animal1 = new Dog();
+	AAnimal *animal2 = new Cat();
+
+	//a.makeSound();
+	moulinette.makeSound();
+	chieng.makeSound();
+	animal1->makeSound();
+	animal2->makeSound();
+
+	delete animal1;
+	delete animal2;
 	return (0);
 }
 
