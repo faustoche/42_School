@@ -2,7 +2,7 @@
 #                			        MAIN                                   #
 # ************************************************************************ #
 
-NAME 		= abstract_animal
+NAME 		= materia
 
 # ************************************************************************ #
 #                			     DIRECTORIES                               #
@@ -15,13 +15,13 @@ OBJS_DIR		= obj
 #                			 SRCS && OBJECTS FILES                         #
 # ************************************************************************ #
 
-ABSTRACT_ANIMAL 			= $(addprefix $(SRCS_DIR)/, main.cpp\
+MATERIA 		= $(addprefix $(SRCS_DIR)/, main.cpp\
 					Animal.cpp\
 					Cat.cpp\
 					Dog.cpp\
 					Brain.cpp)
-SRCS 			= ${ABSTRACT_ANIMAL}
-CPP_OBJS		= ${ABSTRACT_ANIMAL:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
+SRCS 			= ${MATERIA}
+CPP_OBJS		= ${MATERIA:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
 OBJS			= $(CPP_OBJS)
 
 # ************************************************************************ #
@@ -39,7 +39,7 @@ RM = rm -rf
 all:    $(NAME)
 
 $(NAME): includes/colors.hpp $(OBJS_DIR) $(OBJS)
-	@echo "\033[1;33m🐅  COMPILING ABSTRACT_ANIMAL 🐅\n"
+	@echo "\033[1;33m🐅  COMPILING MATERIA 🐅\n"
 	@$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
 	@echo "\033[1;32m🐅 ./$(NAME) created 🐅\n"
 
