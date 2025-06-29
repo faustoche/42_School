@@ -3,6 +3,8 @@
 
 /*-------------- CONSTRUCTORS --------------*/
 
+/* Le tableau ideas est initialisé automatiquement à vide */
+
 Brain::Brain(){
 	std::cout << "[Brain] Constructor called." << std::endl;
 }

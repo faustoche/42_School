@@ -3,12 +3,22 @@
 
 /*-------------- CONSTRUCTORS --------------*/
 
-// Chaque CAT doit avoir un nouveau brain à la création
+/* 
+** Chaque CAT doit avoir un nouveau brain à la création
+** On alloue un nouveau brain dans la heap qu'on delete dans le destructeur
+** 
+*/
 
 Cat::Cat() : Animal("Cat"){
 	this->brain = new Brain();
 	std::cout << RED << "[CAT] " << RESET << "Constructor called." << std::endl;
 }
+
+/* 
+** On obtiens ici l'objet braim et on alloue ce nouveau brain
+** On ne peut pas faire brain = other.brain car ça serait une copie superficielle
+** Les différents cat partageraient le méme brain, et on ne peux odnc pas les détruitre
+*/
 
 Cat::Cat(const Cat &other) : Animal(other){
 	this->brain = new Brain(*other.brain);

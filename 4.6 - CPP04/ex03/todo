@@ -1,0 +1,153 @@
+TODO List détaillée - Système Materia C++
+🔴 ERREURS CRITIQUES À CORRIGER EN PRIORITÉ
+1. Makefile
+
+ Corriger la liste des fichiers sources dans MATERIA (remplacer Animal.cpp, Cat.cpp, Dog.cpp, Brain.cpp)
+ Ajouter les vrais fichiers : AMateria.cpp, Character.cpp, Cure.cpp, Ice.cpp, main.cpp
+ Optionnel : ajouter MateriaSource.cpp si vous implémentez cette classe
+
+2. Supprimer le fichier ICharacter.cpp
+
+ Supprimer complètement le fichier src/ICharacter.cpp (les interfaces n'ont pas d'implémentation)
+
+3. Corriger ICharacter.hpp
+
+ Ajouter un destructeur virtuel : virtual ~ICharacter() {}
+ Vérifier que toutes les méthodes sont bien virtuelles pures (avec = 0)
+
+
+🟡 COMPLÉTER LES CLASSES EXISTANTES
+4. AMateria.cpp - À compléter
+
+ Corriger le constructeur de copie (ne pas utiliser l'opérateur d'assignation dans le constructeur)
+ Dans l'opérateur d'assignation, ne PAS copier le type (selon le sujet : "copier son type n'a pas grand intérêt")
+ Laisser la méthode use() vide ou avec un message générique
+
+5. Character.hpp - Modifications structurelles
+
+ Faire hériter Character de ICharacter : class Character : public ICharacter
+ Supprimer la déclaration en double de getName()
+ Garder seulement : std::string const &getName() const;
+
+6. Character.cpp - Implémentation complète à faire
+
+ Corriger le constructeur de copie (copie profonde des Materias)
+ Implémenter l'opérateur d'assignation avec copie profonde
+ Implémenter le destructeur (delete toutes les Materias de l'inventaire)
+ Implémenter getName() qui retourne le nom
+ Implémenter equip(AMateria* m) :
+
+Trouver le premier emplacement libre (0 à 3)
+Y placer la Materia
+Si inventaire plein, ne rien faire
+
+
+ Implémenter unequip(int idx) :
+
+Vérifier que idx est valide (0-3)
+Vérifier qu'il y a une Materia à cet emplacement
+Mettre l'emplacement à NULL
+NE PAS delete la Materia (responsabilité du code appelant)
+
+
+ Implémenter use(int idx, ICharacter& target) :
+
+Vérifier que idx est valide (0-3)
+Vérifier qu'il y a une Materia à cet emplacement
+Appeler materia->use(target)
+
+
+
+7. Ice.cpp - Corrections
+
+ Implémenter le constructeur par défaut avec initialisation du type à "ice"
+ Corriger le message dans use() : "* shoots an ice bolt at <nom> *"
+ Implémenter clone() qui retourne new Ice(*this)
+ Corriger l'opérateur d'assignation (ne pas copier le type)
+
+8. Cure.cpp - Corrections
+
+ Implémenter le constructeur par défaut avec initialisation du type à "cure"
+ Corriger le message dans use() : "* heals <nom>'s wounds *"
+ Implémenter clone() qui retourne new Cure(*this)
+ Corriger l'opérateur d'assignation (ne pas copier le type)
+
+
+🟢 NOUVELLES CLASSES À CRÉER
+9. IMateriaSource.hpp - Nouvelle interface
+
+ Créer le fichier includes/IMateriaSource.hpp
+ Définir la classe avec destructeur virtuel
+ Ajouter les méthodes virtuelles pures :
+
+virtual void learnMateria(AMateria*) = 0;
+virtual AMateria* createMateria(std::string const & type) = 0;
+
+
+
+10. MateriaSource.hpp - Nouvelle classe
+
+ Créer le fichier includes/MateriaSource.hpp
+ Faire hériter de IMateriaSource
+ Ajouter un attribut : tableau de 4 pointeurs AMateria (pour stocker les "modèles")
+ Déclarer constructeur, destructeur, constructeur de copie, opérateur d'assignation
+ Déclarer learnMateria() et createMateria()
+
+11. MateriaSource.cpp - Implémentation
+
+ Créer le fichier src/MateriaSource.cpp
+ Implémenter le constructeur (initialiser le tableau à NULL)
+ Implémenter le destructeur (delete tous les modèles stockés)
+ Implémenter le constructeur de copie (copie profonde)
+ Implémenter l'opérateur d'assignation (copie profonde)
+ Implémenter learnMateria(AMateria* m) :
+
+Trouver le premier emplacement libre (0-3)
+Y stocker une copie (m->clone())
+Si tableau plein, ne rien faire
+
+
+ Implémenter createMateria(std::string const & type) :
+
+Parcourir les modèles stockés
+Si le type correspond, retourner une copie (clone())
+Si type inconnu, retourner NULL
+
+
+
+
+🔵 FINITIONS ET TESTS
+12. main.cpp - Programme de test
+
+ Créer des instances d'Ice et Cure
+ Créer une MateriaSource
+ Faire apprendre des Materias à la source
+ Créer des Characters
+ Équiper des Materias aux personnages
+ Tester l'utilisation des Materias
+ Tester le unequip sans fuite mémoire
+ Tester la copie profonde des Characters
+
+13. Gestion mémoire
+
+ Vérifier qu'il n'y a pas de fuites mémoire avec valgrind
+ S'assurer que toutes les Materias créées sont bien détruites
+ Gérer les Materias "unequip" (les stocker temporairement puis les delete)
+
+14. Tests edge cases
+
+ Tester equip sur inventaire plein
+ Tester unequip/use avec index invalide
+ Tester unequip/use sur emplacement vide
+ Tester createMateria avec type inexistant
+ Tester learnMateria sur source pleine
+
+
+📋 ORDRE DE TRAVAIL RECOMMANDÉ
+
+Corriger les erreurs critiques (Makefile, supprimer ICharacter.cpp)
+Compléter Ice et Cure (constructeurs, clone(), messages corrects)
+Compléter Character (héritage, toutes les méthodes)
+Créer MateriaSource (interface + implémentation)
+Écrire main.cpp pour tester
+Vérifier la gestion mémoire

@@ -3,6 +3,11 @@
 
 /*-------------- CONSTRUCTORS --------------*/
 
+/*
+** On rajoute Animal("Cat") pour appeler le constructeur d'animal avec le type cat
+** On appelle le constructeur d'animal et ensuite le corps du constructeur de cat s'execute
+*/
+
 Cat::Cat() : Animal("Cat"){
 	std::cout << "[CAT] Constructor called." << std::endl;
 }

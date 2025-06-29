@@ -5,25 +5,20 @@
 
 #include <string>
 #include <iostream>
-
-/*-------------- DEFINES --------------*/
-
-#define RESET   	"\033[0m"
-#define WHITE   	"\033[1;97m"
-#define FUCHSIA 	"\033[1;38;5;201m"
-#define BLUE_BRIGHT "\033[1;94m"
-#define GREEN       "\033[1;32m"
-#define MAGENTA     "\033[1;35m"
-#define CYAN        "\033[1;36m"
-#define RED 		"\033[1;91m"
-#define YELLOW 		"\033[1;93m"
-#define ORANGE      "\033[1;38;5;208m"
-#define PINK        "\033[1;38;5;205m"
-#define TURQUOISE   "\033[1;38;5;45m"
-#define GOLD        "\033[1;38;5;220m"
-#define CORAL       "\033[1;38;5;203m"
+#include "colors.hpp"
 
 /*-------------- CLASSES --------------*/
+
+/*
+** Variable type pour stocker le type d'animal (dog ou cat)
+** On utilise protected pour que les classes héritantes puissent accéder à type
+** Deux constructeurs de base : un sans paramètre pour l'appel Animal a
+** Un avec paramètres pour quand on fait Animal a("Dog")
+** Le destructeur doit impérativement ëtre en virtuel pour le polymorphisme.
+** Sans le destructeur en virtuel, il y aurait des fuites de mémoires
+** Le getter est en const car il ne modifie par l'objet, il le récupère
+** makeSound est en virtuel et donc on ne peut pas la redéfinir dans les classes héritntes
+*/
 
 class Animal
 {

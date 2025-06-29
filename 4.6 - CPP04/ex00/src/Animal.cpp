@@ -2,9 +2,13 @@
 
 /*-------------- CONSTRUCTORS --------------*/
 
+/* On initialise avec le type animal */
+
 Animal::Animal(void) : type("Animal"){
 	std::cout << "[ANIMAL] Default constructor called." << std::endl;
 }
+
+/* On initialise le membre type avec le paramètre type */
 
 Animal::Animal(const std::string type) : type(type){
 	std::cout << "[ANIMAL] Constructor called." << std::endl;

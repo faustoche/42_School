@@ -8,6 +8,8 @@
 
 /*-------------- CLASSES --------------*/
 
+/* On rajoute un pointeur vers brain */
+
 class Cat : public Animal
 {
 private:
