@@ -1,12 +1,13 @@
 #include "Ice.hpp"
+#include "../includes/ICharacter.hpp"
 
 /*-------------- CONSTRUCTORS --------------*/
 
 Ice::Ice(){
+	type = "ice";
 }
 
 Ice::Ice(const Ice &other){
-	*this = other;
 }
 
 Ice &Ice::operator=(const Ice &other){
@@ -22,5 +23,9 @@ Ice::~Ice(){
 /*-------------- FUNCTIONS --------------*/
 
 void	Ice::use(ICharacter &target){
-	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+}
+
+Ice	*Ice::clone() const{
+	return (new Ice(*this));
 }

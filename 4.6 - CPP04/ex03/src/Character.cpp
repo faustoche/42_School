@@ -2,9 +2,7 @@
 
 /*-------------- CONSTRUCTORS --------------*/
 
-/* Je sette le name et l'inventaire à rien pour le moment */
-
-Character::Character(void) : name("no name yet"){
+Character::Character(void) : name("unnamed"){
 	for (int i = 0; i < 4; i++)
 		this->inventory[i] = NULL;
 }
@@ -15,9 +13,60 @@ Character::Character(const std::string name) : name(name){
 }
 
 Character::Character(const Character &other){
-	*this = other;
+	for (int i = 0; i < 4; i++){
+		if (other.inventory[i] != NULL){
+			this->inventory[i] = other.inventory[i]->clone();
+		}
+	}
 }
 
+Character &Character::operator=(const Character &other){
+	if (this != &other){
+		for (int i = 0; i < 4; i++)
+			delete this->inventory[i];
+		for (int i = 0; i < 4; i++){
+			this->inventory[i] = other.inventory[i]->clone();
+		}
+	}
+}
 
+Character::~Character(){
+	for (int i = 0; i < 4; i++){
+		delete this->inventory[i];
+	}
+}
 
-/*-------------- CONSTRUCTORS --------------*/
+/*-------------- GETTER --------------*/
+
+std::string const &Character::getName() const{
+	return (name);
+}
+
+/*-------------- FUNCTIONS --------------*/
+
+void	Character::equip(AMateria *m){
+	for (int i = 0; i < 4; i++){
+		if (inventory[i] == NULL){
+			inventory[i] = m;
+			return ;
+		}
+	}
+}
+
+void	Character::unequip(int idx){
+	if (idx >= 0 && idx <= 3){
+		if (inventory[idx] != NULL){
+			inventory[idx] = NULL;
+			return ;
+		}
+	}
+}
+
+void	Character::use(int idx, ICharacter &target){
+	if (idx >= 0 && idx <= 3){
+		if (inventory[idx] != NULL){
+			inventory[idx]->use(target);
+			return ;
+		}
+	}
+}

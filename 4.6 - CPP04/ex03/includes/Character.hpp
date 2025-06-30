@@ -12,7 +12,7 @@
 
 class AMateria;
 
-class Character
+class Character : public ICharacter
 {
 protected:
 	std::string name;
@@ -25,7 +25,6 @@ public:
 	Character &operator=(const Character &other);
 	virtual ~Character();
 
-	const	std::string	&getName() const;
 	std::string const &getName() const;
 	void equip(AMateria *m);
 	void unequip (int idx);

@@ -1,12 +1,13 @@
-#include "Cure.hpp"
+#include "../includes/Cure.hpp"
+#include "../includes/ICharacter.hpp"
 
 /*-------------- CONSTRUCTORS --------------*/
 
 Cure::Cure(){
+	type = "cure";
 }
 
 Cure::Cure(const Cure &other){
-	*this = other;
 }
 
 Cure &Cure::operator=(const Cure &other){
@@ -22,5 +23,9 @@ Cure::~Cure(){
 /*-------------- FUNCTIONS --------------*/
 
 void	Cure::use(ICharacter &target){
-	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+}
+
+Cure	*Cure::clone() const{
+	return (new Cure(*this));
 }

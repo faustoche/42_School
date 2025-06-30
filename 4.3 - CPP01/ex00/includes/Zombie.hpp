@@ -6,7 +6,7 @@
 /*   By: fcrocq <fcrocq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:24:13 by faustoche         #+#    #+#             */
-/*   Updated: 2025/06/24 10:58:54 by fcrocq           ###   ########.fr       */
+/*   Updated: 2025/06/28 17:09:31 by fcrocq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ private:
 
 public:
 	Zombie(std::string name);
+	~Zombie(void);
 	void	announce(void);
 	Zombie	*newZombie(std::string name);
 	void	randomChump(std::string name);
-	~Zombie(void);
 };
 
 #endif

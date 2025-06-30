@@ -2,7 +2,7 @@
 #                			        MAIN                                   #
 # ************************************************************************ #
 
-NAME 		= fixed03
+NAME 		= BSP
 
 # ************************************************************************ #
 #                			     DIRECTORIES                               #
@@ -16,12 +16,12 @@ OBJS_DIR		= obj
 #                			 SRCS && OBJECTS FILES                         #
 # ************************************************************************ #
 
-FIXED03 		= $(addprefix $(SRCS_DIR)/, main.cpp\
+BSP 			= $(addprefix $(SRCS_DIR)/, main.cpp\
 					Fixed.cpp\
-					Bsp.cpp\
+					bsp.cpp\
 					Point.cpp)
-SRCS 			= ${FIXED03}
-CPP_OBJS		= ${FIXED03:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
+SRCS 			= ${BSP}
+CPP_OBJS		= ${BSP:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
 OBJS			= $(CPP_OBJS)
 
 # ************************************************************************ #
@@ -39,13 +39,13 @@ RM = rm -rf
 all:    $(NAME)
 
 $(NAME):  $(OBJS_DIR) $(OBJS)
-	@echo "\033[1;33m🤖  COMPILING FIXED03 🤖\n"
+	@echo "\033[1;33m🤖  COMPILING BSP 🤖\n"
 	@$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
 	@echo "\033[1;32m🤖 ./$(NAME) created 🤖\n"
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp
 	@mkdir -p $(OBJS_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
@@ -56,6 +56,7 @@ $(OBJS_DIR):
 
 clean:
 	@$(RM) $(OBJS_DIR)
+	@$(RM) $(OBJS:.o=.d)
 	@echo "\033[1;32m🫧  DONE 🫧"
 
 fclean: clean
@@ -64,3 +65,9 @@ fclean: clean
 
 re: fclean all
 	@echo "\033[1;32m🫧  RE DONE 🫧"
+
+# ************************************************************************ #
+#                   	       DEPENDENCIES                                #
+# ************************************************************************ #
+
+-include $(OBJS:.o=.d)
