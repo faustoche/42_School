@@ -7,9 +7,7 @@ Cure::Cure(){
 	type = "cure";
 }
 
-Cure::Cure(const Cure &other){
-	(void)other;
-	return ;
+Cure::Cure(const Cure &other) : AMateria(other){
 }
 
 Cure &Cure::operator=(const Cure &other){
@@ -19,7 +17,7 @@ Cure &Cure::operator=(const Cure &other){
 }
 
 Cure::~Cure(){
-	std::cout << "[CURE] Destructor called" << std::endl;
+	//std::cout << "[CURE] Destructor called" << std::endl;
 }
 
 /*-------------- FUNCTIONS --------------*/

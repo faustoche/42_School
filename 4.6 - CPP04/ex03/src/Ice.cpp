@@ -7,9 +7,7 @@ Ice::Ice(){
 	type = "ice";
 }
 
-Ice::Ice(const Ice &other){
-	(void)other;
-	return ;
+Ice::Ice(const Ice &other) : AMateria(other){
 }
 
 Ice &Ice::operator=(const Ice &other){
@@ -19,7 +17,7 @@ Ice &Ice::operator=(const Ice &other){
 }
 
 Ice::~Ice(){
-	std::cout << "[ICE] Destructor called" << std::endl;
+	//std::cout << "[ICE] Destructor called" << std::endl;
 }
 
 /*-------------- FUNCTIONS --------------*/

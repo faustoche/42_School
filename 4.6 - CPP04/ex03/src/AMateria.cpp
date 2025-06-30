@@ -8,9 +8,7 @@ AMateria::AMateria() : type("no type yet"){
 AMateria::AMateria(std::string const &type) : type(type){
 }
 
-AMateria::AMateria(const AMateria &other){
-	(void)other;
-	return ;
+AMateria::AMateria(const AMateria &other) : type(other.type){
 }
 
 AMateria &AMateria::operator=(const AMateria &other){
@@ -20,7 +18,7 @@ AMateria &AMateria::operator=(const AMateria &other){
 }
 
 AMateria::~AMateria(){
-	std::cout << "[AMATERIA] Destructor called" << std::endl;
+	//std::cout << "[AMATERIA] Destructor called" << std::endl;
 }
 
 /*-------------- GETTER --------------*/
@@ -31,7 +29,7 @@ std::string const &AMateria::getType() const{
 
 /*-------------- FUNCTIONS --------------*/
 
-// void	AMateria::use(ICharacter &target){
-// 	//renvois ice ou cure
-// }
+void	AMateria::use(ICharacter &target){
+	(void)target;
+}
 

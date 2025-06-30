@@ -6,6 +6,12 @@
 #include "MateriaSource.hpp"
 #include "IMateriaSource.hpp"
 
+
+
+
+
+/* Main fourni dans le sujet */
+
 int main()
 {
 	IMateriaSource* src = new MateriaSource();

@@ -40,9 +40,9 @@ RM = rm -rf
 all:    $(NAME)
 
 $(NAME): includes/colors.hpp $(OBJS_DIR) $(OBJS)
-	@echo "\033[1;33m🐅  COMPILING MATERIA 🐅\n"
+	@echo "\033[1;33m🧰  COMPILING MATERIA 🧰\n"
 	@$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
-	@echo "\033[1;32m🐅 ./$(NAME) created 🐅\n"
+	@echo "\033[1;32m🧰 ./$(NAME) created 🧰\n"
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp includes/colors.hpp
 	@mkdir -p $(OBJS_DIR)
