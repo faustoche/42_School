@@ -1,5 +1,6 @@
 #include "MateriaSource.hpp"
 #include "IMateriaSource.hpp"
+#include "AMateria.hpp"
 
 /*-------------- CONSTRUCTORS --------------*/
 

@@ -26,13 +26,3 @@
  Tester unequip/use sur emplacement vide
  Tester createMateria avec type inexistant
  Tester learnMateria sur source pleine
-
-
-📋 ORDRE DE TRAVAIL RECOMMANDÉ
-
-Corriger les erreurs critiques (Makefile, supprimer ICharacter.cpp)
-Compléter Ice et Cure (constructeurs, clone(), messages corrects)
-Compléter Character (héritage, toutes les méthodes)
-Créer MateriaSource (interface + implémentation)
-Écrire main.cpp pour tester
-Vérifier la gestion mémoire
