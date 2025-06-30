@@ -1,5 +1,5 @@
-#ifndef MATERIASOURCE_HPP
-# define MATERIASOURCE_HPP
+#ifndef IMATERIASOURCE_HPP
+# define IMATERIASOURCE_HPP
 
 /*-------------- INCLUDES --------------*/
 
@@ -7,7 +7,6 @@
 #include <iostream>
 #include "AMateria.hpp"
 #include "ICharacter.hpp"
-#include "IMateriaSource.hpp"
 
 /*-------------- CLASS --------------*/
 
@@ -18,20 +17,12 @@
 **
 */
 
-class MateriaSource : public IMateriaSource
+class IMateriaSource
 {
-protected:
-
 public:
-	AMateria *materia[4];
-
-	MateriaSource();
-	MateriaSource(const MateriaSource &other);
-	MateriaSource &operator=(const MateriaSource &other);
-	virtual ~MateriaSource();
-
-	void learnMateria(AMateria *);
-	AMateria *createMateria(std::string const &type);
+	virtual ~IMateriaSource();
+	virtual void learnMateria(AMateria *) = 0;
+	virtual AMateria *createMateria(std::string const &type) = 0;
 };
 
 #endif

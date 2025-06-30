@@ -1,35 +1,5 @@
 
 
-10. MateriaSource.hpp - Nouvelle classe
-
- Créer le fichier includes/MateriaSource.hpp
- Faire hériter de IMateriaSource
- Ajouter un attribut : tableau de 4 pointeurs AMateria (pour stocker les "modèles")
- Déclarer constructeur, destructeur, constructeur de copie, opérateur d'assignation
- Déclarer learnMateria() et createMateria()
-
-11. MateriaSource.cpp - Implémentation
-
- Créer le fichier src/MateriaSource.cpp
- Implémenter le constructeur (initialiser le tableau à NULL)
- Implémenter le destructeur (delete tous les modèles stockés)
- Implémenter le constructeur de copie (copie profonde)
- Implémenter l'opérateur d'assignation (copie profonde)
- Implémenter learnMateria(AMateria* m) :
-
-Trouver le premier emplacement libre (0-3)
-Y stocker une copie (m->clone())
-Si tableau plein, ne rien faire
-
-
- Implémenter createMateria(std::string const & type) :
-
-Parcourir les modèles stockés
-Si le type correspond, retourner une copie (clone())
-Si type inconnu, retourner NULL
-
-
-
 
 
 12. main.cpp - Programme de test

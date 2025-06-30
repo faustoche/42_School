@@ -28,6 +28,7 @@ Character &Character::operator=(const Character &other){
 			this->inventory[i] = other.inventory[i]->clone();
 		}
 	}
+	return (*this);
 }
 
 Character::~Character(){

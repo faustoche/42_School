@@ -8,6 +8,8 @@ Ice::Ice(){
 }
 
 Ice::Ice(const Ice &other){
+	(void)other;
+	return ;
 }
 
 Ice &Ice::operator=(const Ice &other){

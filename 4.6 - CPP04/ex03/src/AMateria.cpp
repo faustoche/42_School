@@ -9,6 +9,8 @@ AMateria::AMateria(std::string const &type) : type(type){
 }
 
 AMateria::AMateria(const AMateria &other){
+	(void)other;
+	return ;
 }
 
 AMateria &AMateria::operator=(const AMateria &other){
@@ -29,7 +31,7 @@ std::string const &AMateria::getType() const{
 
 /*-------------- FUNCTIONS --------------*/
 
-void	AMateria::use(ICharacter &target){
-	//renvois ice ou cure
-}
+// void	AMateria::use(ICharacter &target){
+// 	//renvois ice ou cure
+// }
 

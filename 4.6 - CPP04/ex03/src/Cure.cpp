@@ -8,6 +8,8 @@ Cure::Cure(){
 }
 
 Cure::Cure(const Cure &other){
+	(void)other;
+	return ;
 }
 
 Cure &Cure::operator=(const Cure &other){
