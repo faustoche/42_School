@@ -6,6 +6,7 @@ DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), Scav
 	this->name = name;
 	this->hit_point = FragTrap::hit_point;
 	this->energy_point = ScavTrap::energy_point;
+	std::cout << ScavTrap::energy_point << std::endl;
 	this->attack_damage = FragTrap::attack_damage;
 	std::cout << "DiamondTrap " << name << " constructed." << std::endl;
 }

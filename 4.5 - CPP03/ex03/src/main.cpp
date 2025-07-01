@@ -66,5 +66,15 @@ int	main()
 		std::cout << MAGENTA << "------------------------------" << RESET << std::endl;
 		std::cout << "\n";
 	}
+	{
+		std::cout << TURQUOISE << "\n*----- TEST 7 : HERITAGE -----*" << RESET << std::endl << std::endl;
+		DiamondTrap a("Louis");
+		DiamondTrap b("Lagrange");
+		b = a;
+		std::cout << TURQUOISE << "------------------------------" << RESET << std::endl;
+		b.whoAmI();
+		std::cout << TURQUOISE << "------------------------------" << RESET << std::endl;
+		std::cout << "\n";
+	}
 	return (0);
 }
