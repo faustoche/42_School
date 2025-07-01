@@ -15,9 +15,10 @@ Character::Character(const std::string name) : name(name){
 
 Character::Character(const Character &other){
 	for (int i = 0; i < 4; i++){
-		if (other.inventory[i] != NULL){
+		if (other.inventory[i] != NULL)
 			this->inventory[i] = other.inventory[i]->clone();
-		}
+		else
+			this->inventory[i] = NULL;
 	}
 }
 
@@ -75,4 +76,10 @@ void	Character::use(int idx, ICharacter &target){
 			return ;
 		}
 	}
+}
+
+AMateria *Character::getMateria(int idx) const {
+	if (idx >= 0 && idx < 4)
+		return (inventory[idx]);
+	return (NULL);
 }

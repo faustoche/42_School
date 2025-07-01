@@ -13,6 +13,8 @@ MateriaSource::MateriaSource(const MateriaSource &other){
 	for (int i = 0; i < 4; i++)
 		if (other.materia[i] != NULL)
 			this->materia[i] = other.materia[i];
+		else
+			this->materia[i] = NULL;
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &other){

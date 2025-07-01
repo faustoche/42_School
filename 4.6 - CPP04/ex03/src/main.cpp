@@ -6,64 +6,133 @@
 #include "MateriaSource.hpp"
 #include "IMateriaSource.hpp"
 
-void	PrintMateria(const Character &character)
+void PrintMateriaSource(const MateriaSource& source)
 {
-	std::cout << "Inventory of " << character.getName() << std::endl;
-	for (int i = 0; i < 4; i++){
-		std::cout << i << " : ";
-		character.use(i, character);
+    std::cout << "\nContent of MateriaSource:" << std::endl;
+    for (int i = 0; i < 4; i++) {
+        std::cout << "  Slot [" << i << "]: ";
+        if (source.materia[i] != NULL)
+            std::cout << source.materia[i]->getType() << std::endl;
+        else
+            std::cout << "Empty" << std::endl;
+    }
+}
+
+void UseMateria(ICharacter& character, ICharacter& target, int slot)
+{
+    std::cout << character.getName() << " is using materia [" << slot << "] on " << target.getName() << ":" << std::endl;
+    character.use(slot, target);
+}
+
+void PrintHeader(const std::string& testName)
+{
+    std::cout << BLUE_BRIGHT << "\n" << "===================================================" << std::endl;
+    std::cout << "   " << testName << std::endl;
+    std::cout << "===================================================" << RESET << std::endl;
+}
+
+int main(void)
+{
+	{
+		PrintHeader("TEST 1: BASIC MATERIA CREATION");
+		Ice	*ice = new Ice();
+		Cure *cure = new Cure();
+		std::cout << "Ice created : " << ice->getType() << std::endl;
+		std::cout << "Cure created : " << cure->getType() << std::endl;
+		delete ice;
+		delete cure;
 	}
+	{
+		PrintHeader("TEST 2: CLONING THE MATERIAS");
+		Ice	*ice = new Ice();
+		Cure *cure = new Cure();
+		AMateria *iceClone = ice->clone();
+		AMateria *cureClone = cure->clone();
+		std::cout << "Ice has been cloned - Type: " << iceClone->getType() << std::endl;
+		std::cout << "Cure has been cloned - Type: " << cureClone->getType() << std::endl;
+		std::cout << "Adresses :" << std::endl;
+		std::cout << "Ice (original) : " << ice << " ||| Clone: " << iceClone << std::endl;
+		std::cout << "Cure (original): " << cure << " ||| Clone: " << cureClone << std::endl;
+		delete ice;
+		delete cure;
+		delete iceClone;
+		delete cureClone;
+	}
+	{
+		PrintHeader("TEST 3: CREATION AND LEARNING OF MATERIAS");
+		MateriaSource *src = new MateriaSource();
+		std::cout << "MateriaSource created" << std::endl;
+		PrintMateriaSource(*src);
+		std::cout << "\nLearning the materias..." << std::endl;
+		src->learnMateria(new Ice());
+		src->learnMateria(new Cure());
+		PrintMateriaSource(*src);
+		delete src;
+	}
+	{
+		PrintHeader("TEST 4: CREATION OF CHARACTERS");
+		Character *riri = new Character("Riri");
+		Character *fifi = new Character("Fifi");
+		Character *loulou = new Character();
+		std::cout << "Characters created:" << std::endl;
+		std::cout << riri->getName() << std::endl;
+		std::cout << fifi->getName() << std::endl;
+		std::cout << loulou->getName() << std::endl;
+		delete riri;
+		delete fifi;
+		delete loulou;
+	}
+	{
+		PrintHeader("TEST 5: EQUIPMENT");
+		MateriaSource *src = new MateriaSource();
+		Character *jacky = new Character("Jacky");
+		Character *patrick = new Character("Patrick");
+		std::cout << "Jacky is getting equipted" << std::endl;
+		jacky->equip(src->createMateria("ice"));
+		jacky->equip(src->createMateria("cure"));
+		jacky->equip(src->createMateria("ice"));
+		jacky->equip(src->createMateria("cure"));
+		std::cout << "Patrick is getting equipted" << std::endl;
+		patrick->equip(src->createMateria("cure"));
+		patrick->equip(src->createMateria("ice"));
+		std::cout << "Trying to add something to a full materia" << std::endl;
+		jacky->equip(src->createMateria("ice"));
+		delete src;
+		delete jacky;
+		delete patrick;
+	}
+	{
+		PrintHeader("TEST 6: COMBAT IS STARTING!");
+		Character *franck = new Character("Franck");
+		Character *didier = new Character("Didier");
+		Character *michel = new Character();
+		UseMateria(*franck, *didier, 0);
+		UseMateria(*franck, *didier, 1);
+		UseMateria(*didier, *franck, 0);
+		UseMateria(*didier, *franck, 1);
+		std::cout << "\nTrying on invalid slot. We never know..." << std::endl;
+		UseMateria(*michel, *franck, 0);
+		UseMateria(*franck, *didier, 5);
+		UseMateria(*franck, *didier, -1);
+		delete franck;
+		delete didier;
+		delete michel;
+	}
+	{
+		PrintHeader("TEST 7: UNEQUIPMENT");
+		Character *charly = new Character("Charly");
+		Character *edward = new Character("Edward");
+		std::cout << "Unequipment of Charly's slot[0]" << std::endl;
+		charly->unequip(0);
+		UseMateria(*charly, *edward, 0);
+		std::cout << "Trying to emptied an already empty slot." << std::endl;
+		charly->unequip(0);
+		std::cout << "Trying to unequipt an invalid slot" << std::endl;
+		charly->unequip(10);
+		charly->unequip(-5);
+	}
+    return (0);
 }
-
-int	main(void)
-{
-	std::cout << PINK << "\n======= TEST 1 : BASIC SHIT =======" << RESET << std::endl << std::endl;
-	Ice* ice = new Ice();
-	Cure* cure = new Cure();
-	PrintMateria()
-	std::cout << "Ice type: " << ice->getType() << std::endl;
-	std::cout << "Cure type: " << cure->getType() << std::endl;
-
-	std::cout << PINK << "\n======= TEST 2 : CLONING TEST =======" << RESET << std::endl << std::endl;
-	AMateria *iceClone = ice->clone();
-	AMateria *cureClone = cure->clone();
-	std::cout << "Ice clone type: " << iceClone->getType() << std::endl;
-	std::cout << "Cure clone type: " << cureClone->getType() << std::endl;
-
-	std::cout << PINK << "\n======= TEST 3 : MATERIASOURCE CREATION =======" << RESET << std::endl << std::endl;
-	IMateriaSource* base = new MateriaSource();
-	base->learnMateria(ice);
-	base->learnMateria(cure);
-
-	std::cout << PINK << "\n======= TEST 4 : NEW CHARACTER CREATION =======" << RESET << std::endl << std::endl;
-	ICharacter	*john = new Character("John");
-	ICharacter	*martine = new Character("Martine");
-	std::cout << "Hi, our names are " << john->getName() << " and " << martine->getName() << std::endl;
-
-	std::cout << PINK << "\n======= TEST 5 : GET EQUIPED WITH MATERIA =======" << RESET << std::endl << std::endl;
-	AMateria *johnEquipment = base->createMateria("ice");
-	john->equip(johnEquipment);
-	AMateria *martineEquipment = base->createMateria("cure");
-	martine->equip(martineEquipment);
-
-	std::cout << PINK << "======= TEST 6 : USE THE MATERIAS =======" << RESET << std::endl << std::endl;
-	john->use(0, *martine);
-	martine->use(1, *john);
-
-	delete iceClone;
-	delete cureClone;
-	delete john;
-	delete martine;
-	delete ice;
-	delete cure;
-	return (0);
-}
-
-
-
-
-
-
 
 
 
