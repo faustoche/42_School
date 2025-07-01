@@ -21,7 +21,7 @@ int	main()
 	{
 		std::cout << GREEN << "\n*----- TEST 2 : DID INHERITANCE WORKED? -----*" << RESET << std::endl << std::endl;
 		DiamondTrap thomas("Thomas");
-		std::cout << GREEN << "------------------------------" << RESET << std::endl;
+		std::cout << GREEN << "------------------------------" << RESET;
 		thomas.status();
 		std::cout << GREEN << "------------------------------" << RESET << std::endl;
 		std::cout << "\n";

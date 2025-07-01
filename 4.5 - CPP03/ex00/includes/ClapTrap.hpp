@@ -18,6 +18,7 @@ private:
 	int	attack_damage;
 
 public:
+	ClapTrap();
 	ClapTrap(std::string name);
 	~ClapTrap();
 	ClapTrap(const ClapTrap &other);

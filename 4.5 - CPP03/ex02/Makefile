@@ -38,7 +38,7 @@ RM = rm -rf
 all:    $(NAME)
 
 $(NAME):  includes/colors.hpp $(OBJS_DIR) $(OBJS)
-	@echo "\033[1;33m💣  COMPILING SCAVTRAP 💣\n"
+	@echo "\033[1;33m💣  COMPILING FRAGTRAP 💣\n"
 	@$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
 	@echo "\033[1;32m💣 ./$(NAME) created 💣\n"
 

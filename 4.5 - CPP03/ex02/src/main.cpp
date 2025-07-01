@@ -2,6 +2,11 @@
 #include "../includes/ScavTrap.hpp"
 #include "../includes/FragTrap.hpp"
 
+void	ClapTrap::status()
+{
+	std::cout << "\n[HIT POINTS: " << this->hit_point << ", ENERGY POINTS: " << this->energy_point << "]" << std::endl;
+}
+
 int	main()
 {
 	{
@@ -12,7 +17,6 @@ int	main()
 		xavier.takeDamage(4);
 		xavier.beRepaired(2);
 		std::cout << CORAL << "------------------------------" << RESET << std::endl;
-		std::cout << "\n";
 	}
 	{
 		std::cout << GREEN << "\n*----- TEST 2 : LET'S BE FRIENDS -----*" << RESET << std::endl << std::endl;
@@ -22,7 +26,6 @@ int	main()
 		thomas.highFivesGuys();
 		thomas.beRepaired(2);
 		std::cout << GREEN << "------------------------------" << RESET << std::endl;
-		std::cout << "\n";
 	}
 	return (0);
 }

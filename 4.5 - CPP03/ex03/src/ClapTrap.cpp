@@ -49,6 +49,10 @@ void	ClapTrap::attack(const std::string &target) {
 }
 
 void	ClapTrap::takeDamage(unsigned int amount) {
+	if ((int)amount < 0 || amount > 1000){
+		std::cout << "Oh oh... this is not possible..." << std::endl;
+		return ;
+	}
 	if (this->hit_point == 0) {
 		std::cout << "What did you expect ? ClapTrap " << this->name << " has no hit point left and died." << std::endl;
 		return ;
@@ -63,6 +67,10 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 }
 
 void	ClapTrap::beRepaired(unsigned int amount){
+	if ((int)amount < 0 || amount > 1000){
+		std::cout << "Oh oh... this is not possible..." << std::endl;
+		return ;
+	}
 	if (this->hit_point == 0) {
 		std::cout << "Too bad, ClapTrap " << this->name << " is dead. No hit point left..." << std::endl;
 		return ;

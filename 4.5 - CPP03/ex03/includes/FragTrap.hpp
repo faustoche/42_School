@@ -6,10 +6,12 @@
 
 /*-------------- CLASSES --------------*/
 
+/* En virtual public pour pour hériter virtuellement */
+
 class FragTrap : virtual public ClapTrap {
 public:
-	FragTrap(std::string name);
 	FragTrap();
+	FragTrap(std::string name);
 	~FragTrap();
 	FragTrap(const FragTrap &other);
 	FragTrap &operator=(const FragTrap &other);

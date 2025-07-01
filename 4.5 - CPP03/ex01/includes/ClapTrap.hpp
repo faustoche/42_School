@@ -18,6 +18,7 @@ protected:
 	int	attack_damage;
 
 public:
+	ClapTrap();
 	ClapTrap(std::string name); // Constructeur par défaut
 	~ClapTrap(); // Destructeur par défault
 	ClapTrap(const ClapTrap &other); // Constructeur de recopie

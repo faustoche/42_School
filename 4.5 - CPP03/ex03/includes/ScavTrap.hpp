@@ -14,10 +14,12 @@
 
 /*-------------- CLASSES --------------*/
 
+/* En virtual public pour pour hériter virtuellement */
+
 class ScavTrap : virtual public ClapTrap {
 public:
-	ScavTrap(std::string name);
 	ScavTrap();
+	ScavTrap(std::string name);
 	~ScavTrap();
 	ScavTrap(const ScavTrap &other);
 	ScavTrap &operator=(const ScavTrap &other);

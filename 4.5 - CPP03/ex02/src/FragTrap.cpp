@@ -3,6 +3,13 @@
 
 /*-------------- CONSTRUCTORS --------------*/
 
+FragTrap::FragTrap() {
+	this->hit_point = 100;
+	this->energy_point = 100;
+	this->attack_damage = 30;
+	std::cout << "FragTrap created by default constructor." << std::endl;
+}
+
 FragTrap::FragTrap(std::string name) : ClapTrap(name) {
 	this->hit_point = 100;
 	this->energy_point = 100;
@@ -15,7 +22,7 @@ FragTrap::~FragTrap() {
 }
 
 FragTrap::FragTrap(const FragTrap &other) : ClapTrap(other){
-
+	*this = other;
 }
 
 FragTrap &FragTrap::operator=(const FragTrap &other) {
