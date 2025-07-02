@@ -76,6 +76,8 @@ void	Character::use(int idx, ICharacter &target){
 			return ;
 		}
 	}
+	else
+		return ;
 }
 
 AMateria *Character::getMateria(int idx) const {

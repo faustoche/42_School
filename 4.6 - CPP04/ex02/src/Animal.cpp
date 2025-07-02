@@ -9,8 +9,6 @@ AAnimal::AAnimal() : type("Animal"){
 AAnimal::AAnimal(std::string type) : type(type){
 }
 
-/* Pourquoi est-ce que ce copie constructeur est vide ? */
-
 AAnimal::AAnimal(const AAnimal &other) : type(other.type){
 }
 

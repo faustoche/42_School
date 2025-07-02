@@ -3,10 +3,10 @@
 
 /*-------------- CONSTRUCTORS --------------*/
 
-/* Le tableau ideas est initialisé automatiquement à vide */
+/* Tab is called empty */
 
 Brain::Brain(){
-	std::cout << "[Brain] Constructor called." << std::endl;
+	std::cout << "[Brain] Default constructor called." << std::endl;
 }
 
 Brain::Brain(const Brain &other){

@@ -6,10 +6,9 @@
 #include "ClapTrap.hpp"
 
 /* 
-** Construction et déconstruction en chaîne
-** Quand un objet est hérité d'une autre class, le construction de la class est
-** automatiquement appelé en premier, puis ensuite celui du second objet créé
-** Pour la destruction c'est l'inverse, on détruit d'abord le dernier créé
+** When an object is heritated from another class, construction of the class is automatically
+** called first. Then, the one from the second object.
+** It is reverse for the destruction ones
 */
 
 /*-------------- CLASSES --------------*/

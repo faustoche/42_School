@@ -6,7 +6,7 @@
 #include "Animal.hpp"
 #include "Brain.hpp"
 
-/*-------------- CLASSES --------------*/
+/*-------------- CLASS --------------*/
 
 class Dog : public Animal
 {

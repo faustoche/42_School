@@ -3,7 +3,7 @@
 
 /*-------------- CONSTRUCTORS --------------*/
 
-// Chaque DOG doit avoir son brain à la création
+/* Each dog need its own brain when created*/
 
 Dog::Dog() : Animal("Dog"){
 	this->brain = new Brain();

@@ -3,8 +3,6 @@
 
 /*-------------- CONSTRUCTORS --------------*/
 
-// Chaque DOG doit avoir son brain à la création
-
 Dog::Dog() : AAnimal("Dog"){
 	this->brain = new Brain();
 	std::cout << BLUE_BRIGHT << "[DOG] " << RESET << "Constructor called." << std::endl;

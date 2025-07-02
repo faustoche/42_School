@@ -2,11 +2,6 @@
 
 /*-------------- CONSTRUCTORS --------------*/
 
-ClapTrap::ClapTrap(std::string name)
-	: name(name), hit_point(10), energy_point(10), attack_damage(0){
-	std::cout << "ClapTrap " << this->name << " created by constructor." << std::endl;
-}
-
 ClapTrap::ClapTrap(){
 	this->name = "Unnamed";
 	this->hit_point = 10;
@@ -14,6 +9,12 @@ ClapTrap::ClapTrap(){
 	this->attack_damage = 0;
 	std::cout << "ClapTrap default constructor called" << std::endl;
 }
+
+ClapTrap::ClapTrap(std::string name)
+	: name(name), hit_point(10), energy_point(10), attack_damage(0){
+	std::cout << "ClapTrap " << this->name << " created by parameterized constructor." << std::endl;
+}
+
 
 ClapTrap::~ClapTrap() {
 	std::cout << "ClapTrap " << this->name << " destroyed by destructor." << std::endl;
@@ -50,7 +51,7 @@ void	ClapTrap::attack(const std::string &target) {
 
 void	ClapTrap::takeDamage(unsigned int amount) {
 	if ((int)amount < 0 || amount > 1000){
-		std::cout << "Oh oh... this is not possible..." << std::endl;
+		std::cout << "Oh, that's a lot of point. You can only carry between 0 and 1000 points." << std::endl;
 		return ;
 	}
 	if (this->hit_point == 0) {
@@ -68,7 +69,7 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 
 void	ClapTrap::beRepaired(unsigned int amount){
 	if ((int)amount < 0 || amount > 1000){
-		std::cout << "Oh oh... this is not possible..." << std::endl;
+		std::cout << "Oh, that's a lot of point. You can only carry between 0 and 1000 points." << std::endl;
 		return ;
 	}
 	if (this->hit_point == 0) {

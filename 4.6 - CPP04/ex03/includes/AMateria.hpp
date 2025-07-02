@@ -7,9 +7,7 @@
 #include <iostream>
 #include "colors.hpp"
 
-/*-------------- CLASSES --------------*/
-
-/* AMateria = classe abstraite */
+/*-------------- CLASS --------------*/
 
 class ICharacter;
 
@@ -24,7 +22,7 @@ public:
 	AMateria &operator=(const AMateria &other);
 	virtual ~AMateria();
 
-	std::string const &getType() const; // returns materia type
+	std::string const &getType() const;
 	virtual AMateria *clone() const = 0;
 	virtual void use(ICharacter &target);
 };

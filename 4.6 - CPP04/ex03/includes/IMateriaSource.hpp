@@ -11,10 +11,9 @@
 /*-------------- CLASS --------------*/
 
 /*
-** LearnMAteria: copie la materia passé en parametre et la stocke en memoire afin de la cloner plus tard
-** createMateria : retourne une nouvelle materia. C'est une copie de celle apprise précédemment par la materiasource
-** 		et dont le type est le meme que celui passé en parametre. Retourne 0 si le type est inconnu
-**
+** LearnMateria: copy parameters's materia et keep it in order to clone it later
+** CreateMateria: return a new materia. It's a copy of the one learned before by materiasource. 
+**				  the type is the same as the one passed in parameters. Return 0 if type is unknown.
 */
 
 class IMateriaSource

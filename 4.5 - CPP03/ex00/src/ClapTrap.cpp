@@ -1,6 +1,6 @@
 #include "../includes/ClapTrap.hpp"
 
-/*-------------- CONSTRUCTEURS --------------*/
+/*-------------- CONSTRUCTORS --------------*/
 
 ClapTrap::ClapTrap()
 	: name("No name"), hit_point(10), energy_point(10), attack_damage(0){
@@ -9,7 +9,7 @@ ClapTrap::ClapTrap()
 
 ClapTrap::ClapTrap(std::string name)
 	: name(name), hit_point(10), energy_point(10), attack_damage(0){
-	std::cout << "ClapTrap " << this->name << " called by constructor." << std::endl;
+	std::cout << "ClapTrap " << this->name << " called by parameterized constructor." << std::endl;
 }
 
 ClapTrap::~ClapTrap() {
@@ -30,7 +30,7 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &other) {
 	return (*this);
 }
 
-/*-------------- FONCTIONS --------------*/
+/*-------------- FUNCTIONS --------------*/
 
 void	ClapTrap::attack(const std::string &target) {
 	if (this->energy_point == 0) {
@@ -47,7 +47,7 @@ void	ClapTrap::attack(const std::string &target) {
 
 void	ClapTrap::takeDamage(unsigned int amount) {
 	if ((int)amount < 0 || amount > 1000){
-		std::cout << "Oh oh... this is not possible..." << std::endl;
+		std::cout << "Oh, that's a lot of point. You can only carry between 0 and 1000 points." << std::endl;
 		return ;
 	}
 	if (this->hit_point == 0) {
@@ -65,7 +65,7 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 
 void	ClapTrap::beRepaired(unsigned int amount){
 	if ((int)amount < 0 || amount > 1000){
-		std::cout << "Oh oh... this is not possible..." << std::endl;
+		std::cout << "Oh, that's a lot of point. You can only carry between 0 and 1000 points." << std::endl;
 		return ;
 	}
 	if (this->hit_point == 0) {

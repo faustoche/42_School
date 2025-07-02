@@ -6,9 +6,7 @@
 #include "Animal.hpp"
 #include "Brain.hpp"
 
-/*-------------- CLASSES --------------*/
-
-/* On rajoute un pointeur vers brain */
+/*-------------- CLASS --------------*/
 
 class Cat : public Animal
 {

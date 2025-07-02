@@ -3,8 +3,6 @@
 
 /*-------------- CONSTRUCTORS --------------*/
 
-// Chaque CAT doit avoir un nouveau brain à la création
-
 Cat::Cat() : AAnimal("Cat"){
 	this->brain = new Brain();
 	std::cout << TURQUOISE << "[CAT] " << RESET << "Constructor called." << std::endl;

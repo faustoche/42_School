@@ -18,11 +18,11 @@ protected:
 	int	attack_damage;
 
 public:
-	ClapTrap(); // Constructeur par défaut
-	ClapTrap(std::string name); // Constructeur paramétré
-	~ClapTrap(); // Destructeur par défault
-	ClapTrap(const ClapTrap &other); // Constructeur de recopie
-	ClapTrap &operator=(const ClapTrap &other); // Constructeur d'opérateur
+	ClapTrap();
+	ClapTrap(std::string name);
+	~ClapTrap();
+	ClapTrap(const ClapTrap &other);
+	ClapTrap &operator=(const ClapTrap &other);
 
 	void	attack(const std::string &target);
 	void	takeDamage(unsigned int amount);

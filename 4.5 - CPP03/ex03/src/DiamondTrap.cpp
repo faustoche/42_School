@@ -15,7 +15,7 @@ DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), Frag
 	this->hit_point = FragTrap::hit_point;
 	this->energy_point = ScavTrap::energy_point;
 	this->attack_damage = FragTrap::attack_damage;
-	std::cout << WHITE << "DiamondTrap " << name << " constructed." << RESET << std::endl;
+	std::cout << WHITE << "DiamondTrap " << name << " created by parameterized constructor." << RESET << std::endl;
 }
 
 DiamondTrap::~DiamondTrap() {

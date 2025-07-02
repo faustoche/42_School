@@ -4,8 +4,8 @@
 /*-------------- CONSTRUCTORS --------------*/
 
 /*
-** On rajoute Animal("Cat") pour appeler le constructeur d'animal avec le type cat
-** On appelle le constructeur d'animal et ensuite le corps du constructeur de cat s'execute
+** Adding Animal("Cat") to call the animal constructor with the type cat
+** Calling animal constructor and then content of cat constructor is executed
 */
 
 Cat::Cat() : Animal("Cat"){

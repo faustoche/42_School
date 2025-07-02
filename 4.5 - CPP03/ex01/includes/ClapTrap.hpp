@@ -7,7 +7,7 @@
 #include <iostream>
 #include "colors.hpp"
 
-/*-------------- CLASSES --------------*/
+/*-------------- CLASS --------------*/
 
 class ClapTrap
 {
@@ -19,10 +19,10 @@ protected:
 
 public:
 	ClapTrap();
-	ClapTrap(std::string name); // Constructeur par défaut
-	~ClapTrap(); // Destructeur par défault
-	ClapTrap(const ClapTrap &other); // Constructeur de recopie
-	ClapTrap &operator=(const ClapTrap &other); // Constructeur d'opérateur
+	ClapTrap(std::string name);
+	~ClapTrap();
+	ClapTrap(const ClapTrap &other);
+	ClapTrap &operator=(const ClapTrap &other);
 	void	attack(const std::string &target);
 	void	takeDamage(unsigned int amount);
 	void	beRepaired(unsigned int amount);

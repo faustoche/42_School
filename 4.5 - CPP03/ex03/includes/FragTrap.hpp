@@ -6,7 +6,7 @@
 
 /*-------------- CLASSES --------------*/
 
-/* En virtual public pour pour hériter virtuellement */
+/* Virtual public : to heritate virtually */
 
 class FragTrap : virtual public ClapTrap {
 public:

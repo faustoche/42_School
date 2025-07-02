@@ -2,15 +2,27 @@
 
 void	ClapTrap::status()
 {
-	std::cout << "\n[HIT POINTS: " << this->hit_point << ", ENERGY POINTS: " << this->energy_point << "]" << std::endl;
+	std::cout << WHITE << "\n[HIT POINTS: " << this->hit_point << ", ENERGY POINTS: " << this->energy_point << "]" << RESET << std::endl;
+}
+
+void printHeader(int i, std::string color, std::string reset, std::string testName)
+{
+	std::cout << color << "\n=======================================================\n" << reset;
+	std::cout << WHITE << "TEST " << i << " : " << testName << RESET << std::endl;
+	std::cout << color << "=======================================================\n" << reset;
 }
 
 int	main()
 {
 	{
-		std::cout << CORAL << "\n*----- TEST 1 : EVERYTHING ALL RIGHT -----*" << RESET << std::endl << std::endl;
+		printHeader(0, TURQUOISE, RESET, "CALLING DEFAULT OR PARAMETERIZED CONSTRUCTORS");
+		ClapTrap	jeannine("Jeannine");
+		ClapTrap	clap_trap;
+		std::cout << "\n";
+	}
+	{
+		printHeader(1, CORAL, RESET, "EVERYTHING IS ALL RIGHT");
 		ClapTrap	tristan("Tristan");
-		std::cout << CORAL << "------------------------------\n" << RESET;
 		tristan.status();
 		std::cout << std::endl;
 		tristan.attack("banker");
@@ -20,80 +32,76 @@ int	main()
 		tristan.takeDamage(7);
 		tristan.beRepaired(1);
 		tristan.status();
-		std::cout << CORAL << "------------------------------\n" << RESET;
 		std::cout << "\n";
 	}
 	{
-		std::cout << BLUE_BRIGHT << "\n*----- TEST 2 : NOT ENOUGH ENERGY POINT TO RESTORE HEALTH -----*" << RESET << std::endl << std::endl;
+		printHeader(2, BLUE_BRIGHT, RESET, "NOT ENOUGH ENERGY POINT TO RESTORE HEALTH");
 		ClapTrap	clemonce("Clémonce");
-		std::cout << BLUE_BRIGHT << "------------------------------\n" << RESET;
 		clemonce.status();
 		std::cout << std::endl;
 		for (int i = 0; i < 10; i++)
 			clemonce.attack("URSAFF");
 		clemonce.beRepaired(5);
 		clemonce.status();
-		std::cout << BLUE_BRIGHT << "------------------------------\n" << RESET;
 		std::cout << "\n";
 	}
 	{
-		std::cout << MAGENTA << "\n*----- TEST 3 : NOT ENOUGH ENERGY POINT TO ATTACK -----*" << RESET << std::endl << std::endl;
+		printHeader(3, MAGENTA, RESET, "NOT ENOUGH ENERGY POINT TO ATTACK");
 		ClapTrap	david("David");
-		std::cout << MAGENTA << "------------------------------\n" << RESET;
 		david.status();
 		std::cout << std::endl;
 		for (int i = 0; i < 11; i++)
 			david.attack("the void of his life");
 		david.status();
-		std::cout << MAGENTA << "------------------------------\n" << RESET;
 		std::cout << "\n";
 	}
 	{
-		std::cout << PINK << "\n*----- TEST 5 : NOT ENOUGH ENERGY FOR FULL REPAIR -----*" << RESET << std::endl << std::endl;
+		printHeader(4, GOLD, RESET, "TOO MANY POINTS, STOP IT!");
+		ClapTrap	olivier("Olivier");
+		olivier.status();
+		std::cout << std::endl;
+		olivier.beRepaired(787987465);
+		olivier.status();
+		std::cout << "\n";
+	}
+	{
+		printHeader(5, PINK, RESET, "NOT ENOUGH ENERGY POINT FOR FULL REPAIR");
 		ClapTrap	virginie("Virginie");
-		std::cout << PINK << "------------------------------\n" << RESET;
 		virginie.status();
 		std::cout << std::endl;
 		for (int i = 0; i < 10; i++)
 			virginie.beRepaired(1);
 		virginie.beRepaired(1);
 		virginie.status();
-		std::cout << PINK << "------------------------------\n" << RESET;
 		std::cout << "\n";
 	}
 	{
-		std::cout << GREEN << "\n*----- TEST 6 : REPAIR WITH A LOT OF HEALTH POINT -----*" << RESET << std::endl << std::endl;
+		printHeader(6, GREEN, RESET, "REPAIR WITH A LOT OF HEALTH POINT");
 		ClapTrap	didier("Didier");
-		std::cout << GREEN << "------------------------------\n" << RESET;
 		didier.status();
 		std::cout << std::endl;
 		didier.beRepaired(2);
 		didier.beRepaired(2);
 		didier.status();
-		std::cout << GREEN << "------------------------------\n" << RESET;
 		std::cout << "\n";
 	}
 	{
-		std::cout << CYAN << "\n*----- TEST 7 : ATTACK AFTER DYING | ZOMBIE VIBE -----*" << RESET << std::endl << std::endl;
+		printHeader(7, CYAN, RESET, "ATTACK AFTER DYING");
 		ClapTrap	veronique("Véronique");
-		std::cout << CYAN << "------------------------------\n" << RESET;
 		veronique.status();
 		std::cout << std::endl;
 		veronique.takeDamage(10);
 		veronique.attack("small spider in the room corner");
 		veronique.status();
-		std::cout << CYAN << "------------------------------\n" << RESET;
 		std::cout << "\n";
 	}
 	{
-		std::cout << GOLD << "\n*----- TEST 8 : GOING DOWN DOWN DOWN (NEGATIVE HIT POINT) -----*" << RESET << std::endl << std::endl;
+		printHeader(8, GOLD, RESET, "GOING DOWN DOWN DOWN (NEGATIVE HIT POINT)");
 		ClapTrap	christophe("Christophe");
-		std::cout << GOLD << "------------------------------\n" << RESET;
 		christophe.status();
 		std::cout << std::endl;
 		christophe.takeDamage(20);
 		christophe.status();
-		std::cout << GOLD << "------------------------------\n" << RESET;
 		std::cout << "\n";
 	}
 	return (0);

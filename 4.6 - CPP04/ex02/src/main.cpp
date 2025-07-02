@@ -23,7 +23,7 @@ int	main()
 }
 
 
-/* Main fourni dans le sujet */
+/* Main's subject */
 
 // int main()
 // {

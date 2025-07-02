@@ -10,8 +10,8 @@
 /*-------------- CLASSES --------------*/
 
 /*
-** Une classe devient abstraite si elle contient au moins une méthode virtuelle pure
-** Pour que ça devienne une méthode virtuelle, on écrit = 0 à la fin d'une méthode virtuelle
+** We call an abstract class if it contains at least one pure virtual methode
+** In order to be a virtual methode, we add = 0 at the end
 */
 
 class AAnimal
@@ -26,7 +26,7 @@ public:
 	AAnimal &operator=(const AAnimal &other);
 	virtual	~AAnimal();
 
-	virtual void	makeSound() const = 0; // méthode virtuelle pure
+	virtual void	makeSound() const = 0;
 	std::string getType(void) const;
 }; 
 

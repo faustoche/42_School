@@ -13,7 +13,7 @@ FragTrap::FragTrap(std::string name){
 	this->hit_point = 100;
 	this->energy_point = 100;
 	this->attack_damage = 30;
-	std::cout << "FragTrap " << name << " created by constructor." << std::endl;
+	std::cout << "FragTrap " << name << " created by parameterized constructor." << std::endl;
 }
 
 FragTrap::~FragTrap() {

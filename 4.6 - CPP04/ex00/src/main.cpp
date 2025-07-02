@@ -49,7 +49,7 @@ int	main()
 	return (0);
 }
 
-/* Main fourni dans le sujet */
+/* Main's subject */
 
 // int main()
 // {

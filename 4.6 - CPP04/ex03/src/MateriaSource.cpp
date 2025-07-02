@@ -38,9 +38,6 @@ MateriaSource::~MateriaSource(){
 
 /*-------------- FUNCTIONS --------------*/
 
-// trouver le premier emplacement libre
-//stocker une copie ->clone
-
 void	MateriaSource::learnMateria(AMateria *m){
 	if (m == NULL)
 		return;
@@ -52,12 +49,6 @@ void	MateriaSource::learnMateria(AMateria *m){
 	}
 	delete m;
 }
-
-/*
-Parcourir les modèles stockés
-Si le type correspond, retourner une copie (clone())
-Si type inconnu, retourner NULL
-*/
 
 AMateria *MateriaSource::createMateria(std::string const &type){
 	for (int i = 0; i < 4; i++){

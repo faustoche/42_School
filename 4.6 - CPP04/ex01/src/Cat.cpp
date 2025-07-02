@@ -4,9 +4,8 @@
 /*-------------- CONSTRUCTORS --------------*/
 
 /* 
-** Chaque CAT doit avoir un nouveau brain à la création
-** On alloue un nouveau brain dans la heap qu'on delete dans le destructeur
-** 
+** Each Cat need to have a new brain when created
+** We allocate a new brain in the heap that we delete in the destructor
 */
 
 Cat::Cat() : Animal("Cat"){
@@ -15,9 +14,9 @@ Cat::Cat() : Animal("Cat"){
 }
 
 /* 
-** On obtiens ici l'objet braim et on alloue ce nouveau brain
-** On ne peut pas faire brain = other.brain car ça serait une copie superficielle
-** Les différents cat partageraient le méme brain, et on ne peux odnc pas les détruitre
+** We get the brain object and allocate this new brain
+** We cannot do brain = other.brain, it would be a superficial copy
+** Differents cats would share the same brain, and it will make problem to destroy them
 */
 
 Cat::Cat(const Cat &other) : Animal(other){
