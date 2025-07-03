@@ -7,17 +7,15 @@
 #include <iostream>
 #include "colors.hpp"
 
-/*-------------- CLASSES --------------*/
+/*-------------- CLASS --------------*/
 
 /*
-** Variable type pour stocker le type d'animal (dog ou cat)
-** On utilise protected pour que les classes héritantes puissent accéder à type
-** Deux constructeurs de base : un sans paramètre pour l'appel Animal a
-** Un avec paramètres pour quand on fait Animal a("Dog")
-** Le destructeur doit impérativement ëtre en virtuel pour le polymorphisme.
-** Sans le destructeur en virtuel, il y aurait des fuites de mémoires
-** Le getter est en const car il ne modifie par l'objet, il le récupère
-** makeSound est en virtuel et donc on ne peut pas la redéfinir dans les classes héritntes
+** Variable type to keep the type of animal (dog or cat)
+** Using protected so heritante classes can access to the type
+** 2 constructors: one without parameters, the other one to call Animal a("Dog")
+** Destructor has to be virtual for polymorphism
+** Getter is const because it's not changing the object, only getting it
+** makeSound is virtual so we cannot redefine it in heritante classes
 */
 
 class Animal

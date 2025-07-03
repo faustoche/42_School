@@ -7,9 +7,7 @@
 
 /*-------------- CLASSES --------------*/
 
-/*
-** Cat hérite de tous les membres publics et protégés d'animal
-*/
+/* Cat is heritated from all public and protected members of animal */
 
 class Cat : public Animal
 {

@@ -7,7 +7,7 @@
 #include <iostream>
 #include "AMateria.hpp"
 
-/*-------------- CLASSES --------------*/
+/*-------------- CLASS --------------*/
 
 class Cure : public AMateria
 {

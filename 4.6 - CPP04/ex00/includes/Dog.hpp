@@ -5,7 +5,7 @@
 
 #include "Animal.hpp"
 
-/*-------------- CLASSES --------------*/
+/*-------------- CLASS --------------*/
 
 class Dog : public Animal
 {
