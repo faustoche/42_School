@@ -1,5 +1,5 @@
-#include "RobotomyRequestForm.hpp"
-#include "Form.hpp"
+#include "../includes/RobotomyRequestForm.hpp"
+#include "../includes/Form.hpp"
 
 /*-------------- CONSTRUCTORS --------------*/
 
@@ -28,13 +28,16 @@ RobotomyRequestForm::~RobotomyRequestForm(){
 
 /*-------------- FUNCTIONS --------------*/
 
-void	RobotomyRequestForm::execute(const Bureaucrat &exec) const{
+void	RobotomyRequestForm::execute(Bureaucrat const &executor) const{
+	if (!this->getSigned())
+		throw AForm::FormNotSignedException();
+	if (executor.getGrade() > this->getGradeRequiredToExecute())
+		throw AForm::GradeTooLowToExecuteException();
 	std::cout << "Vrrrrr… vrrrrr…" << std::endl;
 	std::cout << "Brrrrr… brrrrr…" << std::endl;
 	std::cout << "Vrrrrrrrrrrrrrrr…" << std::endl;
 	std::cout << "Bzzzzzzzz…" << std::endl;
 	std::cout << "Zzzzzzzzz…" << std::endl;
-
 	int random = std::rand() % 2;
 	if (random == 0)
 		std::cout << _target << " has been robotized with success!" << std::endl;

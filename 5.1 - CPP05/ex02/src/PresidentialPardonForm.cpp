@@ -1,5 +1,5 @@
-#include "PresidentialPardonForm.hpp"
-#include "Form.hpp"
+#include "../includes/PresidentialPardonForm.hpp"
+#include "../includes/Form.hpp"
 
 /*-------------- CONSTRUCTORS --------------*/
 
@@ -28,10 +28,10 @@ PresidentialPardonForm::~PresidentialPardonForm(){
 
 /*-------------- FUNCTIONS --------------*/
 
-void PresidentialPardonForm::execute(const Bureaucrat &executor) const {
+void PresidentialPardonForm::execute(Bureaucrat const &executor) const {
 	if (!this->getSigned())
 		throw AForm::FormNotSignedException();
 	if (executor.getGrade() > this->getGradeRequiredToExecute())
 		throw AForm::GradeTooLowToExecuteException();
-	std::cout << _target << " has been forgiven by Zaphod Beeblebrox." << std::endl;
+	std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }

@@ -1,4 +1,5 @@
 #include "../includes/Bureaucrat.hpp"
+#include "../includes/AForm.hpp"
 
 /*-------------- CONSTRUCTORS --------------*/
 
@@ -74,4 +75,14 @@ const char *Bureaucrat::GradeTooHighException::what() const throw(){
 
 const char *Bureaucrat::GradeTooLowException::what() const throw(){
 	return ("Grade is too low");
+}
+
+void Bureaucrat::executeForm(AForm const &form){
+	try {
+		form.execute(*this);
+		std::cout << this->_name << " executed " << form.getName() << std::endl;
+	}
+	catch (const std::exception &e){
+		std::cout << this->_name << " cannot execute " << form.getName() << " because " << e.what() << std::endl;
+	}
 }
