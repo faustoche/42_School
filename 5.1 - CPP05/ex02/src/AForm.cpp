@@ -7,8 +7,8 @@ AForm::AForm() : _name("unnamed"), _signed(false), _grade_signed(150), _grade_ex
 	std::cout << "Default constructor called" << std::endl;
 }
 
-AForm::AForm(const std::string &name, bool isSigned, const int grade_signed, const int grade_exec)
-: _name(name), _signed(isSigned), _grade_signed(grade_signed), _grade_execute(grade_exec)
+AForm::AForm(const std::string &name, int grade_signed, int grade_exec)
+: _name(name), _grade_signed(grade_signed), _grade_execute(grade_exec)
 {
 	if (grade_signed < 1 || grade_exec < 1)
 		throw GradeTooHighException();
@@ -76,6 +76,14 @@ const char *AForm::FormNotSignedException::what() const throw(){
 
 const char *AForm::GradeTooLowToExecuteException::what() const throw(){
 	return ("Grade is too low to execute whatever!");
+}
+
+void AForm::beSigned(const Bureaucrat &bureaucrat){
+	if (this->_signed)
+		return ;
+	if (bureaucrat.getGrade() > this->_grade_signed)
+		throw (GradeTooLowException());
+	_signed = true;
 }
 
 std::ostream &operator<<(std::ostream &out, const AForm &f)

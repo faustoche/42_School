@@ -21,7 +21,7 @@ private:
 
 public:
 	AForm();
-	AForm(const std::string &name, bool isSigned, const int grade_signed, const int grade_exec);
+	AForm(const std::string &name, int grade_signed, int grade_exec);
 	AForm(const AForm &other);
 	AForm &operator=(const AForm &other);
 	virtual ~AForm();
@@ -60,7 +60,8 @@ public:
 	bool getSigned() const;
 	int getGradeRequiredToSign() const;
 	int getGradeRequiredToExecute() const;
-	virtual void beSigned(const Bureaucrat &Bureaucrat) = 0;
+	void beSigned(const Bureaucrat &bureaucrat);
+	virtual void execute(Bureaucrat const &executor) const = 0;
 };
 
 std::ostream &operator<<(std::ostream &out, const AForm &f);

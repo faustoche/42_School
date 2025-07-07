@@ -7,12 +7,11 @@ ShrubberyCreationForm::ShrubberyCreationForm() : _target("unnamed"){
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string const &target, int signed_grade, int exec_grade)
-    : AForm("ShrubberyCreationForm", false, signed_grade, exec_grade), _target(target) {
+    : AForm("ShrubberyCreationForm", signed_grade, exec_grade), _target(target) {
     std::cout << "ShrubberyCreationForm constructor called" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other){
-	this->_target = other._target;
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other), _target(other._target){
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other){

@@ -7,12 +7,11 @@ RobotomyRequestForm::RobotomyRequestForm() : _target("unnamed"){
 	std::cout << "Default constructor called" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string const &target, int signed_grade, int exec_grade) : AForm("RobotomyRequestForm", false, 72, 45), _target(target){
+RobotomyRequestForm::RobotomyRequestForm(std::string const &target, int signed_grade, int exec_grade) : AForm("RobotomyRequestForm", 72, 45), _target(target){
     std::cout << "RobotomyRequestForm constructor called" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other){
-	this->_target = other._target;
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : AForm(other), _target(other._target){
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &other){

@@ -8,8 +8,6 @@
 
 /*-------------- CLASS --------------*/
 
-class Bureaucrat;
-
 class PresidentialPardonForm : public AForm
 {
 private:
@@ -17,7 +15,7 @@ private:
 
 public:
 	PresidentialPardonForm();
-	PresidentialPardonForm(const std::string &target, int _signed_grade, int _exec_grade);
+	PresidentialPardonForm(const std::string &target, int signed_grade, int exec_grade);
 	PresidentialPardonForm(const PresidentialPardonForm &other);
 	PresidentialPardonForm &operator=(const PresidentialPardonForm &other);
 	~PresidentialPardonForm();

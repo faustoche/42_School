@@ -8,8 +8,6 @@
 
 /*--------------- CLASS ----------------*/
 
-class Bureaucrat;
-
 class ShrubberyCreationForm : public AForm
 {
 private:

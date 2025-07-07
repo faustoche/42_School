@@ -1,5 +1,5 @@
 #include "../includes/PresidentialPardonForm.hpp"
-#include "../includes/Form.hpp"
+#include "../includes/AForm.hpp"
 
 /*-------------- CONSTRUCTORS --------------*/
 
@@ -7,13 +7,13 @@ PresidentialPardonForm::PresidentialPardonForm() : _target("unnamed"){
 	std::cout << "Default constructor called" << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string const &target, int signed_grade, int exec_grade) : AForm("PresidentialPardonForm", false, 25, 5), _target(target){
+PresidentialPardonForm::PresidentialPardonForm(const std::string &target, int signed_grade, int exec_grade) : AForm("PresidentialPardonForm", signed_grade, exec_grade), _target(target) {
     std::cout << "PresidentialPardonForm constructor called" << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other){
-	this->_target = other._target;
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other) : AForm(other), _target(other._target){
 }
+
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &other){
 	if (this != &other){

@@ -4,14 +4,12 @@
 /*-------------- INCLUDES --------------*/
 
 // #include "colors.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <iostream>
 #include <fstream>
 #include <string>
 
 /*-------------- CLASS --------------*/
-
-class Form;
 
 class Bureaucrat
 {
@@ -42,7 +40,7 @@ public:
 	int	getGrade() const;
 	void incrementGrade(int value);
 	void decrementGrade(int value);
-	void signForm(Form &form);
+	void signForm(AForm &form);
 	void executeForm(AForm const &form) const;
 
 };
