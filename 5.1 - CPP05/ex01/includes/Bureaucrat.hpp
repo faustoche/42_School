@@ -1,12 +1,16 @@
-#pragma once
+#ifndef BUREAUCRAT_HPP
+#define BUREAUCRAT_HPP
 
 /*-------------- INCLUDES --------------*/
 
 #include "colors.hpp"
+#include "Form.hpp"
 #include <iostream>
 #include <string>
 
 /*-------------- CLASS --------------*/
+
+class Form;
 
 class Bureaucrat
 {
@@ -36,8 +40,11 @@ public:
 	std::string	getName() const;
 	int	getGrade() const;
 	void incrementGrade(int value);
-	void decrementeGrade(int value);
+	void decrementGrade(int value);
+	void signForm(Form &form);
 
 };
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &f);
+
+#endif

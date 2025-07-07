@@ -1,0 +1,93 @@
+📋 Structure de la classe Form
+
+✅ Constructeur
+
+ Constructeur qui initialise tous les attributs
+ Le formulaire n'est pas signé à la construction (signed = false)
+ Validation des grades dans le constructeur (entre 1 et 150)
+
+
+📋 Gestion des exceptions
+
+✅ Validation des grades
+
+ Vérifier que les grades sont entre 1 et 150 inclus
+ Lancer GradeTooHighException si grade < 1
+ Lancer GradeTooLowException si grade > 150
+
+📋 Méthodes publiques
+hode beSigned()
+
+ void beSigned(const Bureaucrat& bureaucrat)
+ Vérifier si le grade du bureaucrate est suffisant (≤ gradeRequiredToSign)
+ Changer le statut à signé si le grade est suffisant
+ Lancer Form::GradeTooLowException si le grade est insuffisant
+ Rappel : grade 1 > grade 2 (plus petit nombre = grade plus élevé)
+
+📋 Surcharge d'opérateurs
+✅ Opérateur d'insertion (<<)
+
+Afficher toutes les informations du formulaire :
+
+Nom du formulaire
+Statut signé/non signé
+Grade requis pour signer
+Grade requis pour exécuter
+
+
+📋 Modification de la classe Bureaucrat
+✅ Méthode signForm()
+
+ Modifier la méthode existante signForm(Form& form)
+ Appeler form.beSigned(*this) dans un try-catch
+ En cas de succès : afficher "<bureaucrat> signed <form>"
+ En cas d'échec : afficher "<bureaucrat> couldn't sign <form> because <reason>"
+
+📋 Tests à implémenter
+✅ Tests de base
+
+ Création d'un formulaire avec des grades valides
+ Création d'un formulaire avec des grades invalides (exceptions)
+ Test des getters
+
+✅ Tests de signature
+
+ Bureaucrate avec grade suffisant signe le formulaire
+ Bureaucrate avec grade insuffisant ne peut pas signer
+ Tentative de signature d'un formulaire déjà signé
+
+✅ Tests d'affichage
+
+ Affichage d'un formulaire non signé
+ Affichage d'un formulaire signé
+ Test de l'opérateur << avec différents états
+
+✅ Tests d'intégration
+
+ Test de la méthode Bureaucrat::signForm() avec succès
+ Test de la méthode Bureaucrat::signForm() avec échec
+ Vérification des messages d'erreur appropriés
+
+📋 Exemple de structure de fichiers
+✅ Organisation des fichiers
+
+ Form.hpp - déclaration de la classe
+ Form.cpp - implémentation de la classe
+ main.cpp - tests et démonstrations
+ Inclusion des headers nécessaires (<iostream>, <string>, <exception>)
+
+📋 Points d'attention
+✅ Bonnes pratiques
+
+ Respect de la forme canonique orthodoxe si nécessaire
+ Gestion appropriée des const
+ Messages d'erreur clairs et informatifs
+ Code bien commenté et organisé
+ Compilation sans warnings
+
+✅ Logique métier
+
+ Comprendre que grade 1 > grade 2 > grade 3, etc.
+ Un bureaucrate peut signer si son grade ≤ grade requis
+ Les exceptions doivent être lancées au bon moment
+ Les messages doivent être formatés correctement
