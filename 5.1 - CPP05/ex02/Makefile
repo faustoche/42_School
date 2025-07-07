@@ -16,11 +16,7 @@ OBJS_DIR		= obj
 # ************************************************************************ #
 
 MATERIA 		= $(addprefix $(SRCS_DIR)/, main.cpp\
-					AMateria.cpp\
-					Character.cpp\
-					Cure.cpp\
-					Ice.cpp\
-					MateriaSource.cpp)
+					)
 SRCS 			= ${MATERIA}
 CPP_OBJS		= ${MATERIA:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
 OBJS			= $(CPP_OBJS)
