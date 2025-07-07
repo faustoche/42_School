@@ -7,7 +7,8 @@ PresidentialPardonForm::PresidentialPardonForm() : _target("unnamed"){
 	std::cout << "Default constructor called" << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string &target, int signed_grade, int exec_grade) : AForm("PresidentialPardonForm", signed_grade, exec_grade), _target(target) {
+PresidentialPardonForm::PresidentialPardonForm(std::string const &target) 
+    : AForm("PresidentialPardonForm", 25, 5), _target(target) {
     std::cout << "PresidentialPardonForm constructor called" << std::endl;
 }
 

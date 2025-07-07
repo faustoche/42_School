@@ -6,8 +6,8 @@ ShrubberyCreationForm::ShrubberyCreationForm() : _target("unnamed"){
 	std::cout << "Default constructor called" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string const &target, int signed_grade, int exec_grade)
-    : AForm("ShrubberyCreationForm", signed_grade, exec_grade), _target(target) {
+ShrubberyCreationForm::ShrubberyCreationForm(std::string const &target)
+    : AForm("ShrubberyCreationForm", 145, 137), _target(target) {
     std::cout << "ShrubberyCreationForm constructor called" << std::endl;
 }
 

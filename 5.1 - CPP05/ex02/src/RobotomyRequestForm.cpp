@@ -1,5 +1,5 @@
 #include "../includes/RobotomyRequestForm.hpp"
-#include "../includes/Form.hpp"
+#include "../includes/AForm.hpp"
 
 /*-------------- CONSTRUCTORS --------------*/
 
@@ -7,7 +7,7 @@ RobotomyRequestForm::RobotomyRequestForm() : _target("unnamed"){
 	std::cout << "Default constructor called" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string const &target, int signed_grade, int exec_grade) : AForm("RobotomyRequestForm", 72, 45), _target(target){
+RobotomyRequestForm::RobotomyRequestForm(std::string const &target) : AForm("RobotomyRequestForm", 72, 45), _target(target){
     std::cout << "RobotomyRequestForm constructor called" << std::endl;
 }
 

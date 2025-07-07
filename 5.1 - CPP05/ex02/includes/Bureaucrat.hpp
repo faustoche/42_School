@@ -3,13 +3,15 @@
 
 /*-------------- INCLUDES --------------*/
 
-// #include "colors.hpp"
+#include "colors.hpp"
 #include "AForm.hpp"
 #include <iostream>
 #include <fstream>
 #include <string>
 
 /*-------------- CLASS --------------*/
+
+class AForm;
 
 class Bureaucrat
 {

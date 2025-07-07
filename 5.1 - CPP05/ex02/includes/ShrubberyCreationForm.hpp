@@ -15,7 +15,7 @@ private:
 
 public:
 	ShrubberyCreationForm();
-	ShrubberyCreationForm(std::string const &target, int signed_grade, int exec_grade);
+	ShrubberyCreationForm(std::string const &target);
 	ShrubberyCreationForm(const ShrubberyCreationForm &other);
 	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
 	~ShrubberyCreationForm();
