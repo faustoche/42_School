@@ -37,7 +37,6 @@ public:
 	int	getGrade() const;
 	void incrementGrade(int value);
 	void decrementeGrade(int value);
-
 };
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &f);
