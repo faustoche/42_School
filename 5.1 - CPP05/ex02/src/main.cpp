@@ -6,7 +6,7 @@
 
 void printHeader(int i, std::string color, std::string reset, std::string testName)
 {
-	std::cout << color << "\n===========================================================\n" << reset;
+	std::cout << color << "\n=============================================================\n" << reset;
 	std::cout << WHITE << "      TEST " << i << " : " << testName << RESET << std::endl;
 	std::cout << color << "=============================================================\n" << reset << std::endl;
 }
@@ -91,12 +91,15 @@ int main()
 			ShrubberyCreationForm form("home");
 			Bureaucrat boss("Boss", 1);
 			Bureaucrat worker("Worker", 140);
+			Bureaucrat executor("Executor", 130);
 			std::cout << "Trying to execute without signature:" << std::endl;
 			worker.executeForm(form);
 			std::cout << "\nSigning the form:" << std::endl;
 			boss.signForm(form);
 			std::cout << "\nTrying to execute with signature:" << std::endl;
 			worker.executeForm(form);
+			std::cout << "\nTrying to execute with sufficient grade:" << std::endl;
+			executor.executeForm(form);
 		} catch (std::exception &e) {
 			std::cout << "Exception: " << e.what() << std::endl;
 		}
@@ -121,10 +124,10 @@ int main()
 			PresidentialPardonForm form("criminal");
 			Bureaucrat president("President", 1);
 			Bureaucrat minister("Minister", 10);
-			std::cout << "Trying to execute with insuffisant grade:" << std::endl;
+			std::cout << "Trying to execute with insufficient grade:" << std::endl;
 			president.signForm(form);
 			minister.executeForm(form);
-			std::cout << "\nTrying to execute with suffisant grade:" << std::endl;
+			std::cout << "\nTrying to execute with sufficient grade:" << std::endl;
 			president.executeForm(form);
 		} catch (std::exception &e) {
 			std::cout << "Exception: " << e.what() << std::endl;

@@ -24,22 +24,22 @@ int main()
 		}
 	}
 	{
-		printHeader(2, GREEN, RESET, "WEIRD CONSTRUCTION TESTS");
+		printHeader(2, GREEN, RESET, "TOO LOW OR TOO HIGH");
 		try {
 			Bureaucrat high("TooHigh", 0);
 		} catch (std::exception &e) {
-			std::cout << "Exception for grade 0: " << e.what() << std::endl;
+			std::cout << "Catching exception for grade 0: " << e.what() << std::endl;
 		}
 		try {
 			Bureaucrat low("TooLow", 151);
 		} catch (std::exception &e) {
-			std::cout << "Exception for grade 151: " << e.what() << std::endl;
+			std::cout << "Catching exception for grade 151: " << e.what() << std::endl;
 		}
 	
 		try {
 			Bureaucrat neg("Negative", -42);
 		} catch (std::exception &e) {
-			std::cout << "Exception for grade -42: " << e.what() << std::endl;
+			std::cout << "Catching exception for grade -42: " << e.what() << std::endl;
 		}
 
 	}
@@ -50,10 +50,10 @@ int main()
 			std::cout << jennifer << std::endl;
 			jennifer.incrementGrade(10);
 			std::cout << "Increment of 10: " << jennifer << std::endl;
-			jennifer.decrementeGrade(20);
+			jennifer.decrementGrade(20);
 			std::cout << "Decrement of 20: " << jennifer << std::endl;
 		} catch (std::exception &e) {
-			std::cout << "Exception: " << e.what() << std::endl;
+			std::cout << "Catching exception: " << e.what() << std::endl;
 		}
 		try {
 			Bureaucrat bestBur("Best bureaucrat", 1);
@@ -61,19 +61,19 @@ int main()
 			bestBur.incrementGrade(1);
 			std::cout << "After increment: " << bestBur << std::endl;
 		} catch (std::exception& e) {
-			std::cout << "Exception at grade 1 increment: " << e.what() << std::endl;
+			std::cout << "Catching exception at grade 1 increment: " << e.what() << std::endl;
 		}
 		try {
 			Bureaucrat lastBur("Worst bureaucrat", 150);
 			std::cout << lastBur << std::endl;
-			lastBur.decrementeGrade(1);
+			lastBur.decrementGrade(1);
 			std::cout << "After decrement: " << lastBur << std::endl;
 		} catch (std::exception &e) {
-			std::cout << "Exception at grade 150 decrement: " << e.what() << std::endl;
+			std::cout << "Catching exception at grade 150 decrement: " << e.what() << std::endl;
 		}
 	}
 	{
-		printHeader(4, BLUE_BRIGHT, RESET, "INCREMENT DECREMENT");
+		printHeader(4, BLUE_BRIGHT, RESET, "JUST CHECKING RANKS");
 		Bureaucrat riri("Riri", 45);
 		Bureaucrat fifi("Fifi", 2);
 		Bureaucrat loulou("Loulou", 149);

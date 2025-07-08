@@ -2,7 +2,7 @@
 #                			        MAIN                                   #
 # ************************************************************************ #
 
-NAME 		= forms
+NAME 		= intern
 
 # ************************************************************************ #
 #                			     DIRECTORIES                               #
@@ -15,14 +15,15 @@ OBJS_DIR		= obj
 #                			 SRCS && OBJECTS FILES                         #
 # ************************************************************************ #
 
-FORMS 		= $(addprefix $(SRCS_DIR)/, main.cpp\
+INTERN 		= $(addprefix $(SRCS_DIR)/, main.cpp\
 					AForm.cpp\
 					Bureaucrat.cpp\
 					PresidentialPardonForm.cpp\
 					RobotomyRequestForm.cpp\
-					ShrubberyCreationForm.cpp)
-SRCS 			= ${FORMS}
-CPP_OBJS		= ${FORMS:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
+					ShrubberyCreationForm.cpp\
+					Intern.cpp)
+SRCS 			= ${INTERN}
+CPP_OBJS		= ${INTERN:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
 OBJS			= $(CPP_OBJS)
 
 # ************************************************************************ #
@@ -40,9 +41,9 @@ RM = rm -rf
 all:    $(NAME)
 
 $(NAME): includes/colors.hpp $(OBJS_DIR) $(OBJS)
-	@echo "\033[1;33m🧾  COMPILING FORMS 🧾\n"
+	@echo "\033[1;33m👶🏼  COMPILING FORMS 👶🏼\n"
 	@$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
-	@echo "\033[1;32m🧾 ./$(NAME) created 🧾\n"
+	@echo "\033[1;32m👶🏼 ./$(NAME) created 👶🏼\n"
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp includes/colors.hpp
 	@mkdir -p $(OBJS_DIR)

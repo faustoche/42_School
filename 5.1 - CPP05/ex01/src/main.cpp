@@ -18,23 +18,23 @@ int main()
 	{
 		printHeader(1, YELLOW, RESET, "FORM CONSTRUCTION TESTS");
 		try {
-			Form f1("Formulaire A38", false, 50, 25);
+			Form f1("A38", false, 50, 25);
 			std::cout << f1 << std::endl;
 		} catch (std::exception &e) {
-			std::cout << "Exception: " << e.what() << std::endl;
+			std::cout << "Catching exception: " << e.what() << std::endl;
 		}
 	}
 	{
 		printHeader(2, GREEN, RESET, "FORM BAD GRADES");
 		try {
-			Form f2("Too high", false, 0, 100);
+			Form f2("B456", false, 0, 100);
 		} catch (std::exception &e) {
-			std::cout << "Exception pour grade 0 (sign): " << e.what() << std::endl;
+			std::cout << "Catching exception pour grade 0 (sign): " << e.what() << std::endl;
 		}
 		try {
-			Form f3("Too low", false, 100, 151);
+			Form f3("Z8232", false, 100, 151);
 		} catch (std::exception &e) {
-			std::cout << "Exception pour grade 151 (exec): " << e.what() << std::endl;
+			std::cout << "Catching exception pour grade 151 (exec): " << e.what() << std::endl;
 		}
 	}
 	{
@@ -47,7 +47,7 @@ int main()
 			jean.signForm(contract);
 			std::cout << contract << std::endl;
 		} catch (std::exception &e) {
-			std::cout << "Exception: " << e.what() << std::endl;
+			std::cout << "Catching exception: " << e.what() << std::endl;
 		}
 	}
 	{
@@ -59,7 +59,7 @@ int main()
 			std::cout << secretForm << std::endl;
 			michel.signForm(secretForm);
 		} catch (std::exception &e) {
-			std::cout << "Exception: " << e.what() << std::endl;
+			std::cout << "Catching exception: " << e.what() << std::endl;
 		}
 	}
 	{
@@ -71,7 +71,7 @@ int main()
 			camille.signForm(certificate);
 			camille.signForm(certificate);
 		} catch (std::exception &e) {
-			std::cout << "Exception: " << e.what() << std::endl;
+			std::cout << "Catching exception: " << e.what() << std::endl;
 		}
 	}
 	return (0);
