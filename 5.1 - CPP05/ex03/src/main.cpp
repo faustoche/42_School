@@ -22,7 +22,7 @@ int main()
 			rrf = someRandomIntern.makeForm("shrubbery creation", "christmas tree");
 			delete rrf;
 		} catch (const Intern::InternException &e) {
-			std::cout << "I don't know what you're talking about. Please go to desk A78." << std::endl;
+			std::cout << e.what() << std::endl;
 		}
 	}
 	{
@@ -33,7 +33,7 @@ int main()
 			rrf = someRandomIntern.makeForm("robotomy request", "Bender");
 			delete rrf;
 		} catch (const Intern::InternException &e) {
-			std::cout << "I don't know what you're talking about. Please go to desk A78." << std::endl;
+			std::cout << e.what() << std::endl;
 		}
 	}
 	{
@@ -44,7 +44,7 @@ int main()
 			rrf = someRandomIntern.makeForm("presidential pardon", "king");
 			delete rrf;
 		} catch (const Intern::InternException &e) {
-			std::cout << "I don't know what you're talking about. Please go to desk A78." << std::endl;
+			std::cout << e.what() << std::endl;
 		}
 	}
 	{
@@ -55,7 +55,7 @@ int main()
 			rrf = someRandomIntern.makeForm("blougiboulga", "casimir");
 			delete rrf;
 		} catch (const Intern::InternException &e) {
-			std::cout << "I don't know what you're talking about. Please go to desk A78." << std::endl << std::endl;
+			std::cout << e.what() << std::endl;
 		}
 	}
 	return (0);

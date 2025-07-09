@@ -8,6 +8,8 @@
 
 /*-------------- CLASS --------------*/
 
+/* Creating the exception class inside to be able to throw exception from this class */
+
 class Bureaucrat
 {
 private:
@@ -38,5 +40,6 @@ public:
 	void incrementGrade(int value);
 	void decrementGrade(int value);
 };
+
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &f);

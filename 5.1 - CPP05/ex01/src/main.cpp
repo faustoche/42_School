@@ -1,8 +1,5 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
-
-#include "Bureaucrat.hpp"
-#include "Form.hpp"
 #include "colors.hpp"
 #include <iostream>
 

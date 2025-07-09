@@ -8,7 +8,7 @@ AForm::AForm() : _name("unnamed"), _signed(false), _grade_signed(150), _grade_ex
 }
 
 AForm::AForm(const std::string &name, int grade_signed, int grade_exec)
-: _name(name), _grade_signed(grade_signed), _grade_execute(grade_exec)
+: _name(name), _signed(false), _grade_signed(grade_signed), _grade_execute(grade_exec)
 {
 	if (grade_signed < 1 || grade_exec < 1)
 		throw GradeTooHighException();
