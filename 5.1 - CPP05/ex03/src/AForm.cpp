@@ -69,7 +69,7 @@ const char *AForm::FormNotSignedException::what() const throw(){
 }
 
 const char *AForm::GradeTooLowToExecuteException::what() const throw(){
-	return ("Grade is too low to execute whatever!");
+	return ("grade is too low to execute whatever!");
 }
 
 void AForm::beSigned(const Bureaucrat &bureaucrat){

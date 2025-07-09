@@ -7,8 +7,7 @@ Form::Form() : _name("unnamed"), _signed(false), _grade_signed(150), _grade_exec
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Form::Form(const std::string &name, bool isSigned, const int grade_signed, const int grade_exec)
-: _name(name), _signed(isSigned), _grade_signed(grade_signed), _grade_execute(grade_exec)
+Form::Form(const std::string &name, bool isSigned, const int grade_signed, const int grade_exec) : _name(name), _signed(isSigned), _grade_signed(grade_signed), _grade_execute(grade_exec)
 {
 	if (grade_signed < 1 || grade_exec < 1)
 		throw GradeTooHighException();
@@ -16,9 +15,7 @@ Form::Form(const std::string &name, bool isSigned, const int grade_signed, const
 		throw GradeTooLowException();
 }
 
-Form::Form(const Form &other)
-: _name(other._name), _signed(other._signed),
-  _grade_signed(other._grade_signed), _grade_execute(other._grade_execute)
+Form::Form(const Form &other) : _name(other._name), _signed(other._signed), _grade_signed(other._grade_signed), _grade_execute(other._grade_execute)
 {
 	std::cout << "Form " << _name << " copied" << std::endl;
 }
@@ -32,12 +29,6 @@ Form &Form::operator=(const Form &other){
 }
 
 Form::~Form(){
-	std::cout << "Form " << this->_name;
-	if (this->_signed)
-		std::cout << " (signed) with required grade ";
-	else
-		std::cout << " (not signed) with required grade ";
-	std::cout << "for  signing " << this->_grade_signed << " and for executing " << this->_grade_execute << " destructed" << std::endl;
 }
 
 /*-------------- GETTERS --------------*/

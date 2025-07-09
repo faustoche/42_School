@@ -37,7 +37,7 @@ int main()
 		}
 	}
 	{
-		printHeader(3, GREEN, RESET, "INTERN IS TRYING TO WORK : PRESIDENTIAL PARDON");
+		printHeader(3, YELLOW, RESET, "INTERN IS TRYING TO WORK : PRESIDENTIAL PARDON");
 		try {
 			Intern someRandomIntern;
 			AForm* rrf;
@@ -48,7 +48,7 @@ int main()
 		}
 	}
 	{
-		printHeader(4, GREEN, RESET, "INTERN IS TRYING TO WORK : UNKNOWN FORM");
+		printHeader(4, PINK, RESET, "INTERN IS TRYING TO WORK : UNKNOWN FORM");
 		try {
 			Intern someRandomIntern;
 			AForm* rrf;

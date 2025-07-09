@@ -32,7 +32,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
 		throw (AForm::FormNotSignedException());
 	}
 	if (executor.getGrade() > this->getGradeRequiredToExecute()){
-		throw (AForm::GradeTooLowException());
+		throw (AForm::GradeTooLowToExecuteException());
 	}
 
 	std::string filename = this->_target + "_shrubbery";

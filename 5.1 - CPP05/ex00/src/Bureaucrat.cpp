@@ -3,7 +3,7 @@
 /*-------------- CONSTRUCTORS --------------*/
 
 Bureaucrat::Bureaucrat() : _name("unnamed"){
-	_grade = 0;
+	_grade = 150;
 	std::cout << "Default constructor called" << std::endl;
 }
 

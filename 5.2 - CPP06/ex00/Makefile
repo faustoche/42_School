@@ -2,7 +2,7 @@
 #                			        MAIN                                   #
 # ************************************************************************ #
 
-NAME 		= intern
+NAME 		= conversion
 
 # ************************************************************************ #
 #                			     DIRECTORIES                               #
@@ -15,15 +15,10 @@ OBJS_DIR		= obj
 #                			 SRCS && OBJECTS FILES                         #
 # ************************************************************************ #
 
-INTERN 		= $(addprefix $(SRCS_DIR)/, main.cpp\
-					AForm.cpp\
-					Bureaucrat.cpp\
-					PresidentialPardonForm.cpp\
-					RobotomyRequestForm.cpp\
-					ShrubberyCreationForm.cpp\
-					Intern.cpp)
-SRCS 			= ${INTERN}
-CPP_OBJS		= ${INTERN:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
+CONVERSION 		= $(addprefix $(SRCS_DIR)/, main.cpp\
+					Bureaucrat.cpp)
+SRCS 			= ${CONVERSION}
+CPP_OBJS		= ${CONVERSION:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
 OBJS			= $(CPP_OBJS)
 
 # ************************************************************************ #
@@ -41,9 +36,9 @@ RM = rm -rf
 all:    $(NAME)
 
 $(NAME): includes/colors.hpp $(OBJS_DIR) $(OBJS)
-	@echo "\033[1;33m👼  COMPILING FORMS 👼\n"
+	@echo "\033[1;33m🧮  COMPILING CONVERSION 🧮\n"
 	@$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
-	@echo "\033[1;32m👼 ./$(NAME) created 👼\n"
+	@echo "\033[1;32m🧮 ./$(NAME) created 🧮\n"
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp includes/colors.hpp
 	@mkdir -p $(OBJS_DIR)
@@ -62,7 +57,7 @@ clean:
 	@echo "\033[1;32m🫧  DONE 🫧"
 
 fclean: clean
-	@$(RM) $(NAME) includes/colors.hpp home_shrubbery
+	@$(RM) $(NAME) includes/colors.hpp
 	@echo "\033[1;32m🫧  FCLEAN DONE 🫧"
 
 re: fclean all
@@ -90,12 +85,11 @@ includes/colors.hpp:
 	@echo '#define GREEN       "\033[1;32m"' >> $@
 	@echo '#define MAGENTA     "\033[1;35m"' >> $@
 	@echo '#define CYAN        "\033[1;36m"' >> $@
-	@echo '#define RED_BOLD    "\033[1;91m"' >> $@
+	@echo '#define RED         "\033[1;91m"' >> $@
 	@echo '#define YELLOW      "\033[1;93m"' >> $@
 	@echo '#define ORANGE      "\033[1;38;5;208m"' >> $@
 	@echo '#define PINK        "\033[1;38;5;205m"' >> $@
 	@echo '#define TURQUOISE   "\033[1;38;5;45m"' >> $@
 	@echo '#define GOLD        "\033[1;38;5;220m"' >> $@
-	@echo '#define RED		   "\033[0;91m"' >> $@
 	@echo '#define CORAL       "\033[1;38;5;203m"' >> $@
 	@echo '#endif' >> $@
