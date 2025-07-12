@@ -2,7 +2,7 @@
 #                			        MAIN                                   #
 # ************************************************************************ #
 
-NAME 		= convert
+NAME 		= serializer
 
 # ************************************************************************ #
 #                			     DIRECTORIES                               #
@@ -15,10 +15,11 @@ OBJS_DIR		= obj
 #                			 SRCS && OBJECTS FILES                         #
 # ************************************************************************ #
 
-CONVERSION 		= $(addprefix $(SRCS_DIR)/, main.cpp\
-					ScalarConverter.cpp)
-SRCS 			= ${CONVERSION}
-CPP_OBJS		= ${CONVERSION:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
+SERIALIZER 		= $(addprefix $(SRCS_DIR)/, main.cpp\
+					Data.cpp\
+					Serializer.cpp)
+SRCS 			= ${SERIALIZER}
+CPP_OBJS		= ${SERIALIZER:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
 OBJS			= $(CPP_OBJS)
 
 # ************************************************************************ #
@@ -36,7 +37,7 @@ RM = rm -rf
 all:    $(NAME)
 
 $(NAME): includes/colors.hpp $(OBJS_DIR) $(OBJS)
-	@echo "\033[1;33m🧮  COMPILING CONVERSION 🧮\n"
+	@echo "\033[1;33m🧮  COMPILING SERIALIZER 🧮\n"
 	@$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
 	@echo "\033[1;32m🧮 ./$(NAME) created 🧮\n"
 

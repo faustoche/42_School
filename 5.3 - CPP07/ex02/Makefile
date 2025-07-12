@@ -2,7 +2,7 @@
 #                			        MAIN                                   #
 # ************************************************************************ #
 
-NAME 		= convert
+NAME 		= iter
 
 # ************************************************************************ #
 #                			     DIRECTORIES                               #
@@ -15,10 +15,9 @@ OBJS_DIR		= obj
 #                			 SRCS && OBJECTS FILES                         #
 # ************************************************************************ #
 
-CONVERSION 		= $(addprefix $(SRCS_DIR)/, main.cpp\
-					ScalarConverter.cpp)
-SRCS 			= ${CONVERSION}
-CPP_OBJS		= ${CONVERSION:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
+ITER	 		= $(addprefix $(SRCS_DIR)/, main.cpp)
+SRCS 			= ${ITER}
+CPP_OBJS		= ${ITER:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
 OBJS			= $(CPP_OBJS)
 
 # ************************************************************************ #
@@ -36,9 +35,9 @@ RM = rm -rf
 all:    $(NAME)
 
 $(NAME): includes/colors.hpp $(OBJS_DIR) $(OBJS)
-	@echo "\033[1;33m🧮  COMPILING CONVERSION 🧮\n"
+	@echo "\033[1;33m🦺  COMPILING ITER 🦺\n"
 	@$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
-	@echo "\033[1;32m🧮 ./$(NAME) created 🧮\n"
+	@echo "\033[1;32m🦺 ./$(NAME) created 🦺\n"
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp includes/colors.hpp
 	@mkdir -p $(OBJS_DIR)
@@ -81,7 +80,7 @@ includes/colors.hpp:
 	@echo '#define RESET		"\033[0m"' >> $@
 	@echo '#define WHITE		"\033[1;97m"' >> $@
 	@echo '#define FUCHSIA		"\033[1;38;5;201m"' >> $@
-	@echo '#define BLUE_BRIGHT	"\033[1;94m"' >> $@
+	@echo '#define BLUE_BRIGHT	"\033[1;34m"' >> $@
 	@echo '#define GREEN		"\033[1;32m"' >> $@
 	@echo '#define MAGENTA		"\033[1;35m"' >> $@
 	@echo '#define CYAN			"\033[1;36m"' >> $@
