@@ -2,7 +2,7 @@
 #                			        MAIN                                   #
 # ************************************************************************ #
 
-NAME 		= iter
+NAME 		= array
 
 # ************************************************************************ #
 #                			     DIRECTORIES                               #
@@ -15,9 +15,9 @@ OBJS_DIR		= obj
 #                			 SRCS && OBJECTS FILES                         #
 # ************************************************************************ #
 
-ITER	 		= $(addprefix $(SRCS_DIR)/, main.cpp)
-SRCS 			= ${ITER}
-CPP_OBJS		= ${ITER:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
+ARRAY	 		= $(addprefix $(SRCS_DIR)/, main.cpp)
+SRCS 			= ${ARRAY}
+CPP_OBJS		= ${ARRAY:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
 OBJS			= $(CPP_OBJS)
 
 # ************************************************************************ #
@@ -35,7 +35,7 @@ RM = rm -rf
 all:    $(NAME)
 
 $(NAME): includes/colors.hpp $(OBJS_DIR) $(OBJS)
-	@echo "\033[1;33m🦺  COMPILING ITER 🦺\n"
+	@echo "\033[1;33m🦺  COMPILING ARRAY 🦺\n"
 	@$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
 	@echo "\033[1;32m🦺 ./$(NAME) created 🦺\n"
 
