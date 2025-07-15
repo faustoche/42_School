@@ -7,15 +7,18 @@ void printHeader(int i, std::string color, std::string reset, std::string testNa
 	std::cout << color << "==================================================\n" << reset << std::endl;
 }
 
-void	random_int(int &i){
+void	random_int(int &i)
+{
 	i = std::rand() % 100;
 }
 
-void	random_char(char &c){
+void	random_char(char &c)
+{
 	c = std::rand() % 26 + 65;
 }
 
-void add_emoji(std::string &s){
+void add_emoji(std::string &s)
+{
 	s += "🐸";
 }
 
@@ -60,7 +63,7 @@ int	main(void)
 		printHeader(3, YELLOW, RESET, "CONST INT");
 		const int const_tab[5] = {42, 17, 99, 3, 75};
 		iter(const_tab, 5, print_tab<const int>);
-		// iter(const_tab, 5, add_emoji);
+		//iter(const_tab, 5, add_emoji);
 		// iter(const_tab, 5, print_tab<const int>);
 		std::cout << std::endl;
 		std::cout << std::endl;

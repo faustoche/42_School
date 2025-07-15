@@ -19,6 +19,8 @@ void	increment(T &value){
 	value++;
 }
 
+/* Giving T as the type of element in the array and Func as the function to pass as a parameters */
+
 template<typename T, typename Func>
 void iter(T *array, int len, Func f){
 	if (!array)

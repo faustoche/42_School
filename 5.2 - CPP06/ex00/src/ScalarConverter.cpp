@@ -16,6 +16,12 @@ ScalarConverter::~ScalarConverter(){}
 
 /*-------------- FUNCTIONS --------------*/
 
+/*
+** Using errno to check if strtol, strtod etc return error of not. 
+** Errange = overflow
+** We need to check if errno returns any error or if it is equal to an overflow
+*/
+
 enum TYPE {
 	CHAR,
 	INT,
@@ -23,6 +29,8 @@ enum TYPE {
 	DOUBLE,
 	NONE
 };
+
+/* Check if str is a whole number and check if other numbers are only digits */
 
 static bool isInt(std::string str){
 	if (str.empty())
@@ -41,6 +49,8 @@ static bool isInt(std::string str){
 		return (false);
 	return (true);
 }
+
+/* First convert a chain in double, and then check everything to make sure the conversion is correct. */
 
 static void convertDouble(std::string str){
 	errno = 0;
@@ -89,6 +99,8 @@ static void convertDouble(std::string str){
 	std::cout << WHITE << "double: " << RESET << dbl << std::endl;
 }
 
+/* COnvert anything in float */
+
 static void convertFloat(std::string str){
 	errno = 0;
 	char* end;
@@ -114,7 +126,7 @@ static void convertFloat(std::string str){
 		std::cout << WHITE << "double: " << RESET << static_cast<double>(flt) << std::endl;
 		return;
 	}
-	if (flt < INT_MIN || flt > INT_MAX) {
+	if (flt < static_cast<float>(INT_MIN) || flt > static_cast<float>(INT_MAX)) {
 		std::cout << WHITE << "  char: " << RED << "Impossible" << RESET << std::endl;
 		std::cout << WHITE << "   int: " << RED << "Impossible" << RESET << std::endl;
 	} else {
@@ -130,6 +142,8 @@ static void convertFloat(std::string str){
 	std::cout << WHITE << " float: " << RESET << flt << "f" << std::endl;
 	std::cout << WHITE << "double: " << RESET << static_cast<double>(flt) << std::endl;
 }
+
+/* COnvert anything in int */
 
 static void convertInt(std::string str){
 	errno = 0;
@@ -153,6 +167,8 @@ static void convertInt(std::string str){
 	std::cout << WHITE << " float: " << RESET << static_cast<float>(nb) << "f" << std::endl;
 	std::cout << WHITE << "double: " << RESET << static_cast<double>(nb) << std::endl;
 }
+
+/* Check if the char is printable, if not display error message, otherwise, display conversion */
 
 static void convertChar(char c){
 	if (!isprint(c))

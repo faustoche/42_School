@@ -4,6 +4,8 @@
 /*-------------- INCLUDES --------------*/
 
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "colors.hpp"
 
 /*-------------- INCLUDES --------------*/

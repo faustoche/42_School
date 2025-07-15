@@ -22,22 +22,26 @@ void	print_int(Array<int> &array){
 void	print_str(Array<std::string> &array){
 	for (int i = 0; i < array.size(); i++)
 		std::cout << i << ": " << array[i] << std::endl;
-	std::cout << std::endl;
 }
+
+/* 
+** Necessary to write Array<std::string> cause it's a class template
+** We need to specifiy the type wwe want to use
+*/
 
 int main(void)
 {
 	srand(time(NULL));
 	printHeader(1, GREEN, RESET, "ARRAY OF SIZE 30");
 	Array<int>	int_array(30);
-	for (int i = 0; i < int_array.size(); ++i)
+	for (int i = 0; i < int_array.size(); i++)
 		int_array[i] = std::rand() % 100;
 	print_int(int_array);
 
 	printHeader(2, BLUE_BRIGHT, RESET, "DEEP COPY CHECK");
 	Array<int> copy_array = int_array;
 	int_array[0] = 999;
-	std::cout << "Original: " << int_array[0] << ", Copy: " << copy_array[0] << std::endl;
+	std::cout << "Original: " << int_array[0] << " | Copy: " << copy_array[0] << std::endl;
 
 	printHeader(3, CYAN, RESET, "ARRAY OF STRINGS");
 	Array<std::string>	str_array(3);
@@ -55,7 +59,7 @@ int main(void)
 	try {
 		std::cout << str_array[10] << std::endl;
 	} catch (const std::exception &e) {
-		std::cout << "Catching exception: " << e.what() << std::endl;
+		std::cout << e.what() << std::endl << std::endl;
 	}
 	return (0);
 }

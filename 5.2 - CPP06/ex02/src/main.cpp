@@ -21,6 +21,9 @@ Base *generate(void)
 		return (new C);
 }
 
+/* DYnamic cast will try to cast pointer in A*. If it works (P is pointing toward a A*)
+   it returns non-null. If it doesn't work : return nullptr*/
+
 void	identify(Base *p){
 	if (dynamic_cast<A*>(p))
 		std::cout << "A" << std::endl;
@@ -30,18 +33,21 @@ void	identify(Base *p){
 		std::cout << "C" << std::endl;
 }
 
+/* Casting a reference. If P is not A, then dynamic cast throw an exception. 
+   We need to put it in a try and catch because if can brutally fail
+   Thus, cannot compile if not in a try and catch */
+
 void	identify(Base &p){
-	Base test;
 	try {
-		test = dynamic_cast<A&>(p);
+		(void)dynamic_cast<A&>(p);
 		std::cout << "A" << std::endl;
 	} catch (std::exception &e) {}
 	try {
-		test = dynamic_cast<B&>(p);
+		(void)dynamic_cast<B&>(p);
 		std::cout << "B" << std::endl;
 	} catch (std::exception &e) {}
 	try {
-		test = dynamic_cast<C&>(p);
+		(void)dynamic_cast<C&>(p);
 		std::cout << "C" << std::endl;
 	} catch (std::exception &e) {}
 }

@@ -6,6 +6,8 @@
 #include <iostream>
 #include "colors.hpp"
 #include <stdexcept>
+#include <ctime>
+#include <cstdlib>
 
 /*-------------- INCLUDES --------------*/
 
@@ -18,7 +20,7 @@ private:
 
 public:
 	Array();
-	Array(int n); // create an array of n element initialized by default
+	Array(int n);
 	Array(const Array &other); // attention! faire des deep copy
 	Array &operator=(const Array &other); // attention! faire des deep copy
 	~Array();

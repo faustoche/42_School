@@ -25,7 +25,7 @@ OBJS			= $(CPP_OBJS)
 # ************************************************************************ #
 
 CC          = c++
-CFLAGS      = -Wall -Werror -Wextra -std=c++98 -g3 -I$(INCLUDES)
+CFLAGS      = -Wall -Werror -Wextra -std=c++98 -I$(INCLUDES)
 RM = rm -rf
 
 # ************************************************************************ #

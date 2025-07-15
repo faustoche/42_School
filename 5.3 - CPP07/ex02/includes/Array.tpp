@@ -33,6 +33,8 @@ Array<T>::~Array<T>(){
 
 /*-------------- [] CONSTRUCTORS --------------*/
 
+/* Allow to access to elements for const and non-const */
+
 template<typename T>
 T &Array<T>::operator[](int index){
 	if (index < 0 || index >= _size)
