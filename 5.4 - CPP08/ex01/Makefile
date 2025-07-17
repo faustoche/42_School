@@ -2,7 +2,7 @@
 #                			        MAIN                                   #
 # ************************************************************************ #
 
-NAME 		= easyfind
+NAME 		= span
 
 # ************************************************************************ #
 #                			     DIRECTORIES                               #
@@ -15,9 +15,10 @@ OBJS_DIR		= obj
 #                			 SRCS && OBJECTS FILES                         #
 # ************************************************************************ #
 
-EASYFIND 		= $(addprefix $(SRCS_DIR)/, main.cpp)
-SRCS 			= ${EASYFIND}
-CPP_OBJS		= ${EASYFIND:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
+SPAN	 		= $(addprefix $(SRCS_DIR)/, main.cpp\
+					Span.cpp)
+SRCS 			= ${SPAN}
+CPP_OBJS		= ${SPAN:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
 OBJS			= $(CPP_OBJS)
 
 # ************************************************************************ #
@@ -35,9 +36,9 @@ RM = rm -rf
 all:    $(NAME)
 
 $(NAME): includes/colors.hpp $(OBJS_DIR) $(OBJS)
-	@echo "\033[1;33m🕵️‍♂️  COMPILING EASYFIND 🕵️‍♂️\n"
+	@echo "\033[1;33m🛠️  COMPILING SPAN 🛠️\n"
 	@$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
-	@echo "\033[1;32m🕵️‍♂️ ./$(NAME) created 🕵️‍♂️\n"
+	@echo "\033[1;32m🛠️ ./$(NAME) created 🛠️\n"
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp includes/colors.hpp
 	@mkdir -p $(OBJS_DIR)
