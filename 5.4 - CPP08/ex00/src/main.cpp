@@ -41,7 +41,7 @@ int main(void)
 		}
 	}
 	{
-		printHeader(2, YELLOW, RESET, "TESTING AN EMPTY CONTAINER");
+		printHeader(2, PINK, RESET, "TESTING AN EMPTY CONTAINER");
 		std::vector<int> empty;
 		try {
 			easyfind(empty, 42);
@@ -106,25 +106,25 @@ int main(void)
 	}
 	{
 		printHeader(6, RED, RESET, "TESTING WITH LIST CONTAINERS");
-		std::list<int> listVect;
-		listVect.push_back(1);
-		listVect.push_back(2);
-		listVect.push_back(3);
-		listVect.push_back(42);
-		listVect.push_back(5);
+		std::list<int> listCont;
+		listCont.push_back(1);
+		listCont.push_back(2);
+		listCont.push_back(3);
+		listCont.push_back(42);
+		listCont.push_back(5);
 		std::cout << WHITE << "My containers values: " << RESET << std::endl;
-		for (std::list<int>::iterator it = listVect.begin(); it != listVect.end(); ++it)
+		for (std::list<int>::iterator it = listCont.begin(); it != listCont.end(); ++it)
 			std::cout << " " << *it;
 		std::cout << std::endl << std::endl;
 		try {
-			std::list<int>::iterator it = easyfind(listVect, 42);
+			std::list<int>::iterator it = easyfind(listCont, 42);
 			std::cout << GREEN << "Value found     : " << *it << RESET << std::endl;
 		}
 		catch (const std::exception &e){
 			std::cout << RED << e.what() << " : " << 42 << RESET << std::endl;
 		}
 		try {
-			easyfind(listVect, 99);
+			easyfind(listCont, 99);
 		}
 		catch (const std::exception &e){
 			std::cout << RED << e.what() << " : " << 99 << RESET << std::endl;

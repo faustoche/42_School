@@ -1,0 +1,175 @@
+
+🧱 Étape 1 — Analyse des fichiers requis
+🎯 Objectifs :
+
+    Identifier les deux fichiers manipulés :
+
+        data.csv : base de données des prix du bitcoin (ex : "date,price")
+
+        input.txt : requêtes à évaluer (ex : "date | value")
+
+✅ Actions :
+
+    Vérifier si les fichiers existent
+
+    Valider que input.txt est fourni en argument de la ligne de commande
+
+    En cas d’absence de fichier en argument : afficher "Error: could not open file."
+
+📁 Étape 2 — Structure de données pour stocker la base de données
+🎯 Objectifs :
+
+    Lire et stocker les données de data.csv dans un conteneur adapté pour :
+
+        Accès rapide par date
+
+        Recherche de date précédente la plus proche
+
+✅ Actions :
+
+    Choisir un conteneur adapté : std::map<std::string, float>
+
+    Lire chaque ligne du CSV ("YYYY-MM-DD,price")
+
+    Pour chaque ligne :
+
+        Valider le format de la date (syntaxe correcte)
+
+        Convertir le prix en float
+
+        Stocker dans la map data[date] = price
+
+📑 Étape 3 — Lecture et traitement du fichier d'entrée (input.txt)
+🎯 Objectifs :
+
+    Lire les requêtes ligne par ligne au format "YYYY-MM-DD | value"
+
+    Valider chaque ligne
+
+    Appliquer le bon traitement ou afficher une erreur
+
+✅ Actions :
+
+    Ignorer la première ligne ("date | value")
+
+    Pour chaque ligne suivante :
+
+        Séparer en deux parties : date et value
+
+        Supprimer les espaces inutiles
+
+        Valider le format de la date
+
+        Valider la valeur :
+
+            Nombre positif
+
+            Nombre ≤ 1000
+
+            Nombre float ou entier
+
+        Si une erreur :
+
+            Valeur négative : "Error: not a positive number."
+
+            Nombre trop grand : "Error: too large a number."
+
+            Mauvais format : "Error: bad input => {ligne}"
+
+🔎 Étape 4 — Recherche du taux pour la date donnée
+🎯 Objectifs :
+
+    Trouver le taux correspondant à la date
+
+    Si la date exacte n'existe pas : prendre la date précédente la plus proche
+
+✅ Actions :
+
+    Chercher dans la map data :
+
+        Si la date existe : prendre le taux
+
+        Sinon :
+
+            Utiliser lower_bound() pour chercher la date suivante
+
+            Reculer d’un cran si pas au début
+
+            Prendre la date immédiatement avant la date d’entrée
+
+    Si aucune date antérieure n'existe :
+
+        Afficher une erreur : "Error: no rate available before {date}" (optionnel selon les exigences)
+
+💰 Étape 5 — Calcul et affichage du résultat
+🎯 Objectifs :
+
+    Multiplier la valeur par le taux
+
+    Afficher dans le bon format
+
+✅ Actions :
+
+    Calculer : result = value × rate
+
+    Afficher :
+
+    YYYY-MM-DD => value = result
+
+🧯 Étape 6 — Gestion des erreurs
+🎯 Objectifs :
+
+    Être robuste à tous les cas limites
+
+    Afficher des messages clairs
+
+✅ Cas à gérer :
+
+    Fichier non ouvert : "Error: could not open file."
+
+    Mauvais format de ligne : "Error: bad input => {ligne}"
+
+    Nombre négatif : "Error: not a positive number."
+
+    Nombre trop grand (>1000) : "Error: too large a number."
+
+    Date invalide (syntaxe) : "Error: bad input => {date}"
+
+🧪 Étape 7 — Tests et validation
+🎯 Objectifs :
+
+    Vérifier que le programme donne les bons résultats
+
+    Tester tous les cas d’erreur et cas normaux
+
+✅ Cas à tester :
+
+    Date exacte présente dans data.csv
+
+    Date absente mais antérieure trouvée
+
+    Ligne mal formée
+
+    Valeur négative
+
+    Valeur > 1000
+
+    Fichier manquant
+
+    Plusieurs valeurs sur la même date
+
+    Format invalide de date (2001-42-42)
+
+🧠 Étape 8 — Règles et contraintes STL
+🎯 Objectifs :
+
+    Respecter les consignes du module
+
+✅ Vérifications :
+
+    Utilisation d’au moins un conteneur STL
+
+    Ce conteneur ne pourra plus être réutilisé dans les exercices suivants
+
+    Pas de code redondant : factoriser la validation, la conversion, etc.
+

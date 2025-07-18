@@ -28,7 +28,15 @@ public:
 	void	addNumber(int number);
 	int		shortestSpan();
 	int		longestSpan();
-	void	addMultiNumbers(int sizeNumber);
+
+	template<typename InputIterator>
+	void	addNumber(InputIterator begin, InputIterator end)
+	{
+		size_t rangeSize = std::distance(begin, end);
+		if (_numbers.size() + rangeSize > _maxSize)
+			throw (SpanFullException());
+		_numbers.insert(_numbers.end(), begin, end);
+	};
 
 	class SpanFullException : public std::exception
 	{
@@ -37,6 +45,7 @@ public:
 				return ("Container is already full");
 			}
 	};
+
 	class NotEnoughNumbersException : public std::exception
 	{
 		public:

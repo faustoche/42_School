@@ -8,11 +8,13 @@ Span::Span(unsigned int n) : _maxSize(n), _numbers(){}
 
 Span::Span(const Span &other){
 	this->_maxSize = other._maxSize;
+	this->_numbers = other._numbers;
 }
 
 Span &Span::operator=(const Span &other){
 	if (this != &other){
 		this->_maxSize = other._maxSize;
+		this->_numbers = other._numbers;
 	}
 	return (*this);
 }
@@ -20,7 +22,7 @@ Span &Span::operator=(const Span &other){
 Span::~Span(){}
 
 int &Span::operator[](unsigned int index){
-	if (index < 0 || index >= _numbers.size()){
+	if (index >= _numbers.size()){
 		throw (std::out_of_range("Index is out of range"));
 	}
 	return (_numbers[index]);
@@ -34,18 +36,6 @@ void Span::addNumber(int number)
 		throw (SpanFullException());
 	else
 		_numbers.push_back(number);
-}
-
-void Span::addMultiNumbers(int sizeNumber)
-{
-	if (_numbers.size() >= _maxSize)
-		throw (SpanFullException());
-	else
-	{
-		for (int i = 0; i < sizeNumber; i++){
-			_numbers.push_back(rand() % 1000000);
-		}
-	}
 }
 
 int Span::shortestSpan()

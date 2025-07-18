@@ -52,8 +52,11 @@ int main(void)
 	}
 	{
 		printHeader(4, PINK, RESET, "10K NUMBERS");
+		std::vector<int> numbers;
 		Span bigCont(10000);
-		bigCont.addMultiNumbers(10000);
+		for (int i = 0; i < 10000; ++i)
+			numbers.push_back(rand() % 50000);
+		bigCont.addNumber(numbers.begin(), numbers.end());
 		std::cout << WHITE << "Shortest span is: " << RESET << bigCont.shortestSpan() << std::endl;
 		std::cout << WHITE << " Longest span is: " << RESET << bigCont.longestSpan() << std::endl;
 	}

@@ -39,10 +39,6 @@ int main()
 		monster.pop();
 		std::cout << GREEN << "  Top after pop: " << RESET << monster.top() << std::endl;
 		std::cout << GREEN << " Size after pop: " << RESET << monster.size() << std::endl;
-		// monster.push(3);
-		// monster.push(5);
-		// monster.push(737);
-		// monster.push(0);
 	}
 	{
 		printHeader(2, YELLOW, RESET, "INCREMENTING WITH ITERATOR");
