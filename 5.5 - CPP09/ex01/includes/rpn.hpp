@@ -1,16 +1,20 @@
 #pragma once
 
+/*-------------- INCLUDES --------------*/
+
 #include <string>
 #include <list>
 #include <iostream>
 
-class rpn
+/*-------------- CLASS --------------*/
+
+class RPN
 {
 public:
-	rpn();
-	rpn(const rpn &other);
-	rpn &operator=(const rpn &other);
-	~rpn();
+	RPN();
+	RPN(const RPN &other);
+	RPN &operator=(const RPN &other);
+	~RPN();
 
 	float result(const std::string expression);
 

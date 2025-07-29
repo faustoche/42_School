@@ -1,6 +1,8 @@
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
 
+/*-------------- INCLUDES --------------*/
+
 #include <iostream>
 #include <vector>
 #include <deque>
@@ -8,6 +10,8 @@
 #include <cstdlib>
 #include <climits>
 #include <sys/time.h>
+
+/*-------------- CLASS --------------*/
 
 class PmergeMe
 {

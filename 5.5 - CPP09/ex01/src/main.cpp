@@ -1,18 +1,17 @@
-#include "rpn.hpp"
+#include "RPN.hpp"
 
-int main(int argc, char *argv[])
+int main(int ac, char *av[])
 {
-	if (argc != 2)
+	if (ac != 2)
 	{
-		std::cerr << "Usage: " << argv[0] << " <expression>" << std::endl;
+		std::cout << "Wrong number of arguments" << std::endl;
 		return (1);
 	}
-
-	rpn rpnn = rpn();
+	RPN revpolnot = RPN();
 
 	try
 	{
-		std::cout << rpnn.result(argv[1]) << std::endl;
+		std::cout << revpolnot.result(av[1]) << std::endl;
 	}
 	catch (std::exception &e)
 	{

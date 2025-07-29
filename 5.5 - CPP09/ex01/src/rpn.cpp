@@ -1,78 +1,93 @@
-#include "rpn.hpp"
+#include "RPN.hpp"
 
-rpn::rpn(){}
-rpn::~rpn(){}
+/*-------------- CONSTRUCTORS --------------*/
 
-rpn::rpn(const rpn &other){
+RPN::RPN(){}
+RPN::~RPN(){}
+
+RPN::RPN(const RPN &other){
 	*this = other;
 }
 
-rpn &rpn::operator=(const rpn &other){
+RPN &RPN::operator=(const RPN &other){
 	(void)other;
 	return (*this);
 }
 
-float rpn::result(const std::string expression)
+/*-------------- FUNCTIONS --------------*/
+
+/*
+** We are using a stack list as last in first out
+** is space helps to check if numbers or operators are with space or not
+** if not a space and at least 1 element
+** if its a number, conversion in int and keep it in the pile
+** at least 2 elements needed to do operation
+** we get the last 2 element of operators stack, remove them from the pile
+** we add back result in the pile
+*/
+
+float RPN::result(const std::string expression)
 {
-	std::list<float> elems;
+	std::list<float> elements;
 
 	bool is_space = false;
 	for (std::string::const_iterator it = expression.begin(); it != expression.end(); it++)
 	{
-		if (*it != ' ' && !is_space && elems.size() != 0)
-			throw rpn::BadExpressionException();
+		if (*it != ' ' && !is_space && elements.size() != 0)
+			throw (RPN::BadExpressionException());
 		is_space = *it == ' ';
 		if (*it == ' ')
-			continue;
+			continue ;
 		if (isdigit(*it))
-			elems.push_back(*it - '0');
+			elements.push_back(*it - '0');
 		else
 		{
-			if (elems.size() < 2)
-				throw rpn::BadExpressionException();
-			float l1 = elems.back();
-			elems.pop_back();
-			float l2 = elems.back();
-			elems.pop_back();
+			if (elements.size() < 2)
+				throw (RPN::BadExpressionException());
+			float l1 = elements.back();
+			elements.pop_back();
+			float l2 = elements.back();
+			elements.pop_back();
 			switch (*it)
 			{
 			case '+':
-				elems.push_back(l2 + l1);
-				break;
+				elements.push_back(l2 + l1);
+				break ;
 			case '-':
-				elems.push_back(l2 - l1);
-				break;
+				elements.push_back(l2 - l1);
+				break ;
 			case '/':
 				if (l1 == 0)
-					throw rpn::DivisionBy0();
-				elems.push_back(l2 / l1);
-				break;
+					throw (RPN::DivisionBy0());
+				elements.push_back(l2 / l1);
+				break ;
 			case '*':
-				elems.push_back(l2 * l1);
-				break;
+				elements.push_back(l2 * l1);
+				break ;
 			default:
-				throw rpn::BadExpressionException();
-				break;
+				throw (RPN::BadExpressionException());
+				break ;
 			}
 		}
 	}
-	if (elems.size() != 1)
-		throw rpn::RemainingTerms();
-
-	return elems.front();
+	if (elements.size() != 1)
+		throw (RPN::RemainingTerms());
+	return (elements.front());
 }
 
-const char*	rpn::BadExpressionException::what(void) const throw()
+/*-------------- EXCEPTIONS --------------*/
+
+const char*	RPN::BadExpressionException::what(void) const throw()
 {
 	return ("Error: malformed expression");
 }
 
-const char*	rpn::DivisionBy0::what(void) const throw()
+const char*	RPN::DivisionBy0::what(void) const throw()
 {
 	return ("Error: division by 0 is not allowed");
 }
 
-const char*	rpn::RemainingTerms::what(void) const throw()
+const char*	RPN::RemainingTerms::what(void) const throw()
 {
 	return ("Error: remainging terms");
 }

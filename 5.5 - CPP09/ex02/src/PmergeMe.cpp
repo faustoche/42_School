@@ -1,5 +1,7 @@
 #include "PmergeMe.hpp"
 
+/*-------------- CONSTRUCTORS --------------*/
+
 PmergeMe::PmergeMe(){}
 PmergeMe::~PmergeMe(){}
 
@@ -11,6 +13,8 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other){
     (void)other;
     return (*this);
 }
+
+/*-------------- FUNCTIONS --------------*/
 
 double PmergeMe::getTime() {
     struct timeval t;
@@ -37,7 +41,8 @@ void PmergeMe::parseInput(char **args, std::vector<int>& input) {
     }
 }
 
-void PmergeMe::printSequence(const std::string& label, const std::vector<int>& seq) {
+void PmergeMe::printSequence(const std::string& label, const std::vector<int>& seq)
+{
     std::cout << label;
     for (size_t i = 0; i < seq.size(); ++i)
         std::cout << seq[i] << " ";
@@ -45,19 +50,40 @@ void PmergeMe::printSequence(const std::string& label, const std::vector<int>& s
 }
 
 std::vector<size_t> PmergeMe::generateJacobsthalIndices(size_t n) {
+    if (n == 0)
+		return (std::vector<size_t>());
     std::vector<size_t> indices;
-    size_t j1 = 1, j2 = 1;
-    indices.push_back(1);
-    while (j1 < n) {
-        indices.push_back(j1);
-        size_t tmp = j1;
-        j1 = j1 + 2 * j2;
-        j2 = tmp;
+    std::vector<bool> used(n, false);
+    std::vector<size_t> jacobsthal;
+    jacobsthal.push_back(1);
+    if (n > 1)
+		jacobsthal.push_back(1);
+    size_t i = 2;
+    while (jacobsthal.back() < n)
+	{
+        size_t next = jacobsthal[i-1] + 2 * jacobsthal[i-2];
+        jacobsthal.push_back(next);
+        i++;
     }
-    for (size_t i = 1; i < n; ++i)
-        if (std::find(indices.begin(), indices.end(), i) == indices.end())
+    for (size_t j = 1; j < jacobsthal.size(); j++)
+	{
+        size_t end = std::min(jacobsthal[j], n);
+        size_t start = (j > 1) ? jacobsthal[j-1] + 1 : 1;
+        for (size_t k = end; k >= start && k >= 1; k--)
+		{
+            if (k-1 < n && !used[k-1])
+			{
+                indices.push_back(k-1);
+                used[k-1] = true;
+            }
+        }
+    }
+    for (size_t i = 0; i < n; i++)
+	{
+        if (!used[i])
             indices.push_back(i);
-    return indices;
+    }
+    return (indices);
 }
 
 void PmergeMe::insertJacobsthal(std::vector<int>& sorted, const std::vector<int>& insertions) {
@@ -65,7 +91,7 @@ void PmergeMe::insertJacobsthal(std::vector<int>& sorted, const std::vector<int>
     for (size_t i = 0; i < indices.size(); ++i) {
         size_t idx = indices[i];
         if (idx >= insertions.size())
-            continue;
+            continue ;
         int val = insertions[idx];
         std::vector<int>::iterator pos = std::lower_bound(sorted.begin(), sorted.end(), val);
         sorted.insert(pos, val);
@@ -74,8 +100,7 @@ void PmergeMe::insertJacobsthal(std::vector<int>& sorted, const std::vector<int>
 
 void PmergeMe::fordJohnsonSort(std::vector<int>& data) {
     if (data.size() <= 1)
-        return;
-
+        return ;
     std::vector<int> maxs, mins;
     size_t i = 0;
     for (; i + 1 < data.size(); i += 2) {
@@ -89,10 +114,8 @@ void PmergeMe::fordJohnsonSort(std::vector<int>& data) {
     }
     if (i < data.size())
         maxs.push_back(data[i]);
-
     fordJohnsonSort(maxs);
     insertJacobsthal(maxs, mins);
-
     data = maxs;
 }
 
@@ -101,7 +124,7 @@ void PmergeMe::insertJacobsthal(std::deque<int>& sorted, const std::deque<int>& 
     for (size_t i = 0; i < indices.size(); ++i) {
         size_t idx = indices[i];
         if (idx >= insertions.size())
-            continue;
+            continue ;
         int val = insertions[idx];
         std::deque<int>::iterator pos = std::lower_bound(sorted.begin(), sorted.end(), val);
         sorted.insert(pos, val);
@@ -110,22 +133,24 @@ void PmergeMe::insertJacobsthal(std::deque<int>& sorted, const std::deque<int>& 
 
 void PmergeMe::fordJohnsonSort(std::deque<int>& data) {
     if (data.size() <= 1)
-        return;
-
+        return ;
     std::deque<int> maxs, mins;
     size_t i = 0;
-    for (; i + 1 < data.size(); i += 2) {
-        if (data[i] > data[i + 1]) {
+    for (; i + 1 < data.size(); i += 2)
+	{
+        if (data[i] > data[i + 1])
+		{
             maxs.push_back(data[i]);
             mins.push_back(data[i + 1]);
-        } else {
+        }
+		else
+		{
             maxs.push_back(data[i + 1]);
             mins.push_back(data[i]);
         }
     }
     if (i < data.size())
         maxs.push_back(data[i]);
-
     fordJohnsonSort(maxs);
     insertJacobsthal(maxs, mins);
     data = maxs;
@@ -134,22 +159,16 @@ void PmergeMe::fordJohnsonSort(std::deque<int>& data) {
 void PmergeMe::run(char **args) {
     std::vector<int> input;
     parseInput(args, input);
-
     std::vector<int> vec(input);
     std::deque<int> deq(input.begin(), input.end());
-
     printSequence("Before: ", input);
-
     double t0 = getTime();
     fordJohnsonSort(vec);
     double t1 = getTime();
-
     double t2 = getTime();
     fordJohnsonSort(deq);
     double t3 = getTime();
-
     printSequence("After: ", vec);
-
     std::cout << "Time to process a range of " << vec.size()
               << " elements with std::vector : " << (t1 - t0) << " us" << std::endl;
     std::cout << "Time to process a range of " << deq.size()

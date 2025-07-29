@@ -33,15 +33,11 @@
 ** Les clés sont uniques
 */
 
-/**************************/
-/*    USING STD::MAP      */
-/************************ */
-
 class BitcoinExchange
 {
 private:
-	std::string _database_path;
-	std::map<std::string, float> _database;
+	std::string _csvPath; // chemin du fichier CSV à charger
+	std::map<std::string, float> _rateByDate; // map triée des taux : key = date, value = taux
 
 public:
 	BitcoinExchange();
@@ -50,18 +46,20 @@ public:
 	BitcoinExchange &operator=(const BitcoinExchange &other);
 	~BitcoinExchange();
 
-	void constructDatabase();
-	std::string databasePath(void) const;
+	void chargingDatabase();
+	std::string getCSVPath(void) const;
 	float getRate(std::string date);
 
-	class WrongDataFile : public std::exception {
+	class CSVOpenException : public std::exception {
 	public:
 		virtual const char *what() const throw();
 	};
 };
 
-bool checkDateFormat(std::string str);
-bool checkValue(std::string str);
+bool isValidDate(std::string str);
+bool isValidValue(std::string str);
 float strToFloat(std::string str);
+void processInputFile(const std::string& filename, BitcoinExchange& btc);
+
 
 #endif
