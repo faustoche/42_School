@@ -5,6 +5,12 @@
 
 #include <map>
 #include <string>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <cstring>
+#include <sstream>
+
 
 /*-------------- CLASS --------------*/
 
@@ -31,29 +37,31 @@
 /*    USING STD::MAP      */
 /************************ */
 
-class DatesPrices
+class BitcoinExchange
 {
 private:
-	std::string _database;
+	std::string _database_path;
+	std::map<std::string, float> _database;
 
 public:
-	DatesPrices();
-	DatesPrices(std::string database);
-	DatesPrices(const DatesPrices &other);
-	DatesPrices &operator=(const DatesPrices &other);
-	~DatesPrices();
+	BitcoinExchange();
+	BitcoinExchange(const std::string database_path);
+	BitcoinExchange(const BitcoinExchange &other);
+	BitcoinExchange &operator=(const BitcoinExchange &other);
+	~BitcoinExchange();
 
-	void pricesForDate(); // return the price of 1 unit of currency on a given date 
-	void printFees(); // attemps to print the fees for an amount of currency on a given date ---- call pricesForDate()
+	void constructDatabase();
+	std::string databasePath(void) const;
+	float getRate(std::string date);
+
+	class WrongDataFile : public std::exception {
+	public:
+		virtual const char *what() const throw();
+	};
 };
 
-class Date
-{
-private:
-
-public:
-	Date();
-	~Date();
-};
+bool checkDateFormat(std::string str);
+bool checkValue(std::string str);
+float strToFloat(std::string str);
 
 #endif

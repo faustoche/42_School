@@ -2,7 +2,7 @@
 #                			        MAIN                                   #
 # ************************************************************************ #
 
-NAME 		= btc
+NAME 		= pmergeme
 
 # ************************************************************************ #
 #                			     DIRECTORIES                               #
@@ -15,10 +15,10 @@ OBJS_DIR		= obj
 #                			 SRCS && OBJECTS FILES                         #
 # ************************************************************************ #
 
-BTC 			= $(addprefix $(SRCS_DIR)/, main.cpp\
-					BitcoinExchange.cpp)
-SRCS 			= ${BTC}
-CPP_OBJS		= ${BTC:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
+PMERGEME 		= $(addprefix $(SRCS_DIR)/, main.cpp\
+					PmergeMe.cpp)
+SRCS 			= ${PMERGEME}
+CPP_OBJS		= ${PMERGEME:${SRCS_DIR}/%.cpp=$(OBJS_DIR)/%.o}
 OBJS			= $(CPP_OBJS)
 
 # ************************************************************************ #
@@ -36,7 +36,7 @@ RM = rm -rf
 all:    $(NAME)
 
 $(NAME): includes/colors.hpp $(OBJS_DIR) $(OBJS)
-	@echo "\033[1;33m🪙  COMPILING BTC 🪙\n"
+	@echo "\033[1;33m🪙  COMPILING PMERGEME 🪙\n"
 	@$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
 	@echo "\033[1;32m🪙 ./$(NAME) created 🪙\n"
 
