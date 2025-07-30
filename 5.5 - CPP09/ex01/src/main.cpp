@@ -8,13 +8,10 @@ int main(int ac, char *av[])
 		return (1);
 	}
 	RPN revpolnot = RPN();
-
-	try
-	{
+	try {
 		std::cout << revpolnot.result(av[1]) << std::endl;
 	}
-	catch (std::exception &e)
-	{
+	catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
 }

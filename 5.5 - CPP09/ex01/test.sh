@@ -9,13 +9,12 @@ END='\033[0m'
 make
 
 testExpr() {
-
 	result=$(./RPN "$1")
 
 	if [ "$result" == "$2" ]; then
-		echo -e "$GREEN$1, result: $2 $END"
+		echo -e "${GREEN}$1, result: $2${END}"
 	else
-		echo -e "$RED$1, result: $result (should be $2) $END"
+		echo -e "${RED}$1, result: $result (should be $2)${END}"
 	fi
 }
 
@@ -27,10 +26,10 @@ testExpr "  2 4 * 8 +" "16"
 testExpr "2 4 8 + * " "24"
 testExpr "3 2 * 1   1 -" "Error: remainging terms"
 testExpr "2 5 * 4 + 3 2 * 1 + / " "2"
-testExpr "1 2 + 3 4 + *" "21" # (1 + 2) * (3 + 4)
-testExpr "1 2 3 * 4 +" "Error: remainging terms" # 1 + 2 * 3 + 4
-testExpr "1 2 3 4 + * +" "15" # 1 + 2 * (3 + 4)
-testExpr "1 2 + 3 * 4 +" "13" # (1 + 2) * 3 + 4
+testExpr "1 2 + 3 4 + *" "21"
+testExpr "1 2 3 * 4 +" "Error: remainging terms"
+testExpr "1 2 3 4 + * +" "15"
+testExpr "1 2 + 3 * 4 +" "13"
 testExpr "3 4 + 2 * 1 -" "13"
 testExpr "7 2 + 5 3 - *" "18"
 testExpr "9 2 / 1 + 8 *" "44"

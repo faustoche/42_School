@@ -22,6 +22,11 @@ double PmergeMe::getTime() {
     return (t.tv_sec * 1000000.0 + t.tv_usec);
 }
 
+/*
+** check if the string is empty or if a caractere is not a number
+** convert the chain in long and check if the value is positif
+*/
+
 void PmergeMe::validateNumber(const std::string& s) {
     if (s.empty())
         throw std::runtime_error("Empty");
@@ -32,6 +37,11 @@ void PmergeMe::validateNumber(const std::string& s) {
     if (val < 0 || val > INT_MAX)
         throw std::runtime_error("Out of range");
 }
+
+/*
+** convert earch argument in string, check that is a whole number
+** add the whole nimber to the vector
+*/
 
 void PmergeMe::parseInput(char **args, std::vector<int>& input) {
     for (int i = 0; args[i]; ++i) {
@@ -49,6 +59,15 @@ void PmergeMe::printSequence(const std::string& label, const std::vector<int>& s
     std::cout << std::endl;
 }
 
+/*
+** J(0) = 0
+J(1) = 1
+J(n) = J(n - 1) + 2 * J(n - 2)
+** Fill in jacobsthal until we're after n
+**
+**
+*/
+
 std::vector<size_t> PmergeMe::generateJacobsthalIndices(size_t n) {
     if (n == 0)
 		return (std::vector<size_t>());
@@ -61,17 +80,17 @@ std::vector<size_t> PmergeMe::generateJacobsthalIndices(size_t n) {
     size_t i = 2;
     while (jacobsthal.back() < n)
 	{
-        size_t next = jacobsthal[i-1] + 2 * jacobsthal[i-2];
+        size_t next = jacobsthal[i - 1] + 2 * jacobsthal[i - 2];
         jacobsthal.push_back(next);
         i++;
     }
     for (size_t j = 1; j < jacobsthal.size(); j++)
 	{
         size_t end = std::min(jacobsthal[j], n);
-        size_t start = (j > 1) ? jacobsthal[j-1] + 1 : 1;
+        size_t start = (j > 1) ? jacobsthal[j - 1] + 1 : 1;
         for (size_t k = end; k >= start && k >= 1; k--)
 		{
-            if (k-1 < n && !used[k-1])
+            if (k - 1 < n && !used[k-1])
 			{
                 indices.push_back(k-1);
                 used[k-1] = true;
@@ -86,13 +105,19 @@ std::vector<size_t> PmergeMe::generateJacobsthalIndices(size_t n) {
     return (indices);
 }
 
+/*
+**
+**
+**
+*/
+
 void PmergeMe::insertJacobsthal(std::vector<int>& sorted, const std::vector<int>& insertions) {
     std::vector<size_t> indices = generateJacobsthalIndices(insertions.size());
     for (size_t i = 0; i < indices.size(); ++i) {
-        size_t idx = indices[i];
-        if (idx >= insertions.size())
+        size_t index = indices[i];
+        if (index >= insertions.size())
             continue ;
-        int val = insertions[idx];
+        int val = insertions[index];
         std::vector<int>::iterator pos = std::lower_bound(sorted.begin(), sorted.end(), val);
         sorted.insert(pos, val);
     }
