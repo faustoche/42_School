@@ -8,8 +8,8 @@ int main(int ac, char **av)
     }
     try {
         PmergeMe::run(av + 1);
-    } catch (...) { // attraper toutes les exceptions? ou bien faire une exception specifique?
-        std::cout << "Error" << std::endl;
+    } catch (std::exception & e) { // attraper toutes les exceptions? ou bien faire une exception specifique?
+        std::cout << e.what() << std::endl;// changer ce message d'erreur
         return (1);
     }
     return (0);
