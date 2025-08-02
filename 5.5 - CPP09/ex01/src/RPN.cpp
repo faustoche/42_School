@@ -71,7 +71,7 @@ float RPN::result(const std::string expression)
 		}
 	}
 	if (elements.size() != 1)
-		throw (RPN::RemainingTerms());
+		throw (RPN::IncompleteExpressionException());
 	return (elements.front());
 }
 
@@ -79,7 +79,7 @@ float RPN::result(const std::string expression)
 
 const char*	RPN::BadExpressionException::what(void) const throw()
 {
-	return ("Error: malformed expression");
+	return ("Error: bad expression");
 }
 
 const char*	RPN::DivisionBy0::what(void) const throw()
@@ -87,7 +87,7 @@ const char*	RPN::DivisionBy0::what(void) const throw()
 	return ("Error: division by 0 is not allowed");
 }
 
-const char*	RPN::RemainingTerms::what(void) const throw()
+const char*	RPN::IncompleteExpressionException::what(void) const throw()
 {
-	return ("Error: remainging terms");
+	return ("Error: incomplet expression");
 }

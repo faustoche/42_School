@@ -35,12 +35,12 @@ RM = rm -rf
 
 all:    $(NAME)
 
-$(NAME): includes/colors.hpp $(OBJS_DIR) $(OBJS)
+$(NAME): includes/colors.hpp input/input.txt $(OBJS_DIR) $(OBJS)
 	@echo "\033[1;33m🪙  COMPILING BTC 🪙\n"
 	@$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
 	@echo "\033[1;32m🪙 ./$(NAME) created 🪙\n"
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp includes/colors.hpp
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp includes/colors.hpp input/input.txt
 	@mkdir -p $(OBJS_DIR)
 	$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
 
@@ -57,7 +57,7 @@ clean:
 	@echo "\033[1;32m🫧  DONE 🫧"
 
 fclean: clean
-	@$(RM) $(NAME) includes/colors.hpp
+	@$(RM) $(NAME) includes/colors.hpp input/input.txt input
 	@echo "\033[1;32m🫧  FCLEAN DONE 🫧"
 
 re: fclean all
@@ -94,3 +94,52 @@ includes/colors.hpp:
 	@echo '#define GOLD			"\033[1;38;5;220m"' >> $@
 	@echo '#define CORAL		"\033[1;38;5;203m"' >> $@
 	@echo '#endif' >> $@
+
+# ************************************************************************ #
+#                   	          README                                   #
+# ************************************************************************ #
+
+input/input.txt:
+	@mkdir -p input
+	@echo 'date | value' > $@
+	@echo 'tets | hello' >> $@
+	@echo 'yoyo | yaya' >> $@
+	@echo '1 | 2 | 3' >> $@
+	@echo '2023-10-26-9 | heyy' >> $@
+	@echo '2011-01-03 | 3' >> $@
+	@echo '2023-10-26 | 100' >> $@
+	@echo '2022-05-10 | yep' >> $@
+	@echo '2222-65-10 | yep' >> $@
+	@echo '2222-5-010 | yep' >> $@
+	@echo '2022-01-12 | 2' >> $@
+	@echo '2022-03-18 | 1' >> $@
+	@echo '2008-03-18 | 1' >> $@
+	@echo '2008-01-01 | 1' >> $@
+	@echo '2011-01-03 | 3' >> $@
+	@echo '2011-01-03 | 1.5' >> $@
+	@echo '2011-01-03 | -1' >> $@
+	@echo '2011-01-03 | 1001' >> $@
+	@echo '2011-01-03 | abc' >> $@
+	@echo '2011-01-03 value' >> $@
+	@echo '2011-01-03 |' >> $@
+	@echo '| 2' >> $@
+	@echo '2011-01-03 || 2' >> $@
+	@echo '2011 -01-03 | 2' >> $@
+	@echo '2011-01- 03 | 2' >> $@
+	@echo '2011-13-01 | 2' >> $@
+	@echo '2011-00-01 | 2' >> $@
+	@echo '2011-02-30 | 2' >> $@
+	@echo '2012-02-29 | 2' >> $@
+	@echo '2011-04-31 | 2' >> $@
+	@echo '2011-04-30 | 2' >> $@
+	@echo '2011-01-03 | 1.2  # comment' >> $@
+	@echo '2011-01-03 |	1.2' >> $@
+	@echo '2011-01-03 | 3' >> $@
+	@echo '2011-01-03 | 2' >> $@
+	@echo '2011-01-03 | 1' >> $@
+	@echo '2011-01-03 | 1.2' >> $@
+	@echo '2011-01-09 | 1' >> $@
+	@echo '2012-01-11 | -1' >> $@
+	@echo '2001-42-42' >> $@
+	@echo '2012-01-11 | 1' >> $@
+	@echo '2012-01-11 | 2147483648' >> $@

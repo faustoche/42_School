@@ -35,12 +35,12 @@ RM = rm -rf
 
 all:    $(NAME)
 
-$(NAME): includes/colors.hpp $(OBJS_DIR) $(OBJS)
+$(NAME): includes/colors.hpp docs/README.txt docs/test.sh $(OBJS_DIR) $(OBJS)
 	@echo "\033[1;33m🪙  COMPILING RPN 🪙\n"
 	@$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
 	@echo "\033[1;32m🪙 ./$(NAME) created 🪙\n"
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp includes/colors.hpp
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp includes/colors.hpp docs/README.txt docs/test.sh
 	@mkdir -p $(OBJS_DIR)
 	$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
 
@@ -57,7 +57,7 @@ clean:
 	@echo "\033[1;32m🫧  DONE 🫧"
 
 fclean: clean
-	@$(RM) $(NAME) includes/colors.hpp
+	@$(RM) $(NAME) includes/colors.hpp docs/README.txt docs/test.sh docs
 	@echo "\033[1;32m🫧  FCLEAN DONE 🫧"
 
 re: fclean all
@@ -94,3 +94,89 @@ includes/colors.hpp:
 	@echo '#define GOLD			"\033[1;38;5;220m"' >> $@
 	@echo '#define CORAL		"\033[1;38;5;203m"' >> $@
 	@echo '#endif' >> $@
+
+# ************************************************************************ #
+#                   	          README                                   #
+# ************************************************************************ #
+
+docs/README.txt:
+	@mkdir -p docs
+	@echo 'Pour calculer la notation suivante  : "2 4 8 + *"' > $@
+	@echo >> $@
+	@echo >> $@
+	@echo 'Étape 1 : Ajouter 2 dans la pile' >> $@
+	@echo 'Pile    : [2]' >> $@
+	@echo >> $@
+	@echo '-------------------------------------------------------' >> $@
+	@echo >> $@
+	@echo 'Étape 2 : Ajouter 4 dans la pile' >> $@
+	@echo 'Pile    : [2, 4]' >> $@
+	@echo >> $@
+	@echo '-------------------------------------------------------' >> $@
+	@echo >> $@
+	@echo 'Étape 3 : Ajouter 8 dans la pile' >> $@
+	@echo 'Pile    : [2, 4, 8]' >> $@
+	@echo >> $@
+	@echo '-------------------------------------------------------' >> $@
+	@echo >> $@
+	@echo 'Étape 4  : Prendre les 2 derniers éléments : 8 et 4' >> $@
+	@echo 'Calculer : 4 + 8 = 12' >> $@
+	@echo >> $@
+	@echo 'Remplacer ces 2 éléments par le résultat 12' >> $@
+	@echo 'Pile     : [2, 12]' >> $@
+	@echo >> $@
+	@echo '-------------------------------------------------------' >> $@
+	@echo >> $@
+	@echo 'Étape 5  : Prendre les 2 derniers éléments : 12 et 2' >> $@
+	@echo 'Calculer : 2 × 12 = 24' >> $@
+	@echo >> $@
+	@echo 'Remplacer ces 2 éléments par le résultat 24' >> $@
+	@echo 'Pile     : [24]' >> $@
+	@echo >> $@
+	@echo '-------------------------------------------------------' >> $@
+	@echo >> $@
+	@echo 'Résultat final : 24' >> $@
+	@echo >> $@
+	@echo 'Ce qui vaut en calcul classique : ' >> $@
+	@echo '2 * (4 + 8) = 2 * 12 = 24' >> $@
+
+docs/test.sh:
+	@echo '#!/bin/bash' > $@
+	@echo >> $@
+	@echo "GREEN='\\033[0;32m'" >> $@
+	@echo "RED='\\033[0;31m'" >> $@
+	@echo "BLUE='\\033[0;34m'" >> $@
+	@echo "BOLD='\\033[0;1m'" >> $@
+	@echo "END='\\033[0m'" >> $@
+	@echo >> $@
+	@echo 'make' >> $@
+	@echo >> $@
+	@echo 'testExpr() {' >> $@
+	@echo '	result=$(./RPN "$$1")' >> $@
+	@echo >> $@
+	@echo '	if [ "$$result" == "$$2" ]; then' >> $@
+	@echo '		echo -e "$${GREEN}$$1, result: $$2$${END}"' >> $@
+	@echo '	else' >> $@
+	@echo '		echo -e "$${RED}$$1, result: $$result (should be $$2)$${END}"' >> $@
+	@echo '	fi' >> $@
+	@echo '}' >> $@
+	@echo >> $@
+	@echo 'testExpr "8 9 * 9 - 9 - 9 - 4 - 1 +" "42"' >> $@
+	@echo 'testExpr "7 7 * 7 -" "42"' >> $@
+	@echo 'testExpr "1 2 * 2 / 2 * 2 4 - +" "0"' >> $@
+	@echo 'testExpr "(1 + 1)"' >> $@
+	@echo 'testExpr "  2 4 * 8 +" "16"' >> $@
+	@echo 'testExpr "2 4 8 + * " "24"' >> $@
+	@echo 'testExpr "3 2 * 1   1 -"' >> $@
+	@echo 'testExpr "2 5 * 4 + 3 2 * 1 + / " "2"' >> $@
+	@echo 'testExpr "1 2 + 3 4 + *" "21"' >> $@
+	@echo 'testExpr "1 2 3 * 4 +"' >> $@
+	@echo 'testExpr "1 2 3 4 + * +" "15"' >> $@
+	@echo 'testExpr "1 2 + 3 * 4 +" "13"' >> $@
+	@echo 'testExpr "3 4 + 2 * 1 -" "13"' >> $@
+	@echo 'testExpr "7 2 + 5 3 - *" "18"' >> $@
+	@echo 'testExpr "9 2 / 1 + 8 *" "44"' >> $@
+	@echo 'testExpr "00000000000002 3 + 5 6 - * 7 +" "2"' >> $@
+	@echo 'testExpr "8 3 / 1 4 + * 7 -" "6.33333"' >> $@
+	@echo 'testExpr "8 0 /"' >> $@
+	@chmod +x $@

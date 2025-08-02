@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <climits>
 #include <sys/time.h>
+typedef unsigned long long timestamp_t;
 
 /*-------------- CLASS --------------*/
 
@@ -18,7 +19,8 @@ class PmergeMe
 private:
     static void parseInput(char **args, std::vector<int>& input);
     static void validateNumber(const std::string& s);
-    static double getTime();
+   // static double getTime();
+    static timestamp_t getTime();
     static std::vector<size_t> generateJacobsthalIndices(size_t n);
     static void printSequence(const std::string& label, const std::vector<int>& seq);
 
@@ -37,5 +39,7 @@ public:
     PmergeMe& operator=(const PmergeMe& other);
     ~PmergeMe(); 
 };
+
+
 
 #endif

@@ -11,10 +11,9 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange &other) : _csvPath(other.
 }
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other){
-	this->_csvPath = other._csvPath;
-	std::map<std::string, float>::iterator it;
-	for (it = this->_rateByDate.begin(); it != this->_rateByDate.end(); it++){
-		this->_rateByDate[it->first] = it->second;
+	if (this != &other) {
+		this->_csvPath = other._csvPath;
+		this->_rateByDate = other._rateByDate;
 	}
 	return (*this);
 }
@@ -43,18 +42,14 @@ void BitcoinExchange::chargingDatabase()
 	std::ifstream databaseFile(this->_csvPath.c_str());
 	if (!databaseFile.is_open())
 		throw BitcoinExchange::CSVOpenException();
-
 	this->_rateByDate.clear();
-
 	std::string line;
 	std::getline(databaseFile, line);
-
 	while (std::getline(databaseFile, line))
 	{
 		std::stringstream lineStream(line);
 		std::string date;
 		std::string value;
-
 		if (!std::getline(lineStream, date, ',') || !std::getline(lineStream, value))
 		{
 			std::cout << "Error: Malformed line: " << line << std::endl;
@@ -96,6 +91,26 @@ float BitcoinExchange::getRate(std::string date)
 	return (it->second);
 }
 
+bool isLeapYear(int year)
+{
+	return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+/* Checking for february and if it's a leap year, or over/under logical date */
+
+bool isValidDateLogic(int year, int month, int day)
+{
+	if (year < 2009)
+		return (false);
+	if (month < 1 || month > 12)
+		return (false);
+	int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	if (month == 2 && isLeapYear(year))
+		daysInMonth[1] = 29;
+	return (day >= 1 && day <= daysInMonth[month - 1]);
+}
+
+/* Check if the length is exactly 10 and if - are at the right position and every other characters are digits*/
 /*
 ** counter help us to count the number of segment (YYYY-MM-JJ)
 ** We copy str in test_length to modify it with strtok
@@ -107,46 +122,37 @@ float BitcoinExchange::getRate(std::string date)
 ** struct tm is used for strptime
 */
 
-bool isValidDate(std::string str)
+bool isValidDate(const std::string& str)
 {
-	std::string test_length = str;
-	char *ptr;
-	ptr = strtok((char *)test_length.c_str(), "-");
-	int counter = 0;
-	while (ptr != NULL)
+	if (str.length() != 10)
+		return (false);
+	if (str[4] != '-' || str[7] != '-')
+		return (false);
+	for (int i = 0; i < 10; i++)
 	{
-		if (counter == 0 && strlen(ptr) != 4)
+		if (i == 4 || i == 7)
+			continue ;
+		if (str[i] < '0' || str[i] > '9')
 			return (false);
-		else if (counter > 0 && strlen(ptr) != 2)
-			return (false);
-		ptr = strtok(NULL, "-");
-		counter++;
 	}
-	if (counter != 3)
-		return (false);
-	struct tm result;
-	if(strptime(str.c_str(), "%Y-%m-%d", &result) == NULL)
-		return (false);
-	return (true);
+	int year = std::atoi(str.substr(0, 4).c_str());
+	int month = std::atoi(str.substr(5, 2).c_str());
+	int day = std::atoi(str.substr(8, 2).c_str());
+	return (isValidDateLogic(year, month, day));
 }
 
-/*
-** convert the chain as a float
-** we read. If we can't -> false
-*/
-
-bool isValidValue(std::string str)
+bool isValidValue(const std::string& str)
 {
+	if (str.empty())
+		return (false);
 	std::stringstream string(str);
 	float value;
 	if (!(string >> value) || !string.eof())
 		return (false);
-	if (value < 0)
-		return (false);
-	return (true);
+	return (value >= 0);
 }
 
-float strToFloat(std::string str)
+float strToFloat(const std::string& str)
 {
 	std::stringstream string(str);
 	float value;
@@ -169,50 +175,75 @@ void processInputFile(const std::string& filename, BitcoinExchange& btc)
 	std::ifstream file(filename.c_str());
 	if (!file.is_open())
 	{
-		std::cout << "Error: could not open file (" << filename << ")" << std::endl;
+		std::cout << "Error: could not open file" << std::endl;
 		return ;
 	}
 	std::string line;
-	int lineNumber = -1;
+	bool firstLine = true;
 	while (std::getline(file, line))
 	{
-		lineNumber++;
-		if (lineNumber == 0)
+		if (firstLine) {
+			firstLine = false;
 			continue ;
-		bool ignore = false;
-		std::string date;
-		std::string value;
-		char *token = std::strtok(const_cast<char*>(line.c_str()), " | ");
-		while (token != NULL)
-		{
-			if (date.empty())
-				date = token;
-			else if (value.empty())
-				value = token;
-			else
-				ignore = true;
-			token = std::strtok(NULL, " | ");
 		}
-		if (!isValidDate(date) && !ignore)
+		size_t pipe = line.find('|');
+		if ((pipe == std::string::npos) || (line.find('|', pipe + 1) != std::string::npos))
 		{
-			std::cout << "Error: Incorrect date format (" << date << ")" << std::endl;
-			ignore = true;
+			std::cout << RED_BOLD << "Error: bad input => " << RESET << line << std::endl;
+			continue ;
 		}
-		if (!isValidValue(value) && !ignore)
+		std::string datePart = line.substr(0, pipe);
+		std::string valuePart = line.substr(pipe + 1);
+		size_t dateStart = datePart.find_first_not_of(" \t");
+		size_t dateEnd = datePart.find_last_not_of(" \t");
+		if (dateStart == std::string::npos)
 		{
-			std::cout << "Error: Incorrect value format (" << value << ")" << std::endl;
-			ignore = true;
+			std::cout << RED_BOLD << "Error: bad input => " << RESET << line << std::endl;
+			continue ;
 		}
-		if (!ignore && strToFloat(value) > 1000)
+		std::string date = datePart.substr(dateStart, dateEnd - dateStart + 1);
+		if (date.find(' ') != std::string::npos || date.find('\t') != std::string::npos)
 		{
-			std::cout << "Error: Too large a number (" << value << ")" << std::endl;
-			ignore = true;
+			std::cout << RED_BOLD << "Error: bad input => " << RESET << line << std::endl;
+			continue ;
 		}
-		if (!ignore)
+		size_t valueStart = valuePart.find_first_not_of(" \t");
+		size_t valueEnd = valuePart.find_last_not_of(" \t");
+		if (valueStart == std::string::npos)
 		{
-			float result = strToFloat(value) * btc.getRate(date);
-			std::cout << date << " => " << value << " = " << result << std::endl;
+			std::cout << RED_BOLD << "Error: bad input => " << RESET << line << std::endl;
+			continue ;
 		}
+		std::string value = valuePart.substr(valueStart, valueEnd - valueStart + 1);
+		if (valuePart.find('\t') != std::string::npos && !isValidValue(value))
+		{
+			std::cout << RED_BOLD << "Error: bad input => " << RESET << line << std::endl;
+			continue ;
+		}
+		if (!isValidDate(date))
+		{
+			std::cout << RED_BOLD << "Error: bad input => " << RESET << date << std::endl;
+			continue ;
+		}
+		if (!isValidValue(value))
+		{
+			std::cout << RED_BOLD << "Error: bad input => " << RESET << date << std::endl;
+			continue ;
+		}
+		float floatValue = strToFloat(value);
+		if (floatValue > 1000)
+		{
+			std::cout << RED_BOLD << "Error: bad input => " << RESET << date << std::endl;
+			continue ;
+		}
+		float rate = btc.getRate(date);
+		if (rate == 0)
+		{
+			std::cout << RED_BOLD << "Error: no data available for date " << RESET << date << std::endl;
+			continue ;
+		}
+		float result = floatValue * rate;
+		std::cout << date << " => " << value << " = " << result << std::endl;
 	}
 	file.close();
 }

@@ -28,7 +28,7 @@ public:
 		virtual const char *what() const throw();
 	};
 
-	class RemainingTerms : public std::exception {
+	class IncompleteExpressionException : public std::exception {
 	public:
 		virtual const char *what() const throw();
 	}; 

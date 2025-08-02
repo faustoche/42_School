@@ -1,4 +1,6 @@
 #include "PmergeMe.hpp"
+typedef unsigned long long timestamp_t;
+
 
 /*-------------- CONSTRUCTORS --------------*/
 
@@ -16,10 +18,11 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other){
 
 /*-------------- FUNCTIONS --------------*/
 
-double PmergeMe::getTime() {
-    struct timeval t;
-    gettimeofday(&t, NULL);
-    return (t.tv_sec * 1000000.0 + t.tv_usec);
+timestamp_t PmergeMe::getTime()
+{
+	struct timeval now;
+	gettimeofday (&now, NULL);
+	return  now.tv_usec + (timestamp_t)now.tv_sec * 1000000;
 }
 
 /*
@@ -60,47 +63,47 @@ void PmergeMe::printSequence(const std::string& label, const std::vector<int>& s
 }
 
 /*
-** La suite de Jacobsthal est définie par : J(n) = J(n - 1) + 2 * J(n - 2)
-** Si on doit générer des indices pour une liste de 0 éléments, on retourne une liste vide
-** O
-**
+** Jacobsthal is defined by : J(n) = J(n - 1) + 2 * J(n - 2)
+** While our suite of numbers are inferior to the number of digits we want to sort we do the sort with Jacobsthal
+** We add the next Jacobsthal number
+** We check if the numbers of Jacobsthal has been used or not
 */
 
 std::vector<size_t> PmergeMe::generateJacobsthalIndices(size_t n) {
     if (n == 0)
 		return (std::vector<size_t>());
-    std::vector<size_t> indices; // liste finale à retourner
-    std::vector<bool> used(n, false); // quels indices ont déjà été utilisés
-    std::vector<size_t> jacobsthal; // valeur de la suite de Jacobsthal
-    jacobsthal.push_back(1); // On commence la suite à 1 car 0 ne sert à rien dans notre cas
+    std::vector<size_t> finalIndex;
+    std::vector<bool> used(n, false);
+    std::vector<size_t> jacobsthal;
+    jacobsthal.push_back(1);
     if (n > 1)
 		jacobsthal.push_back(1);
     size_t i = 2;
-    while (jacobsthal.back() < n) // tant que notre suite en nombre est inférieur au nombre de chiffres que l'on veut trier
+    while (jacobsthal.back() < n)
 	{
-        size_t next = jacobsthal[i - 1] + 2 * jacobsthal[i - 2]; // on applique la suite 
-        jacobsthal.push_back(next); // on ajoute l'élément correspondant dans notre vecteur
+        size_t next = jacobsthal[i - 1] + 2 * jacobsthal[i - 2];
+        jacobsthal.push_back(next);
         i++;
     }
     for (size_t j = 1; j < jacobsthal.size(); j++)
 	{
         size_t end = std::min(jacobsthal[j], n);
-        size_t start = (j > 1) ? jacobsthal[j - 1] + 1 : 1; // on recupere les elements dans l'ordre inverse
+        size_t start = (j > 1) ? jacobsthal[j - 1] + 1 : 1;
         for (size_t k = end; k >= start && k >= 1; k--)
 		{
-            if (k - 1 < n && !used[k - 1]) // on evite les doublons en checkant used
+            if (k - 1 < n && !used[k - 1])
 			{
-                indices.push_back(k - 1);
+                finalIndex.push_back(k - 1);
                 used[k - 1] = true;
             }
         }
     }
-    for (size_t i = 0; i < n; i++) // on ajoute les indices restants a notre liste
+    for (size_t i = 0; i < n; i++)
 	{
         if (!used[i])
-            indices.push_back(i);
+            finalIndex.push_back(i);
     }
-    return (indices);
+    return (finalIndex);
 }
 
 /*  ------- VECTOR VERSION ------- */

@@ -5,24 +5,18 @@ int main(int ac, char *av[])
 	if (ac != 2)
 	{
 		if (ac > 2)
-			std::cout << "Error: too many arguments." << std::endl;
+			std::cout << "Error: too many arguments" << std::endl;
 		else
-			std::cout << "Error: could not open file." << std::endl;
+			std::cout << "Error: could not open file" << std::endl;
 		return (1);
 	}
-
 	BitcoinExchange btc("input/data.csv");
-
-	try
-	{
+	try {
 		btc.chargingDatabase();
-	}
-	catch (BitcoinExchange::CSVOpenException &e)
-	{
+	} catch (BitcoinExchange::CSVOpenException &e) {
 		std::cout << e.what() << " (" << btc.getCSVPath() << ")" << std::endl;
 		return (1);
 	}
-
 	processInputFile(av[1], btc);
 	return (0);
 }
