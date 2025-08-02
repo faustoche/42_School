@@ -2,15 +2,15 @@
 
 int main(int ac, char **av)
 {
-    if (ac < 2) {
-        std::cout << "Error" << std::endl;
-        return (1);
-    }
-    try {
-        PmergeMe::run(av + 1);
-    } catch (std::exception & e) { // attraper toutes les exceptions? ou bien faire une exception specifique?
-        std::cout << e.what() << std::endl;// changer ce message d'erreur
-        return (1);
-    }
-    return (0);
+	if (ac <= 2) {
+		std::cout << "Error : wrong number of arguments" << std::endl;
+		return (1);
+	}
+	try {
+		PmergeMe::run(av + 1);
+	} catch (std::exception & e) {
+		std::cout << e.what() << std::endl;
+		return (1);
+	}
+	return (0);
 }
