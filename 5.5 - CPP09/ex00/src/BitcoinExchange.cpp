@@ -237,11 +237,6 @@ void processInputFile(const std::string& filename, BitcoinExchange& btc)
 			continue ;
 		}
 		float rate = btc.getRate(date);
-		if (rate == 0)
-		{
-			std::cout << RED_BOLD << "Error: no data available for date " << RESET << date << std::endl;
-			continue ;
-		}
 		float result = floatValue * rate;
 		std::cout << date << " => " << value << " = " << result << std::endl;
 	}
