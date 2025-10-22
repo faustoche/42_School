@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        @font-face {
+            font-family: "ComicNeue";
+            src: url("/fonts/ComicNeue-Regular.otf") format("opentype");
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: "ComicNeue";
+            src: url("/fonts/ComicNeue_Bold.otf") format("opentype");
+            font-weight: 700;
+        }
+        body {
+            margin: 0;
+            font-family: "ComicNeue", cursive, sans-serif;
+            background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+            color: #fff;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(0,0,0,0.7);
+            padding: 2rem;
+            border: 3px solid #ff00aa;
+            border-radius: 10px;
+        }
+        h1 {
+            font-family: "ComicNeue", cursive, sans-serif;
+			font-weight: 700;
+			font-size:3rem;
+			margin:0;
+			margin-bottom: 20px;
+			color:yellow;
+			text-shadow:2px 2px 0 #000, 0 0 10px #ff00aa;
+			animation: flash 1s infinite alternate;
+			text-align: center;
+        }
+		@keyframes flash{
+		from{color:yellow}
+		to{color:#ff66ff}
+		}
+        .add-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #ff00aa;
+            background: #ffffff;
+            color: rgb(255, 0, 242);
+            font-family: "ComicNeue";
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        button {
+            padding: 10px 20px;
+            background: #ff00aa;
+            border: 2px solid #000;
+            color: #000;
+            font-family: "ComicNeue";
+            font-weight: 900;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #ff66ff;
+        }
+        .todo-item {
+            background: rgba(255,0,170,0.2);
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 2px solid #ff00aa;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .task-text {
+            color: #0ff;
+            flex: 1;
+            font-weight: 700;
+            overflow:hidden;
+            text-overflow: ellipsis;
+        }
+        .delete-btn {
+            background: rgb(255, 238, 0);
+            color: #000;
+            padding: 5px 15px;
+        }
+        .delete-btn:hover {
+            background: #b3ff00;
+        }
+        .back-link {
+            display: inline-block;
+            background: rgb(21, 255, 0);
+            margin-top: 1rem;
+            color:rgb(0, 0, 0);
+            text-decoration: none;
+            border: 2px solid rgb(21, 255, 0);
+            padding: 10px 20px;
+            font-weight: 700;
+        }
+        .back-link:hover {
+            background: rgb(252, 248, 17);
+            border: 2px solid rgb(252, 248, 17);
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+	<h1>★ TODO LIST ★</h1>
+    <div class="container">
+        
+        <form class="add-form" method="POST" action="/post_todo" enctype="application/x-www-form-urlencoded">
+            <input type="text" name="task" placeholder="Add a new task..." required>
+            <button type="submit">ADD</button>
+        </form>
+
+        <div id="todo-list">
+            {{TASKS_HTML}}
+        </div>
+
+    </div>
+    <a href="/" class="back-link">← Go back to the main page</a>
+
+    <script>
+        function deleteTask(taskText) {
+            let encodedTask = encodeURIComponent(taskText);
+            encodedTask = encodedTask.replace(/!/g, '%21');
+            encodedTask = encodedTask.replace(/\*/g, '%2A');
+            encodedTask = encodedTask.replace(/\(/g, '%28');
+            encodedTask = encodedTask.replace(/\)/g, '%29');
+            fetch('/delete_todo?task=' + encodedTask, {
+                method: 'DELETE'
+            })
+            .then(response => response.text())
+            .then(html => {
+                document.open();
+                document.write(html);
+                document.close();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error while deleting a task');
+            });
+        }
+    </script>
+</body>
+</html>
