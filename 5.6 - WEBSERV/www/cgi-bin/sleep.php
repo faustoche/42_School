@@ -76,7 +76,7 @@ while (ob_get_level()) ob_end_flush();
 echo str_repeat(' ',1024);
 flush();
 
-sleep(100000);
+sleep(5);
 
 echo <<<HTML
 <script>
